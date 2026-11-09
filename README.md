@@ -52,6 +52,10 @@ sub-path, pass the base explicitly:
 GH_PAGES_BASE=/pooja-goel/ npm run build
 ```
 
+On Windows in Git Bash, prefix that with `MSYS_NO_PATHCONV=1` — otherwise MSYS
+rewrites the leading slash into a Windows path and the assets come out pointing
+at `/Program Files/Git/pooja-goel/`. CI runs on Linux and is unaffected.
+
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/deploy-pages.yml`, which builds the

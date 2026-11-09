@@ -33,12 +33,24 @@ function Monogram() {
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     setOpen(false);
+
+    // A link that arrives with a hash — /studio#tutoring, say — wants that
+    // section, not the top of the page. Children have already committed by the
+    // time this runs, so the target is in the DOM.
+    if (hash) {
+      const target = document.getElementById(hash.slice(1));
+      if (target) {
+        target.scrollIntoView({ block: "start" });
+        return;
+      }
+    }
+
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return (
     <div className="flex min-h-screen flex-col">

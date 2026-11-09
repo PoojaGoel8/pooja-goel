@@ -1,4 +1,5 @@
 import Reveal from "../components/Reveal";
+import { Icon } from "../components/icons";
 import { Copy, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
 import { studioBands, studioIntro, type StudioBand } from "../data/content";
@@ -221,22 +222,43 @@ export default function Studio() {
         <Collage />
       </div>
 
-      <section className="mx-auto max-w-shell px-6 py-14 md:px-10 md:py-20">
-        <dl className="grid gap-x-8 gap-y-9 border-t border-rule pt-10 sm:grid-cols-2 lg:grid-cols-4">
-          {studioIntro.facts.map((fact, i) => (
-            <Reveal key={fact.value} delay={i * 70}>
-              <div>
-                <dt className="font-display text-[1.6rem] font-normal leading-none tracking-[-0.01em]">
-                  {fact.value}
-                </dt>
-                <dd className="mt-3 max-w-[22ch] text-[0.88rem] leading-relaxed text-muted">
-                  {fact.label}
-                </dd>
-              </div>
+      {/* Five bands is more than fits on a screen, so give the reader a way in. */}
+      <nav
+        aria-label="Sections of this page"
+        className="mx-auto max-w-shell px-6 py-14 md:px-10 md:py-20"
+      >
+        <ul className="grid grid-cols-2 gap-3 border-t border-rule pt-10 lg:grid-cols-5">
+          {studioBands.map((band, i) => (
+            <Reveal key={band.slug} delay={i * 60} className="h-full">
+              <li className="h-full">
+                <a
+                  href={`#${band.slug}`}
+                  className="group flex h-full flex-col rounded-[3px] border border-rule bg-paper p-5 transition-colors duration-300 hover:border-accent/50 hover:bg-shell/50"
+                >
+                  <span className="text-accent transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
+                    <Icon name={band.icon} className="h-6 w-6" />
+                  </span>
+
+                  <span className="mt-4 font-display text-[1.1rem] font-normal leading-snug">
+                    {band.title}
+                  </span>
+
+                  <span className="mt-2 flex-1 text-[0.82rem] leading-relaxed text-muted">
+                    {band.blurb}
+                  </span>
+
+                  <span
+                    aria-hidden
+                    className="mt-4 text-[0.9rem] text-accent transition-transform duration-300 group-hover:translate-y-0.5"
+                  >
+                    ↓
+                  </span>
+                </a>
+              </li>
             </Reveal>
           ))}
-        </dl>
-      </section>
+        </ul>
+      </nav>
 
       <Section className="py-0 md:py-0">
         <div>

@@ -13,7 +13,12 @@ export type IconName =
   | "migration"
   | "shield"
   | "automation"
-  | "ai";
+  | "ai"
+  | "palette"
+  | "frame"
+  | "note"
+  | "hammock"
+  | "book";
 
 const paths: Record<IconName, React.ReactNode> = {
   // Stacked storage — databases and cloud estates.
@@ -64,6 +69,53 @@ const paths: Record<IconName, React.ReactNode> = {
       <path d="M12 6.9v3.8" />
       <path d="M12 10.7L6.4 16.3" />
       <path d="M12 10.7l5.6 5.6" />
+    </>
+  ),
+
+  // A palette and its wells — face painting.
+  palette: (
+    <>
+      <path d="M12 3a9 9 0 0 0 0 18c1.3 0 2.1-.8 2.1-1.9 0-.6-.25-1.05-.6-1.45-.35-.4-.6-.85-.6-1.4 0-1.1.85-1.95 1.95-1.95H16c2.75 0 5-2.25 5-5C21 5.6 17 3 12 3z" />
+      <circle cx="7.6" cy="11.4" r="1" fill="currentColor" stroke="none" />
+      <circle cx="10.1" cy="7.6" r="1" fill="currentColor" stroke="none" />
+      <circle cx="14.9" cy="7.4" r="1" fill="currentColor" stroke="none" />
+    </>
+  ),
+
+  // A portrait in its frame — commissioned work.
+  frame: (
+    <>
+      <rect x="4" y="3" width="16" height="18" rx="1.2" />
+      <circle cx="12" cy="9.6" r="2.2" />
+      <path d="M7.6 17.8c1.1-2.2 2.6-3.3 4.4-3.3s3.3 1.1 4.4 3.3" />
+    </>
+  ),
+
+  // Beamed notes — dance.
+  note: (
+    <>
+      <circle cx="7" cy="17.8" r="2.3" />
+      <circle cx="17.2" cy="15.4" r="2.3" />
+      <path d="M9.3 17.8V6.4l10.2-2.2v11.2" />
+      <path d="M9.3 9.6l10.2-2.2" />
+    </>
+  ),
+
+  // Fabric slung from a rig — aerial. A shallow, wide arc: a deeper curve
+  // reads as a funnel at this size.
+  hammock: (
+    <>
+      <path d="M3 5.5h18" />
+      <path d="M7 5.5Q7 15.5 12 15.5Q17 15.5 17 5.5" />
+    </>
+  ),
+
+  // An open book — tutoring.
+  book: (
+    <>
+      <path d="M12 6.6C10.4 5.3 8.3 4.6 6 4.6H3.6v12.8H6c2.3 0 4.4.7 6 2" />
+      <path d="M12 6.6c1.6-1.3 3.7-2 6-2h2.4v12.8H18c-2.3 0-4.4.7-6 2" />
+      <path d="M12 6.6v14.8" />
     </>
   ),
 };

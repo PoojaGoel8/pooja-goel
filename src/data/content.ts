@@ -9,6 +9,8 @@
  * Anything marked TODO is a deliberate gap waiting on content.
  */
 
+import type { IconName } from "../components/icons";
+
 /**
  * Authoring notes below are wrapped in `DEV ? [...] : []` so the bundler
  * removes them entirely from the production build — they never render on the
@@ -393,13 +395,6 @@ export const recognition = [
 
 export const studioIntro = {
   lede: "Face paint, portraits on commission, Indian dance on festival stages, aerial hammock, and four years of teaching. None of it is a break from the engineering — it is the same attention paid to a different surface, and it is where the colour on this site comes from.",
-  /** Shown as a strip under the lede. */
-  facts: [
-    { value: "Face paint", label: "& balloon twisting, at events" },
-    { value: "Festival stages", label: "Indian classical and folk" },
-    { value: "Commissions", label: "Portraiture, on request" },
-    { value: "4 years", label: "Tutoring at Melbourne" },
-  ],
   /** The offset collage at the top of the page. */
   collage: [
     {
@@ -419,6 +414,9 @@ export const studioIntro = {
 
 export type StudioBand = {
   slug: string;
+  /** Glyph and one-liner used by the jump tiles at the top of the page. */
+  icon: IconName;
+  blurb: string;
   eyebrow: string;
   title: string;
   body: string[];
@@ -438,6 +436,8 @@ export type StudioBand = {
 export const studioBands: StudioBand[] = [
   {
     slug: "face-painting",
+    icon: "palette" as const,
+    blurb: "Face paint and balloon twisting, at events",
     eyebrow: "Colourzone Melbourne",
     title: "Face painting",
     body: [
@@ -461,6 +461,8 @@ export const studioBands: StudioBand[] = [
   },
   {
     slug: "portraiture",
+    icon: "frame" as const,
+    blurb: "Portraits and commissioned pieces",
     eyebrow: "Portraiture & commissions",
     title: "Undefined",
     body: [
@@ -491,6 +493,8 @@ export const studioBands: StudioBand[] = [
   },
   {
     slug: "dance",
+    icon: "note" as const,
+    blurb: "Indian classical and folk, on festival stages",
     eyebrow: "Stage",
     title: "Dance",
     body: [
@@ -515,6 +519,8 @@ export const studioBands: StudioBand[] = [
   },
   {
     slug: "aerial",
+    icon: "hammock" as const,
+    blurb: "Hammock training, upside down",
     eyebrow: "Training",
     title: "Aerial",
     body: [
@@ -530,6 +536,8 @@ export const studioBands: StudioBand[] = [
   },
   {
     slug: "tutoring",
+    icon: "book" as const,
+    blurb: "Four years of it, at the University of Melbourne",
     eyebrow: "The University of Melbourne",
     title: "Tutoring",
     body: [

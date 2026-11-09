@@ -1,4 +1,5 @@
 import Reveal from "../components/Reveal";
+import { Icon } from "../components/icons";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
 import { advocacy, education, recognition, roles, site, skillGroups } from "../data/content";
@@ -176,21 +177,34 @@ export default function Experience() {
             </h2>
           </Reveal>
 
-          <div className="grid gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {skillGroups.map((group, i) => (
               <Reveal key={group.title} delay={i * 60}>
-                <div>
-                  <h3 className="border-b border-rule pb-3 font-display text-[1.1rem] font-normal">
+                <article className="group flex h-full flex-col rounded-[3px] border border-rule bg-paper p-6 transition-colors duration-300 hover:border-accent/40 md:p-7">
+                  <header className="flex items-start justify-between gap-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-soft/70 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-paper">
+                      <Icon name={group.icon} className="h-[1.15rem] w-[1.15rem]" />
+                    </span>
+                    <span className="font-mono text-[0.7rem] tracking-[0.08em] text-muted">
+                      {String(group.items.length).padStart(2, "0")}
+                    </span>
+                  </header>
+
+                  <h3 className="mt-5 font-display text-[1.15rem] font-normal leading-snug">
                     {group.title}
                   </h3>
-                  <ul className="mt-4 space-y-2">
+
+                  <ul className="mt-5 flex flex-1 flex-wrap content-start gap-1.5">
                     {group.items.map((item) => (
-                      <li key={item} className="text-[0.95rem] leading-relaxed text-graphite">
+                      <li
+                        key={item}
+                        className="rounded-full border border-rule/80 px-2.5 py-1 text-[0.8rem] leading-normal text-graphite"
+                      >
                         {item}
                       </li>
                     ))}
                   </ul>
-                </div>
+                </article>
               </Reveal>
             ))}
           </div>

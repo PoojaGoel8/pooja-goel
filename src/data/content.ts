@@ -82,6 +82,7 @@ export const capabilities = [
 export const skillGroups = [
   {
     title: "Databases & cloud",
+    icon: "database" as const,
     items: [
       "Microsoft SQL Server",
       "Azure SQL",
@@ -93,6 +94,7 @@ export const skillGroups = [
   },
   {
     title: "Operations & reliability",
+    icon: "pulse" as const,
     items: [
       "Production support",
       "Monitoring",
@@ -108,6 +110,7 @@ export const skillGroups = [
   },
   {
     title: "Performance & migration",
+    icon: "migration" as const,
     items: [
       "Query tuning",
       "Index tuning",
@@ -120,6 +123,7 @@ export const skillGroups = [
   },
   {
     title: "Security & governance",
+    icon: "shield" as const,
     items: [
       "Database access controls",
       "Data-plane RBAC",
@@ -131,6 +135,7 @@ export const skillGroups = [
   },
   {
     title: "Automation & tooling",
+    icon: "automation" as const,
     items: [
       "PowerShell",
       "Python",
@@ -146,6 +151,7 @@ export const skillGroups = [
   },
   {
     title: "AI & evaluation",
+    icon: "ai" as const,
     items: [
       "LLM knowledge assistants",
       "Agentic AI",

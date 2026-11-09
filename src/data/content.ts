@@ -400,14 +400,20 @@ export const studioIntro = {
     {
       src: "/assets/images/dance-stage.webp",
       alt: "Pooja and her group performing in Kerala costume at Ente Keralam",
+      w: 1500,
+      h: 1000,
     },
     {
       src: "/assets/images/facepaint-lion.webp",
       alt: "A lion design with a painted muzzle and tongue",
+      w: 361,
+      h: 640,
     },
     {
       src: "/assets/images/aerial.webp",
       alt: "Pooja inverted in an aerial hammock",
+      w: 900,
+      h: 1600,
     },
   ],
 };
@@ -420,7 +426,7 @@ export type StudioBand = {
   eyebrow: string;
   title: string;
   body: string[];
-  images: { src: string; alt: string; caption?: string }[];
+  images: { src: string; alt: string; caption?: string; w: number; h: number }[];
   /** Which side the images sit on at desktop width. */
   side?: "left" | "right";
   /** True for bands whose photographs are still to come, so the layout keeps a slot for them. */
@@ -446,12 +452,12 @@ export const studioBands: StudioBand[] = [
       ...(DEV ? ["// TODO — the facts a visitor should actually learn: years doing it, events worked, how long a design takes, the paints you use, what you will not paint."] : []),
     ],
     images: [
-      { src: "/assets/images/facepaint-tiger-cub.webp", alt: "A toddler painted as a tiger cub" },
-      { src: "/assets/images/facepaint-lion.webp", alt: "A lion design with a painted muzzle and tongue" },
-      { src: "/assets/images/facepaint-peacock-face.webp", alt: "A peacock design in green and gold across one side of the face" },
-      { src: "/assets/images/facepaint-crown.webp", alt: "A blue and gold crown design across the brow" },
-      { src: "/assets/images/facepaint-spider.webp", alt: "A spider design on the cheek, lit in purple" },
-      { src: "/assets/images/facepaint-skull.webp", alt: "A skull design painted for Halloween" },
+      { src: "/assets/images/facepaint-tiger-cub.webp", alt: "A toddler painted as a tiger cub", w: 360, h: 640 },
+      { src: "/assets/images/facepaint-lion.webp", alt: "A lion design with a painted muzzle and tongue", w: 361, h: 640 },
+      { src: "/assets/images/facepaint-peacock-face.webp", alt: "A peacock design in green and gold across one side of the face", w: 361, h: 640 },
+      { src: "/assets/images/facepaint-crown.webp", alt: "A blue and gold crown design across the brow", w: 360, h: 640 },
+      { src: "/assets/images/facepaint-spider.webp", alt: "A spider design on the cheek, lit in purple", w: 360, h: 640 },
+      { src: "/assets/images/facepaint-skull.webp", alt: "A skull design painted for Halloween", w: 360, h: 640 },
     ],
     gallery: true,
     side: "right",
@@ -474,6 +480,8 @@ export const studioBands: StudioBand[] = [
       {
         src: "/assets/images/artwork-peacock.webp",
         alt: "A painted pair of peacocks in ink and colour, made as a commission",
+        w: 361,
+        h: 640,
         caption: "A commissioned pair of peacocks.",
       },
     ],
@@ -506,11 +514,15 @@ export const studioBands: StudioBand[] = [
       {
         src: "/assets/images/dance-stage.webp",
         alt: "Pooja and her group mid-routine in Kerala costume on a lit stage",
+        w: 1500,
+        h: 1000,
         caption: "Ente Keralam.",
       },
       {
         src: "/assets/images/dance-diwali.webp",
         alt: "The routine on the big screen at Diwali: Festival of Lights, Federation Square",
+        w: 1000,
+        h: 1776,
         caption: "Diwali: Festival of Lights, Federation Square.",
       },
     ],
@@ -530,6 +542,8 @@ export const studioBands: StudioBand[] = [
       {
         src: "/assets/images/aerial.webp",
         alt: "Pooja inverted in an aerial hammock",
+        w: 900,
+        h: 1600,
       },
     ],
     side: "left",

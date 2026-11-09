@@ -27,6 +27,8 @@ function Collage() {
         <img
           src={asset(stage.src)}
           alt={stage.alt}
+          width={stage.w}
+          height={stage.h}
           className="h-full w-full rounded-[2px] object-cover md:aspect-[3/2]"
         />
       </Reveal>
@@ -34,6 +36,8 @@ function Collage() {
         <img
           src={asset(diwali.src)}
           alt={diwali.alt}
+          width={diwali.w}
+          height={diwali.h}
           loading="lazy"
           className="h-full w-full rounded-[2px] object-cover md:aspect-[3/4]"
         />
@@ -42,6 +46,8 @@ function Collage() {
         <img
           src={asset(aerial.src)}
           alt={aerial.alt}
+          width={aerial.w}
+          height={aerial.h}
           loading="lazy"
           className="h-full w-full rounded-[2px] object-cover md:aspect-[2/3]"
         />
@@ -62,8 +68,10 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
           <img
             src={asset(image.src)}
             alt={image.alt}
+            width={image.w}
+            height={image.h}
             loading="lazy"
-            className="w-full rounded-[2px] object-cover"
+            className="h-auto w-full rounded-[2px] object-cover"
           />
           {image.caption && (
             <figcaption className="mt-2.5 text-[0.82rem] leading-relaxed text-muted">
@@ -141,6 +149,8 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
                 <img
                   src={asset(image.src)}
                   alt={image.alt}
+                  width={image.w}
+                  height={image.h}
                   loading="lazy"
                   className="aspect-[3/4] w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                 />

@@ -27,6 +27,8 @@ export const site = {
   artInstagram: "https://www.instagram.com/you_persona_art",
   artInstagramHandle: "@you_persona_art",
   tagline: "Databases that stay up, stay fast, and stay governed.",
+  /** Published copy has the phone number redacted out of the PDF. */
+  resume: "/assets/documents/pooja-goel-resume.pdf",
 };
 
 /* ------------------------------------------------------------------ home */
@@ -46,9 +48,9 @@ export const metrics = [
 
 export const arc = {
   eyebrow: "The route here",
-  heading: "Chennai, Melbourne, Singapore",
+  heading: "India, Australia, Singapore",
   body: [
-    "I trained as a computer engineer in Chennai, then moved to Melbourne for a Master of Information Systems and stayed — first as a graduate engineer, then running database services for a wagering platform where a slow query is a lost customer and an outage is a regulatory conversation.",
+    "I trained as a computer engineer in India, then moved to Australia for a Master of Information Systems and stayed — first as a graduate engineer, then running database services for a wagering platform where a slow query is a lost customer and an outage is a regulatory conversation.",
     "That environment taught me the thing this whole site is really about: reliability is not a feature you add. It is a set of habits — tested restores, rehearsed failovers, access you can audit, changes you can reverse — applied relentlessly and mostly invisibly.",
     "I am now based in Singapore, which runs on the same combination I have spent four years inside: regulated industries, cloud-first platforms, and real appetite for putting AI to work on operational data rather than in a demo.",
   ],
@@ -284,6 +286,11 @@ export const hackathon = {
     ...(DEV ? ["// TODO — the technical specifics: what moved between Databricks and AI Foundry, how identity and network access were handled, what happened to anything sensitive before the model saw it, and the schema contract the AI layer read from."] : []),
   ],
   award: "People's Choice Award",
+  image: {
+    src: "/assets/images/hackathon.webp",
+    alt: "Pooja presenting during the hackathon",
+    caption: "Presenting during the hackathon.",
+  },
   needsDetail: true,
 };
 
@@ -293,7 +300,7 @@ export const roles = [
   {
     title: "Data Services Engineer",
     org: "PointsBet",
-    place: "Melbourne, Australia",
+    place: "Australia",
     period: "Nov 2022 — present",
     points: [
       "Maintained 100% server uptime and no performance degradation through high-volume periods by optimising database servers, queries and configuration across environments.",
@@ -304,7 +311,7 @@ export const roles = [
   {
     title: "Graduate Data Services Engineer",
     org: "PointsBet",
-    place: "Melbourne, Australia",
+    place: "Australia",
     period: "Jul 2022 — Nov 2022",
     points: [
       "Migrated 6+ databases from on-premises to Azure, improving scalability by 90% while maintaining business continuity.",
@@ -315,7 +322,7 @@ export const roles = [
   {
     title: "Academic Tutor — Professional IS Consulting",
     org: "The University of Melbourne",
-    place: "Melbourne, Australia",
+    place: "Australia",
     period: "Feb 2022 — Nov 2025",
     points: [
       "Ran tutorials for a postgraduate information systems consulting subject, alongside a full-time engineering role.",
@@ -326,7 +333,7 @@ export const roles = [
   {
     title: "Project Management Intern",
     org: "Ladder Media",
-    place: "Goa, India",
+    place: "India",
     period: "Nov 2021 — Feb 2022",
     points: [
       "Coordinated a team of 20+ across functions, holding task alignment and milestone delivery together.",
@@ -349,7 +356,7 @@ export const education = [
   },
   {
     title: "Bachelor of Technology, Computer Science and Engineering",
-    org: "SRM Institute of Science and Technology, Chennai",
+    org: "SRM Institute of Science and Technology, India",
     period: "Jul 2016 — Jun 2020",
     notes: ["First Class with Distinction"],
   },
@@ -375,7 +382,29 @@ export const recognition = [
 /* ---------------------------------------------------------------- studio */
 
 export const studioIntro = {
-  lede: "I paint faces, I draw portraits on commission, and I perform — Indian classical and folk dance on festival stages, aerial hammock in the studio. None of it is a break from the engineering. It is the same attention paid to a different surface, and it is where the colour on this site comes from.",
+  lede: "Face paint, portraits on commission, Indian dance on festival stages, aerial hammock, and four years of teaching. None of it is a break from the engineering — it is the same attention paid to a different surface, and it is where the colour on this site comes from.",
+  /** Shown as a strip under the lede. */
+  facts: [
+    { value: "Face paint", label: "& balloon twisting, at events" },
+    { value: "Festival stages", label: "Indian classical and folk" },
+    { value: "Commissions", label: "Portraiture, on request" },
+    { value: "4 years", label: "Tutoring at Melbourne" },
+  ],
+  /** The offset collage at the top of the page. */
+  collage: [
+    {
+      src: "/assets/images/dance-stage.webp",
+      alt: "Pooja and her group performing in Kerala costume at Ente Keralam",
+    },
+    {
+      src: "/assets/images/dance-diwali.webp",
+      alt: "The performance shown on the big screen at Diwali: Festival of Lights, Federation Square",
+    },
+    {
+      src: "/assets/images/aerial.webp",
+      alt: "Pooja inverted in an aerial hammock",
+    },
+  ],
 };
 
 export type StudioBand = {
@@ -384,8 +413,13 @@ export type StudioBand = {
   title: string;
   body: string[];
   images: { src: string; alt: string; caption?: string }[];
+  /** Which side the images sit on at desktop width. */
+  side?: "left" | "right";
+  /** True for bands whose photographs are still to come, so the layout keeps a slot for them. */
+  awaitsImages?: boolean;
   links?: { label: string; href: string }[];
   note?: { label: string; body: string };
+  pullQuote?: string;
   needsDetail?: boolean;
 };
 
@@ -395,12 +429,15 @@ export const studioBands: StudioBand[] = [
     eyebrow: "Colourzone Melbourne",
     title: "Face painting",
     body: [
-      "I run Colourzone Melbourne, painting faces at events — which means working fast, on a surface that moves, for someone who will look in a mirror the moment you finish and tell you exactly what they think.",
+      "I run Colourzone Melbourne — face painting and balloon twisting at events. Which means working fast, on a surface that will not hold still, for someone who is going to look in a mirror the moment you finish and tell you exactly what they think.",
       ...(DEV ? ["// TODO — the story: how it started, what you love about working on a face rather than paper, the thing people do not expect about it."] : []),
       ...(DEV ? ["// TODO — the facts a visitor should actually learn: years doing it, events worked, how long a design takes, the paints you use, what you will not paint."] : []),
     ],
     images: [],
+    awaitsImages: true,
+    side: "right",
     links: [{ label: site.instagramHandle, href: site.instagram }],
+    pullQuote: "No second attempt, no undo, and the client is five years old.",
     needsDetail: true,
   },
   {
@@ -413,10 +450,12 @@ export const studioBands: StudioBand[] = [
       ...(DEV ? ["// TODO — medium, what a typical commission is, roughly how long a piece takes, and how someone starts one."] : []),
     ],
     images: [],
+    awaitsImages: true,
+    side: "left",
     links: [
       { label: site.artInstagramHandle, href: site.artInstagram },
       {
-        label: "UMSU Creative Arts",
+        label: "Read it on UMSU Creative Arts",
         href: "https://umsu.unimelb.edu.au/news/article/7860/Pooja-Goel-Undefined/",
       },
     ],
@@ -431,37 +470,58 @@ export const studioBands: StudioBand[] = [
     eyebrow: "Stage",
     title: "Dance",
     body: [
-      "I perform Indian classical and folk dance, which in Melbourne means festival stages rather than studio recitals — Diwali: Festival of Lights at Federation Square, with the performance carried on the big screen above a crowd that filled the square, and Ente Keralam, in full Kerala costume under stage lighting.",
-      "Group choreography is an odd kind of engineering. Six people, one count, and a routine that only works if everybody holds their own timing while watching everyone else's.",
+      "Indian classical and folk dance, which in Australia has meant festival stages rather than studio recitals — Diwali: Festival of Lights at Federation Square, the routine carried on a screen several storeys high above a crowd that filled the square, and Ente Keralam in full Kerala costume under stage lighting.",
+      "Group choreography is an odd kind of engineering. Six people, one count, and a routine that only holds together if everybody keeps their own timing while watching everyone else's.",
       ...(DEV ? ["// TODO — which years, which forms specifically, the group you perform with, and any other events worth naming."] : []),
     ],
-    images: [],
+    images: [
+      {
+        src: "/assets/images/dance-stage.webp",
+        alt: "Pooja and her group mid-routine in Kerala costume on a lit stage",
+        caption: "Ente Keralam.",
+      },
+      {
+        src: "/assets/images/dance-diwali.webp",
+        alt: "The routine on the big screen at Diwali: Festival of Lights, Federation Square",
+        caption: "Diwali: Festival of Lights, Federation Square.",
+      },
+    ],
+    side: "right",
     needsDetail: true,
   },
   {
     slug: "aerial",
-    eyebrow: "Studio",
+    eyebrow: "Training",
     title: "Aerial",
     body: [
-      "Aerial hammock. Upside down, mostly, working out how much of your own weight you can hold and where.",
+      "Aerial hammock. Upside down, mostly, working out how much of your own weight you can hold and exactly where you can hold it from.",
     ],
-    images: [{ src: "/assets/images/aerial.webp", alt: "Pooja inverted in an aerial hammock" }],
+    images: [
+      {
+        src: "/assets/images/aerial.webp",
+        alt: "Pooja inverted in an aerial hammock",
+      },
+    ],
+    side: "left",
+  },
+  {
+    slug: "tutoring",
+    eyebrow: "The University of Melbourne",
+    title: "Tutoring",
+    body: [
+      "For nearly four years I tutored Professional IS Consulting at the University of Melbourne, on weeknights and weekends, while working full time on production databases.",
+      "The subject sits where technology meets the people paying for it: scoping work, reading a client properly, turning an ambiguous problem into something a team can actually deliver. Students arrived good at systems and uncertain about everything surrounding them.",
+      "What four years of that teaches you is diagnostic. You stop explaining the thing and start finding the specific place where someone's understanding breaks — because the explanation that works is almost never the one you prepared.",
+      "It is the same instinct the database work runs on. An internal knowledge assistant is only useful if it meets someone where their confusion actually is. A post-mortem is only worth writing if the next person understands it. Documentation, standards, onboarding, incident reviews — all of it is teaching with a different audience.",
+      ...(DEV ? ["// TODO — what the subject actually covered week to week, and roughly how many students across the four years."] : []),
+    ],
+    images: [],
+    side: "right",
+    pullQuote:
+      "The explanation that works is almost never the one you prepared.",
+    needsDetail: true,
   },
 ];
-
-/* -------------------------------------------------------------- tutoring */
-
-export const tutoring = {
-  lede: "For nearly four years I tutored Professional IS Consulting at the University of Melbourne, on weeknights and weekends, while working full time on production databases.",
-  body: [
-    "The subject sits where technology meets the people paying for it: scoping work, reading a client properly, turning an ambiguous problem into something a team can actually deliver. Students arrived good at systems and uncertain about everything surrounding them.",
-    "What four years of that teaches you is diagnostic. You stop explaining the thing and start finding the specific place where someone's understanding breaks — because the explanation that works is almost never the one you prepared.",
-    "It is the same instinct the database work runs on. An internal knowledge assistant is only useful if it meets someone where their confusion actually is. A post-mortem is only worth writing if the next person understands it. Documentation, standards, onboarding, incident reviews — all of it is teaching with a different audience.",
-    ...(DEV ? ["// TODO — what the subject actually covered week to week, and roughly how many students across the four years."] : []),
-  ],
-  image: { src: "/assets/images/speaking.webp", alt: "Pooja explaining a problem to colleagues" },
-  needsDetail: true,
-};
 
 /* ---------------------------------------------------------- testimonials */
 

@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { site, testimonials } from "../data/content";
+import { asset } from "../lib/asset";
 
 const baseNav = [
   { to: "/work", label: "Work" },
   { to: "/ai-enablement", label: "AI Enablement" },
   { to: "/experience", label: "Experience" },
   { to: "/studio", label: "Studio" },
-  { to: "/tutoring", label: "Tutoring" },
 ];
 
 // The testimonials page only enters the navigation once it has real quotes.
@@ -138,6 +138,14 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             </div>
 
             <div className="flex flex-wrap gap-x-8 gap-y-3 text-[0.95rem]">
+              <a
+                href={asset(site.resume)}
+                download
+                className="inline-flex items-center gap-2 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+              >
+                Résumé
+                <span aria-hidden>↓</span>
+              </a>
               <a
                 href={`mailto:${site.email}`}
                 className="text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"

@@ -167,7 +167,7 @@ function Elsewhere() {
       body: "Colourzone Melbourne, a portrait that UMSU Creative Arts picked out, and Indian dance on a screen above Federation Square.",
     },
     {
-      to: "/tutoring",
+      to: "/studio#tutoring",
       eyebrow: "Tutoring",
       title: "Four years explaining complex systems to people who needed them to land",
       body: "Postgraduate consulting tutorials at the University of Melbourne, alongside the full-time engineering role.",

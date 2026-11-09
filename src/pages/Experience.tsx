@@ -1,7 +1,7 @@
 import Reveal from "../components/Reveal";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
-import { advocacy, education, recognition, roles, skillGroups } from "../data/content";
+import { advocacy, education, recognition, roles, site, skillGroups } from "../data/content";
 
 export default function Experience() {
   usePageMeta(
@@ -15,6 +15,25 @@ export default function Experience() {
         eyebrow="Experience"
         title="Four years of production, and the training that preceded it."
       />
+
+      <div className="mx-auto -mt-6 max-w-shell px-6 pb-10 md:px-10 md:pb-14">
+        <a
+          href={asset(site.resume)}
+          download
+          className="group inline-flex items-center gap-3 rounded-[2px] border border-rule px-5 py-3 text-[0.95rem] text-graphite transition-colors hover:border-accent hover:text-accent"
+        >
+          Download résumé
+          <span
+            aria-hidden
+            className="transition-transform duration-300 group-hover:translate-y-0.5"
+          >
+            ↓
+          </span>
+          <span className="font-mono text-[0.7rem] uppercase tracking-[0.08em] text-muted">
+            PDF
+          </span>
+        </a>
+      </div>
 
       <div className="mx-auto max-w-shell px-6 md:px-10">
         <div className="border-t border-rule">
@@ -49,7 +68,7 @@ export default function Experience() {
         </div>
       </div>
 
-      <Section eyebrow="Education" title="Melbourne, by way of Chennai.">
+      <Section eyebrow="Education" title="Australia, by way of India.">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-16">
           <div className="space-y-10">
             {education.map((item) => (
@@ -115,19 +134,35 @@ export default function Experience() {
           </div>
 
           <Reveal delay={120}>
-            <figure>
-              <img
-                src={asset("/assets/images/graduation.webp")}
-                alt="Pooja receiving her Master of Information Systems at the University of Melbourne"
-                width={1400}
-                height={784}
-                loading="lazy"
-                className="w-full rounded-[2px] object-cover"
-              />
-              <figcaption className="mt-3 text-[0.82rem] text-muted">
-                Master of Information Systems, the University of Melbourne.
-              </figcaption>
-            </figure>
+            <div className="space-y-6">
+              <figure>
+                <img
+                  src={asset("/assets/images/graduation.webp")}
+                  alt="Pooja receiving her Master of Information Systems at the University of Melbourne"
+                  width={1400}
+                  height={784}
+                  loading="lazy"
+                  className="w-full rounded-[2px] object-cover"
+                />
+                <figcaption className="mt-3 text-[0.82rem] text-muted">
+                  Master of Information Systems, the University of Melbourne.
+                </figcaption>
+              </figure>
+
+              <figure>
+                <img
+                  src={asset("/assets/images/award.webp")}
+                  alt="Pooja receiving a Faculty of Engineering and Information Technology award"
+                  width={1080}
+                  height={640}
+                  loading="lazy"
+                  className="w-full rounded-[2px] object-cover"
+                />
+                <figcaption className="mt-3 text-[0.82rem] text-muted">
+                  Faculty of Engineering and Information Technology awards.
+                </figcaption>
+              </figure>
+            </div>
           </Reveal>
         </div>
       </Section>

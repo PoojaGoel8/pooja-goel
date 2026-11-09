@@ -1,5 +1,6 @@
 import Reveal from "../components/Reveal";
 import { Copy, PageHeader, Section, usePageMeta } from "../components/Page";
+import { asset } from "../lib/asset";
 import { aiIntro, aiWork, hackathon } from "../data/content";
 
 function Hackathon() {
@@ -20,7 +21,22 @@ function Hackathon() {
 
           <Reveal delay={100}>
             <p className="copy max-w-prose text-[1.1rem]">{hackathon.summary}</p>
-            <div className="mt-8">
+
+            <figure className="mt-9 max-w-[17rem]">
+              <img
+                src={asset(hackathon.image.src)}
+                alt={hackathon.image.alt}
+                width={440}
+                height={750}
+                loading="lazy"
+                className="w-full rounded-[2px] object-cover"
+              />
+              <figcaption className="mt-2.5 text-[0.82rem] text-muted">
+                {hackathon.image.caption}
+              </figcaption>
+            </figure>
+
+            <div className="mt-9">
               <h3 className="eyebrow">My part in it</h3>
               <div className="mt-5">
                 <Copy paragraphs={hackathon.role} />

@@ -78,16 +78,26 @@ public/assets/      images and downloadable documents
 scripts/postbuild   404.html and .nojekyll for Pages
 ```
 
-Routes are `/`, `/work`, `/ai-enablement`, `/experience`, `/studio`,
-`/tutoring` and `/testimonials`, declared in `src/App.tsx`.
+Routes are `/`, `/work`, `/ai-enablement`, `/experience`, `/studio` and
+`/testimonials`, declared in `src/App.tsx`. Tutoring is a band inside Studio;
+`/tutoring` redirects to `/studio#tutoring` so older links keep working.
 
 `404.html` is a copy of `index.html`. GitHub Pages has no SPA rewrite rule, so a
 deep link such as `/work` requests a file that does not exist and Pages serves
 `404.html`; the app boots from it and the router renders the real route.
 
-## Images
+## Images and documents
 
-Source photographs are processed into web assets before being committed. The
-speaking photograph has the bystanders' faces deliberately blurred, since they
-did not consent to appearing on a public site — keep that treatment if the
-image is ever regenerated.
+Source photographs are processed into web assets before being committed. Two
+treatments matter and should survive any regeneration:
+
+- **`hackathon.webp`** has the bystanders' faces feather-blurred. They did not
+  consent to appearing on a public site.
+- **`assets/documents/pooja-goel-resume.pdf`** has the phone number removed with
+  a true PDF redaction, not a covering box — the text is gone, not hidden. If
+  the résumé is ever replaced, redact it again before committing.
+
+A studio band with no photographs yet carries `awaitsImages: true`, which keeps
+a placeholder slot in the layout locally and an empty column on the live site.
+Drop files into `public/assets/images/` and list them in the band's `images`
+array to fill it.

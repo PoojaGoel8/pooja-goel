@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+  }
+
+  ::selection {
+    @apply bg-accent-soft text-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.accent");
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Small uppercase label used to title every section. */
+  .eyebrow {
+    @apply font-sans text-[0.68rem] font-medium uppercase tracking-label text-accent;
+  }
+
+  .rule-top {
+    @apply border-t border-rule;
+  }
+
+  /* Body copy inside long-form sections. */
+  .copy {
+    @apply text-[1.0625rem] leading-[1.75] text-graphite;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

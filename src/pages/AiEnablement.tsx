@@ -17,12 +17,8 @@ function Hackathon() {
               <span aria-hidden>★</span>
               {hackathon.award}
             </p>
-          </Reveal>
 
-          <Reveal delay={100}>
-            <p className="copy max-w-prose text-[1.1rem]">{hackathon.summary}</p>
-
-            <figure className="mt-9 max-w-[17rem]">
+            <figure className="mt-10 max-w-[17rem]">
               <img
                 src={asset(hackathon.image.src)}
                 alt={hackathon.image.alt}
@@ -35,6 +31,10 @@ function Hackathon() {
                 {hackathon.image.caption}
               </figcaption>
             </figure>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <p className="copy max-w-prose text-[1.1rem]">{hackathon.summary}</p>
 
             <div className="mt-9">
               <h3 className="eyebrow">My part in it</h3>

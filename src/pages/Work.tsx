@@ -1,6 +1,12 @@
 import Reveal from "../components/Reveal";
 import { Copy, PageHeader, Pending, Section, usePageMeta } from "../components/Page";
-import { alsoDelivered, caseStudies, type CaseStudy } from "../data/content";
+import {
+  alsoDelivered,
+  caseStudies,
+  recommendations,
+  site,
+  type CaseStudy,
+} from "../data/content";
 
 const isTodo = (line: string) => line.trimStart().startsWith("//");
 
@@ -113,6 +119,64 @@ export default function Work() {
           ))}
         </div>
       </Section>
+
+      <Recommendations />
     </>
+  );
+}
+
+/** Renders nothing until there are real quotes to show. */
+function Recommendations() {
+  if (recommendations.length === 0) return null;
+
+  return (
+    <section id="recommendations" className="scroll-mt-28 bg-shell">
+      <div className="mx-auto max-w-shell px-6 py-20 md:px-10 md:py-28">
+        <Reveal className="mb-12 md:mb-16">
+          <p className="eyebrow">Recommendations</p>
+          <h2 className="mt-4 max-w-[24ch] font-display text-[1.9rem] font-normal leading-[1.15] tracking-[-0.01em] md:text-[2.5rem]">
+            In other people's words.
+          </h2>
+        </Reveal>
+
+        <div className="border-t border-rule">
+          {recommendations.map((item) => (
+            <Reveal key={item.name}>
+              <figure className="grid gap-6 border-b border-rule py-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.7fr)] md:gap-14 md:py-14">
+                <blockquote className="font-display text-[1.25rem] font-normal leading-[1.45] tracking-[-0.01em] text-ink md:text-[1.5rem]">
+                  <span aria-hidden className="text-accent">
+                    “
+                  </span>
+                  {item.quote}
+                  <span aria-hidden className="text-accent">
+                    ”
+                  </span>
+                </blockquote>
+
+                <figcaption>
+                  <p className="font-medium text-ink">{item.name}</p>
+                  <p className="mt-1.5 text-[0.9rem] leading-relaxed text-graphite">{item.role}</p>
+                  <p className="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted">
+                    {item.relationship}
+                  </p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="mt-8">
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-[0.95rem] text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent"
+          >
+            More on LinkedIn
+            <span aria-hidden>↗</span>
+          </a>
+        </Reveal>
+      </div>
+    </section>
   );
 }

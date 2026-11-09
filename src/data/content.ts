@@ -470,7 +470,7 @@ export const studioBands: StudioBand[] = [
     icon: "frame" as const,
     blurb: "Portraits and commissioned pieces",
     eyebrow: "Portraiture & commissions",
-    title: "Undefined",
+    title: "Commission work",
     body: [
       "I draw portraits, and I take commissions — pieces made for a particular person, for a particular wall.",
       "One of them, a portrait called Undefined, was selected as a Standout Submission by UMSU Creative Arts at the University of Melbourne. I named it that because there was no tag I could put on her: beauty, elegance, grace, royalty, every majestic attribute possible, and still not reducible to any of them. She represents no one but herself, and cannot be like anyone else.",
@@ -479,10 +479,10 @@ export const studioBands: StudioBand[] = [
     images: [
       {
         src: "/assets/images/artwork-peacock.webp",
-        alt: "A painted pair of peacocks in ink and colour, made as a commission",
+        alt: "A commissioned painting of a peacock and a kiwi in ink and colour",
         w: 361,
         h: 640,
-        caption: "A commissioned pair of peacocks.",
+        caption: "A commissioned pair — a peacock and a kiwi.",
       },
     ],
     side: "left",
@@ -569,17 +569,23 @@ export const studioBands: StudioBand[] = [
   },
 ];
 
-/* ---------------------------------------------------------- testimonials */
+/* -------------------------------------------------------- recommendations */
 
 /**
- * Empty until real quotes arrive. While this array is empty the page stays
- * out of the navigation, so nothing half-finished is ever live.
+ * LinkedIn recommendations, shown at the foot of the Work page.
+ *
+ * Empty until real quotes are added — the section renders nothing at all while
+ * this array is empty, so there is never a half-finished block on the site.
+ * Paste each one as written on LinkedIn; do not paraphrase someone else's
+ * words.
  */
-export type Testimonial = {
+export type Recommendation = {
   quote: string;
   name: string;
+  /** Their title at the time they wrote it. */
   role: string;
+  /** How they know her, e.g. "Managed Pooja directly". */
   relationship: string;
 };
 
-export const testimonials: Testimonial[] = [];
+export const recommendations: Recommendation[] = [];

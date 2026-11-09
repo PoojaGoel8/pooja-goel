@@ -6,7 +6,6 @@ import Work from "./pages/Work";
 import AiEnablement from "./pages/AiEnablement";
 import Experience from "./pages/Experience";
 import Studio from "./pages/Studio";
-import Testimonials from "./pages/Testimonials";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -20,7 +19,8 @@ export default function App() {
         <Route path="/studio" element={<Studio />} />
         {/* Tutoring now lives as a band inside Studio; keep the old link working. */}
         <Route path="/tutoring" element={<Navigate to="/studio#tutoring" replace />} />
-        <Route path="/testimonials" element={<Testimonials />} />
+        {/* Recommendations now live at the foot of Work. */}
+        <Route path="/testimonials" element={<Navigate to="/work#recommendations" replace />} />
         <Route path="/index.html" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

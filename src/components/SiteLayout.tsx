@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
-import { site, testimonials } from "../data/content";
+import { site } from "../data/content";
 import { asset } from "../lib/asset";
 
 const baseNav = [
@@ -11,10 +11,7 @@ const baseNav = [
   { to: "/studio", label: "Studio" },
 ];
 
-// The testimonials page only enters the navigation once it has real quotes.
-const nav = testimonials.length
-  ? [...baseNav, { to: "/testimonials", label: "Testimonials" }]
-  : baseNav;
+const nav = baseNav;
 
 function Monogram() {
   return (
@@ -47,9 +44,11 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     }
 
     const id = hash.slice(1);
-    // `auto`, not smooth: a deep link should arrive, not animate down the page.
+    // `instant`, not `auto`: `auto` defers to the CSS `scroll-behavior`, which
+    // is smooth site-wide, and an animated jump gets interrupted part-way by
+    // lazy images loading as it travels. A deep link should arrive, not travel.
     const align = () =>
-      document.getElementById(id)?.scrollIntoView({ block: "start", behavior: "auto" });
+      document.getElementById(id)?.scrollIntoView({ block: "start", behavior: "instant" });
 
     align();
 

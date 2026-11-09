@@ -27,8 +27,9 @@ renders as a dashed pink box while running locally and is **hidden entirely in
 the published build**, so an unfinished note can never reach the live site.
 Replace the line with real copy and it becomes ordinary body text.
 
-The testimonials page works the same way: while the `testimonials` array is
-empty the page stays out of the navigation. Add a quote and it appears.
+LinkedIn recommendations work the same way: the section at the foot of the Work
+page renders nothing while the `recommendations` array is empty. Paste quotes
+as written — they are someone else's words, so do not paraphrase them.
 
 ## Running locally
 
@@ -78,9 +79,10 @@ public/assets/      images and downloadable documents
 scripts/postbuild   404.html and .nojekyll for Pages
 ```
 
-Routes are `/`, `/work`, `/ai-enablement`, `/experience`, `/studio` and
-`/testimonials`, declared in `src/App.tsx`. Tutoring is a band inside Studio;
-`/tutoring` redirects to `/studio#tutoring` so older links keep working.
+Routes are `/`, `/work`, `/ai-enablement`, `/experience` and `/studio`,
+declared in `src/App.tsx`. Two former pages now live as sections, with their old
+paths kept as redirects: `/tutoring` → `/studio#tutoring` and `/testimonials` →
+`/work#recommendations`.
 
 `404.html` is a copy of `index.html`. GitHub Pages has no SPA rewrite rule, so a
 deep link such as `/work` requests a file that does not exist and Pages serves

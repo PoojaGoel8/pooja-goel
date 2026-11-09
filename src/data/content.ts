@@ -397,8 +397,8 @@ export const studioIntro = {
       alt: "Pooja and her group performing in Kerala costume at Ente Keralam",
     },
     {
-      src: "/assets/images/dance-diwali.webp",
-      alt: "The performance shown on the big screen at Diwali: Festival of Lights, Federation Square",
+      src: "/assets/images/facepaint-lion.webp",
+      alt: "A lion design with a painted muzzle and tongue",
     },
     {
       src: "/assets/images/aerial.webp",
@@ -417,6 +417,8 @@ export type StudioBand = {
   side?: "left" | "right";
   /** True for bands whose photographs are still to come, so the layout keeps a slot for them. */
   awaitsImages?: boolean;
+  /** True when the images run full width under the prose rather than beside it. */
+  gallery?: boolean;
   links?: { label: string; href: string }[];
   note?: { label: string; body: string };
   pullQuote?: string;
@@ -433,8 +435,15 @@ export const studioBands: StudioBand[] = [
       ...(DEV ? ["// TODO — the story: how it started, what you love about working on a face rather than paper, the thing people do not expect about it."] : []),
       ...(DEV ? ["// TODO — the facts a visitor should actually learn: years doing it, events worked, how long a design takes, the paints you use, what you will not paint."] : []),
     ],
-    images: [],
-    awaitsImages: true,
+    images: [
+      { src: "/assets/images/facepaint-tiger-cub.webp", alt: "A toddler painted as a tiger cub" },
+      { src: "/assets/images/facepaint-lion.webp", alt: "A lion design with a painted muzzle and tongue" },
+      { src: "/assets/images/facepaint-peacock-face.webp", alt: "A peacock design in green and gold across one side of the face" },
+      { src: "/assets/images/facepaint-crown.webp", alt: "A blue and gold crown design across the brow" },
+      { src: "/assets/images/facepaint-spider.webp", alt: "A spider design on the cheek, lit in purple" },
+      { src: "/assets/images/facepaint-skull.webp", alt: "A skull design painted for Halloween" },
+    ],
+    gallery: true,
     side: "right",
     links: [{ label: site.instagramHandle, href: site.instagram }],
     pullQuote: "No second attempt, no undo, and the client is five years old.",
@@ -449,8 +458,13 @@ export const studioBands: StudioBand[] = [
       "One of them, a portrait called Undefined, was selected as a Standout Submission by UMSU Creative Arts at the University of Melbourne. I named it that because there was no tag I could put on her: beauty, elegance, grace, royalty, every majestic attribute possible, and still not reducible to any of them. She represents no one but herself, and cannot be like anyone else.",
       ...(DEV ? ["// TODO — medium, what a typical commission is, roughly how long a piece takes, and how someone starts one."] : []),
     ],
-    images: [],
-    awaitsImages: true,
+    images: [
+      {
+        src: "/assets/images/artwork-peacock.webp",
+        alt: "A painted pair of peacocks in ink and colour, made as a commission",
+        caption: "A commissioned pair of peacocks.",
+      },
+    ],
     side: "left",
     links: [
       { label: site.artInstagramHandle, href: site.artInstagram },

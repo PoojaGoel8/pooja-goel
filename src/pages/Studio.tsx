@@ -123,6 +123,42 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
     </div>
   );
 
+  // A gallery band puts its prose in one column and runs the photographs full
+  // width underneath, which suits six images far better than a side-by-side.
+  if (band.gallery) {
+    return (
+      <article
+        id={band.slug}
+        className="scroll-mt-28 border-t border-rule py-14 first:border-t-0 md:py-20"
+      >
+        <Reveal>{prose}</Reveal>
+
+        <div className="mt-12 grid grid-cols-2 gap-3 md:mt-14 md:grid-cols-3 md:gap-4">
+          {band.images.map((image, i) => (
+            <Reveal key={image.src} delay={i * 60}>
+              <figure className="group overflow-hidden rounded-[2px]">
+                <img
+                  src={asset(image.src)}
+                  alt={image.alt}
+                  loading="lazy"
+                  className="aspect-[3/4] w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                />
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+
+        {band.pullQuote && (
+          <Reveal className="mt-12 md:mt-16">
+            <blockquote className="mx-auto max-w-[32ch] text-center font-display text-[1.45rem] font-normal leading-[1.3] tracking-[-0.01em] text-graphite md:text-[1.85rem]">
+              “{band.pullQuote}”
+            </blockquote>
+          </Reveal>
+        )}
+      </article>
+    );
+  }
+
   return (
     <article
       id={band.slug}

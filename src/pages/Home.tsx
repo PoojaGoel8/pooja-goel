@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import Reveal from "../components/Reveal";
+import { Icon } from "../components/icons";
 import { Copy, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
 import {
@@ -105,12 +106,16 @@ function Capabilities() {
       <div className="grid gap-px overflow-hidden rounded-[2px] bg-rule sm:grid-cols-2">
         {capabilities.map((cap, i) => (
           <Reveal key={cap.title} delay={i * 70}>
-            <article className="flex h-full flex-col bg-paper p-7 md:p-9">
-              <h3 className="font-display text-[1.35rem] font-normal leading-snug">
+            <article className="group flex h-full flex-col bg-paper p-7 transition-colors duration-500 hover:bg-shell/60 md:p-9">
+              <Icon
+                name={cap.icon}
+                className="h-7 w-7 text-accent transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5"
+              />
+              <h3 className="mt-6 font-display text-[1.35rem] font-normal leading-snug">
                 {cap.title}
               </h3>
               <p className="mt-4 flex-1 text-[0.98rem] leading-[1.7] text-graphite">{cap.body}</p>
-              <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-muted">
+              <p className="mt-6 border-t border-rule pt-5 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-muted">
                 {cap.adjacency}
               </p>
             </article>

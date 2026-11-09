@@ -59,21 +59,25 @@ export const arc = {
 export const capabilities = [
   {
     title: "Reliability & availability",
+    icon: "pulse" as const,
     body: "High availability groups, replication, failover rehearsal, backup and restore, disaster recovery against real RTO and RPO targets, capacity planning, patching and upgrades.",
     adjacency: "Overlaps: Site Reliability Engineering",
   },
   {
     title: "Security & governance",
+    icon: "shield" as const,
     body: "Database access controls, data-plane RBAC, audit reporting, governance policy, data integrity and compliance support in a licensed, heavily supervised industry.",
     adjacency: "Overlaps: Data Security & Governance",
   },
   {
     title: "Performance & migration",
+    icon: "migration" as const,
     body: "Query and index tuning, configuration optimisation, on-premises to cloud migration, estate consolidation, scalability work and business continuity through change.",
     adjacency: "Overlaps: Data Platform Engineering",
   },
   {
     title: "AI enablement",
+    icon: "ai" as const,
     body: "LLM knowledge assistants, agentic alert diagnosis, workflow automation, vector databases and semantic search — grounded in the operational data a DBA already governs.",
     adjacency: "Overlaps: AI Platform & Enablement",
   },

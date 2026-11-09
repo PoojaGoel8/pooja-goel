@@ -61,10 +61,14 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
   // A band with no photographs and none expected runs as a single column.
   const hasMedia = band.images.length > 0 || Boolean(band.awaitsImages);
 
+  // A single tall portrait would otherwise stretch to the full column width and
+  // run far past the prose beside it, leaving a long gap.
+  const single = band.images.length === 1;
+
   const media = (
     <div className={band.images.length > 1 ? "grid gap-4 sm:grid-cols-2" : ""}>
       {band.images.map((image) => (
-        <figure key={image.src}>
+        <figure key={image.src} className={single ? "max-w-[23rem]" : undefined}>
           <img
             src={asset(image.src)}
             alt={image.alt}

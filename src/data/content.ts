@@ -412,8 +412,8 @@ export const studioIntro = {
     {
       src: "/assets/images/aerial.webp",
       alt: "Pooja inverted in an aerial hammock",
-      w: 900,
-      h: 1600,
+      w: 800,
+      h: 1000,
     },
   ],
 };
@@ -542,8 +542,8 @@ export const studioBands: StudioBand[] = [
       {
         src: "/assets/images/aerial.webp",
         alt: "Pooja inverted in an aerial hammock",
-        w: 900,
-        h: 1600,
+        w: 800,
+        h: 1000,
       },
     ],
     side: "left",

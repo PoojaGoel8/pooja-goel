@@ -41,15 +41,47 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     // A link that arrives with a hash — /studio#tutoring, say — wants that
     // section, not the top of the page. Children have already committed by the
     // time this runs, so the target is in the DOM.
-    if (hash) {
-      const target = document.getElementById(hash.slice(1));
-      if (target) {
-        target.scrollIntoView({ block: "start" });
-        return;
-      }
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
     }
 
-    window.scrollTo(0, 0);
+    const id = hash.slice(1);
+    // `auto`, not smooth: a deep link should arrive, not animate down the page.
+    const align = () =>
+      document.getElementById(id)?.scrollIntoView({ block: "start", behavior: "auto" });
+
+    align();
+
+    // On a cold load the document is still growing — web fonts swap in and
+    // images decode — which moves the target out from under that first jump.
+    // Re-align once things settle, but stop the moment the reader takes over,
+    // so the page never yanks itself out of their hands.
+    let done = false;
+    const realign = () => {
+      if (!done) align();
+    };
+    const release = () => {
+      done = true;
+    };
+
+    document.fonts?.ready.then(realign);
+    window.addEventListener("load", realign, { once: true });
+    const timer = window.setTimeout(release, 1200);
+
+    const opts = { passive: true, once: true } as const;
+    window.addEventListener("wheel", release, opts);
+    window.addEventListener("touchstart", release, opts);
+    window.addEventListener("keydown", release, opts);
+
+    return () => {
+      done = true;
+      window.clearTimeout(timer);
+      window.removeEventListener("load", realign);
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchstart", release);
+      window.removeEventListener("keydown", release);
+    };
   }, [pathname, hash]);
 
   return (

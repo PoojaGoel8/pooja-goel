@@ -189,6 +189,83 @@ export const skillGroups = [
   },
 ];
 
+/* --------------------------------------------------------------- contact */
+
+export type ContactTopic = {
+  label: string;
+  /** A line of orientation under the label, in the menu. */
+  hint: string;
+  subject: string;
+  /** The draft the sender lands in. Written as them, not as Pooja. */
+  body: string[];
+};
+
+/**
+ * The contact button opens these rather than a bare mailto. A named subject
+ * and an opening line get a better class of email than an empty compose
+ * window, and it sorts the enquiry before it arrives.
+ */
+export const contactTopics: ContactTopic[] = [
+  {
+    label: "Database and reliability work",
+    hint: "Migrations, availability, performance, access control",
+    subject: "Database and reliability work",
+    body: [
+      "Hi Pooja,",
+      "",
+      "I came across your site and wanted to ask about database and reliability work.",
+      "",
+      "A bit of context on what we are running and where it hurts:",
+      "",
+    ],
+  },
+  {
+    label: "AI enablement",
+    hint: "Getting models onto governed operational data",
+    subject: "AI enablement",
+    body: [
+      "Hi Pooja,",
+      "",
+      "I came across your site and wanted to ask about AI enablement work.",
+      "",
+      "What we are trying to connect, and where it is getting stuck:",
+      "",
+    ],
+  },
+  {
+    label: "Tutoring and mentoring",
+    hint: "Students, early-career engineers, teams",
+    subject: "Tutoring and mentoring",
+    body: [
+      "Hi Pooja,",
+      "",
+      "I came across your site and wanted to ask about tutoring or mentoring.",
+      "",
+      "Who it is for and what they are working through:",
+      "",
+    ],
+  },
+  {
+    label: "Face painting and commissions",
+    hint: "Events, portraits, commissioned pieces",
+    subject: "Face painting or a commission",
+    body: [
+      "Hi Pooja,",
+      "",
+      "I came across your site and wanted to ask about a commission.",
+      "",
+      "What I have in mind, and roughly when:",
+      "",
+    ],
+  },
+  {
+    label: "Something else",
+    hint: "Anything that does not fit the above",
+    subject: "Hello",
+    body: ["Hi Pooja,", "", ""],
+  },
+];
+
 /* ------------------------------------------------------------------ work */
 
 export type CaseStudy = {

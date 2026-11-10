@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
+import ContactMenu from "./ContactMenu";
 import { site } from "../data/content";
 import { asset } from "../lib/asset";
 
@@ -137,12 +138,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
               </span>
             </a>
 
-            <a
-              href={`mailto:${site.email}`}
-              className="rounded-full border border-accent/45 px-4 py-1.5 text-[0.9rem] text-accent transition-colors duration-300 hover:bg-accent hover:text-paper"
-            >
-              Contact
-            </a>
+            <ContactMenu />
           </nav>
 
           <button
@@ -184,7 +180,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
               </NavLink>
             ))}
 
-            <div className="mt-5 flex flex-wrap gap-3">
+            {/* Stacked, not a flex row: the menu panel is full width and
+                would otherwise be squeezed to the width of its button. */}
+            <div className="mt-5 space-y-3">
               <a
                 href={asset(site.resume)}
                 download
@@ -194,13 +192,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 Résumé <span aria-hidden className="ml-1.5">↓</span>
               </a>
 
-              <a
-                href={`mailto:${site.email}`}
-                onClick={() => setOpen(false)}
-                className="inline-flex rounded-full border border-accent/45 px-5 py-2 text-[1rem] text-accent"
-              >
-                Contact
-              </a>
+              <ContactMenu variant="stacked" onPick={() => setOpen(false)} />
             </div>
           </nav>
         )}

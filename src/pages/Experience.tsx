@@ -7,14 +7,12 @@ import { Icon } from "../components/icons";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
 import { recognition, skillGroups } from "../data/content";
+import pageMeta from "../data/pageMeta.json";
 
 const JourneyMap = lazy(() => import("../components/JourneyMap"));
 
 export default function Experience() {
-  usePageMeta(
-    "Experience",
-    "Roles, education and recognition — Data Services Engineer at PointsBet, Master of Information Systems at the University of Melbourne.",
-  );
+  usePageMeta(pageMeta.pages.experience);
 
   return (
     <>
@@ -37,69 +35,62 @@ export default function Experience() {
       </Section>
 
       <Section eyebrow="Recognition" title="Awards and honours.">
-        <div>
-          <div>
-            <Reveal>
-              <article>
-                {/* The section is already titled Recognition. */}
-                <ul className="space-y-5">
-                  {recognition.map((item) => (
-                    <li key={item.title}>
-                      <p className="text-[1rem] leading-snug text-ink">
-                        {item.href ? (
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-                          >
-                            {item.title}
-                            <span aria-hidden> ↗</span>
-                          </a>
-                        ) : (
-                          item.title
-                        )}
-                      </p>
-                      <p className="mt-1.5 text-[0.88rem] leading-relaxed text-muted">{item.org}</p>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            </Reveal>
+        <Reveal>
+          <ul className="space-y-5">
+            {recognition.map((item) => (
+              <li key={item.title}>
+                <p className="text-[1rem] leading-snug text-ink">
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="py-1.5 underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                    >
+                      {item.title}
+                      <span aria-hidden> ↗</span>
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </p>
+                <p className="mt-1.5 text-[0.88rem] leading-relaxed text-muted">{item.org}</p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal delay={120} className="mt-12">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <figure>
+              <img
+                src={asset("/assets/images/graduation.webp")}
+                alt="Pooja receiving her Master of Information Systems at the University of Melbourne"
+                width={1400}
+                height={784}
+                loading="lazy"
+                className="w-full rounded-[2px] object-cover"
+              />
+              <figcaption className="mt-3 text-[0.82rem] text-muted">
+                Master of Information Systems, the University of Melbourne.
+              </figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src={asset("/assets/images/award.webp")}
+                alt="Pooja receiving a Faculty of Engineering and Information Technology award"
+                width={1080}
+                height={640}
+                loading="lazy"
+                className="w-full rounded-[2px] object-cover"
+              />
+              <figcaption className="mt-3 text-[0.82rem] text-muted">
+                Faculty of Engineering and Information Technology awards.
+              </figcaption>
+            </figure>
           </div>
-
-          <Reveal delay={120} className="mt-12">
-            <div className="grid gap-6 sm:grid-cols-2">
-              <figure>
-                <img
-                  src={asset("/assets/images/graduation.webp")}
-                  alt="Pooja receiving her Master of Information Systems at the University of Melbourne"
-                  width={1400}
-                  height={784}
-                  loading="lazy"
-                  className="w-full rounded-[2px] object-cover"
-                />
-                <figcaption className="mt-3 text-[0.82rem] text-muted">
-                  Master of Information Systems, the University of Melbourne.
-                </figcaption>
-              </figure>
-
-              <figure>
-                <img
-                  src={asset("/assets/images/award.webp")}
-                  alt="Pooja receiving a Faculty of Engineering and Information Technology award"
-                  width={1080}
-                  height={640}
-                  loading="lazy"
-                  className="w-full rounded-[2px] object-cover"
-                />
-                <figcaption className="mt-3 text-[0.82rem] text-muted">
-                  Faculty of Engineering and Information Technology awards.
-                </figcaption>
-              </figure>
-            </div>
-          </Reveal>
-        </div>
+        </Reveal>
       </Section>
 
       <Section eyebrow="Volunteering" title="The work beside the work.">

@@ -11,6 +11,7 @@ import {
   type CaseStudy,
   type Recommendation,
 } from "../data/content";
+import pageMeta from "../data/pageMeta.json";
 
 const isTodo = (line: string) => line.trimStart().startsWith("//");
 
@@ -167,10 +168,7 @@ function Study({ study, index }: { study: CaseStudy; index: number }) {
 }
 
 export default function Work() {
-  usePageMeta(
-    "Work",
-    "Database migration, high availability and estate consolidation case studies — Azure, SQL Server and acquisition integration.",
-  );
+  usePageMeta(pageMeta.pages.work);
 
   return (
     <>
@@ -234,7 +232,7 @@ function Recommendations() {
             href={site.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 text-[0.95rem] text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent"
+            className="-my-1.5 inline-flex items-center gap-2 py-1.5 text-[0.95rem] text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent"
           >
             More on LinkedIn
             <span aria-hidden>↗</span>

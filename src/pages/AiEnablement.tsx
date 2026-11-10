@@ -4,6 +4,7 @@ import Reveal from "../components/Reveal";
 import { Copy, PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
 import { aiIntro, hackathon } from "../data/content";
+import pageMeta from "../data/pageMeta.json";
 
 function Hackathon() {
   return (
@@ -15,7 +16,7 @@ function Hackathon() {
             <h2 className="mt-4 font-display text-[1.9rem] font-normal leading-[1.12] tracking-[-0.01em] md:text-[2.5rem]">
               {hackathon.title}
             </h2>
-            <p className="mt-8 inline-flex items-center gap-3 rounded-full border border-accent/30 bg-accent-soft/50 px-4 py-2 text-[0.8rem] font-medium uppercase tracking-[0.1em] text-accent">
+            <p className="mt-8 inline-flex items-center gap-3 rounded-full border border-accent/30 bg-paper px-4 py-2 text-[0.8rem] font-medium uppercase tracking-[0.1em] text-accent">
               <span aria-hidden>★</span>
               {hackathon.award}
             </p>
@@ -52,10 +53,7 @@ function Hackathon() {
 }
 
 export default function AiEnablement() {
-  usePageMeta(
-    "AI Enablement",
-    "LLM knowledge assistants, agentic alert diagnosis, automated DBA workflows, vector search and proof-of-concept evaluation — AI grounded in governed operational data.",
-  );
+  usePageMeta(pageMeta.pages.aiEnablement);
 
   return (
     <>

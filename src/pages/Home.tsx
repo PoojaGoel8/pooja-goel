@@ -12,6 +12,7 @@ import {
   metrics,
   site,
 } from "../data/content";
+import pageMeta from "../data/pageMeta.json";
 
 function Hero() {
   return (
@@ -59,11 +60,11 @@ function Hero() {
 function Metrics() {
   return (
     <section className="mx-auto max-w-shell px-6 py-16 md:px-10 md:py-20">
-      <dl className="grid gap-x-8 gap-y-10 border-t border-rule pt-10 sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-rule pt-10 sm:gap-x-8 lg:grid-cols-4">
         {metrics.map((metric, i) => (
           <Reveal key={metric.label} delay={i * 80}>
             <div>
-              <dt className="font-display text-[2.4rem] font-normal leading-none tracking-[-0.02em] md:text-[2.9rem]">
+              <dt className="font-display text-[2.1rem] font-normal leading-none tracking-[-0.02em] sm:text-[2.4rem] md:text-[2.9rem]">
                 {metric.value}
               </dt>
               <dd className="mt-3 max-w-[24ch] text-[0.9rem] leading-relaxed text-muted">
@@ -208,10 +209,7 @@ function Elsewhere() {
 }
 
 export default function Home() {
-  usePageMeta(
-    site.role,
-    "Pooja Goel is a database administrator working across SQL Server, PostgreSQL and Azure — high availability, migrations, database security, and the data groundwork that makes AI usable in production.",
-  );
+  usePageMeta(pageMeta.pages.home);
 
   return (
     <>

@@ -18,7 +18,7 @@ function Monogram() {
   return (
     <Link
       to="/"
-      className="group flex items-baseline gap-2.5 font-display text-[1.3rem] font-medium leading-none tracking-tight"
+      className="group -my-2 flex items-baseline gap-2.5 py-2 font-display text-[1.3rem] font-medium leading-none tracking-tight"
     >
       <span>{site.name}</span>
       <span
@@ -40,7 +40,10 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     // section, not the top of the page. Children have already committed by the
     // time this runs, so the target is in the DOM.
     if (!hash) {
-      window.scrollTo(0, 0);
+      // `instant` for the same reason as the hash branch below: a bare
+      // scrollTo defers to the site-wide smooth scrolling, so a new page
+      // would open part-way down the old one and travel to the top.
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       return;
     }
 
@@ -83,6 +86,16 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       window.removeEventListener("keydown", release);
     };
   }, [pathname, hash]);
+
+  // Escape closes the phone menu, the way it closes any other overlay.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -145,6 +158,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
+            aria-controls="mobile-nav"
             aria-label="Menu"
             className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] lg:hidden"
           >
@@ -164,7 +178,14 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {open && (
-          <nav className="border-t border-rule px-6 pb-5 pt-2 lg:hidden">
+          // Capped to the screen and scrollable: with the contact topics open
+          // the menu is taller than a short phone, and a sticky header does
+          // not scroll with the page, so the last rows were out of reach.
+          <nav
+            id="mobile-nav"
+            aria-label="Site"
+            className="max-h-[calc(100dvh-4.85rem)] overflow-y-auto overscroll-contain border-t border-rule px-6 pb-5 pt-2 lg:hidden"
+          >
             {nav.map((item) => (
               <NavLink
                 key={item.to}
@@ -212,18 +233,18 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-x-8 gap-y-3 text-[0.95rem]">
+            <div className="flex flex-wrap gap-x-8 gap-y-1 text-[0.95rem]">
               <a
                 href={asset(site.resume)}
                 download
-                className="inline-flex items-center gap-2 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                className="inline-flex items-center gap-2 py-1.5 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
               >
                 Résumé
                 <span aria-hidden>↓</span>
               </a>
               <a
                 href={`mailto:${site.email}`}
-                className="text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                className="py-1.5 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
               >
                 {site.email}
               </a>
@@ -231,7 +252,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 href={site.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                className="py-1.5 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
               >
                 LinkedIn
               </a>
@@ -239,7 +260,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 href={site.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                className="py-1.5 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
               >
                 Instagram
               </a>

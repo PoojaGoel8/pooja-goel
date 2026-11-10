@@ -64,7 +64,7 @@ export default function AiHub() {
               key={item.title}
               type="button"
               aria-pressed={on}
-              aria-label={item.title}
+              aria-label={`${item.short}: ${item.title}`}
               onClick={() => setActive(i)}
               style={{ left: `${at.x}%`, top: `${at.y}%` }}
               className={[
@@ -79,7 +79,7 @@ export default function AiHub() {
                   : "border-rule bg-paper text-graphite hover:border-accent hover:text-accent",
               ].join(" ")}
             >
-              <span className={on ? "font-mono text-[0.68rem] text-paper/70" : "font-mono text-[0.68rem] text-muted"}>
+              <span className={on ? "font-mono text-[0.68rem] text-paper" : "font-mono text-[0.68rem] text-muted"}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               {item.short}

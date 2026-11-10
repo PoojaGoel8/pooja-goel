@@ -27,9 +27,28 @@ renders as a dashed pink box while running locally and is **hidden entirely in
 the published build**, so an unfinished note can never reach the live site.
 Replace the line with real copy and it becomes ordinary body text.
 
-LinkedIn recommendations work the same way: the section at the foot of the Work
-page renders nothing while the `recommendations` array is empty. Paste quotes
-as written — they are someone else's words, so do not paraphrase them.
+LinkedIn recommendations are the `recommendations` array, shown at the foot of
+the Work page; the section renders nothing if the array is ever emptied. Quotes
+go in as written — they are someone else's words, so trim with an ellipsis if
+needed but do not paraphrase them.
+
+### Page titles and descriptions
+
+Each page's title and description live in their own small file:
+
+```txt
+src/data/pageMeta.json
+```
+
+They are apart from `content.ts` because the build reads them too. It stamps
+them into a separate HTML file per route, which is what a search engine or a
+link preview on LinkedIn, Slack or WhatsApp actually reads — neither runs the
+site's JavaScript. A page's optional `social` line is used for the preview in
+place of its description.
+
+The preview image is `public/og-card.jpg`. To redraw it after changing the
+headline or the portrait, run `python scripts/make-og-card.py` (needs Pillow,
+and the Windows fonts it names) and commit the result.
 
 ## Running locally
 
@@ -61,7 +80,12 @@ at `/Program Files/Git/pooja-goel/`. CI runs on Linux and is unaffected.
 
 Pushing to `main` triggers `.github/workflows/deploy-pages.yml`, which builds the
 site and publishes it to GitHub Pages. The workflow derives the base path from
-the repository name, so renaming or forking the repo needs no edit here.
+the repository name and takes the public address from Pages itself, passing it
+to the build as `SITE_URL`, so renaming or forking the repo needs no edit here.
+
+`SITE_URL` is what the canonical links, the preview image and `sitemap.xml`
+are built from, since all three need absolute URLs. A local build without it
+simply leaves them out.
 
 Pages must be set to **Settings → Pages → Source → GitHub Actions**. If it is
 ever switched to "Deploy from a branch", Jekyll renders this README as the
@@ -70,13 +94,16 @@ homepage instead of the site.
 ## Layout
 
 ```txt
-index.html          page shell and meta tags
-src/data/content.ts all site copy
-src/pages/          one file per route
-src/components/     layout, navigation, shared pieces
-src/lib/asset.ts    base-path-aware asset URLs
-public/assets/      images and downloadable documents
-scripts/postbuild   404.html and .nojekyll for Pages
+index.html             page shell and default meta tags
+src/data/content.ts    all site copy
+src/data/pageMeta.json title and description for each route
+src/pages/             one file per route
+src/components/        layout, navigation, shared pieces
+src/lib/asset.ts       base-path-aware asset URLs
+public/assets/         images and downloadable documents
+public/og-card.jpg     the image a shared link unfurls with
+scripts/postbuild      per-route HTML, 404.html, sitemap, .nojekyll
+scripts/make-og-card   redraws og-card.jpg; run by hand, not by the build
 ```
 
 Routes are `/`, `/work`, `/ai-enablement`, `/experience` and `/studio`,
@@ -84,9 +111,15 @@ declared in `src/App.tsx`. Two former pages now live as sections, with their old
 paths kept as redirects: `/tutoring` → `/studio#tutoring` and `/testimonials` →
 `/work#recommendations`.
 
-`404.html` is a copy of `index.html`. GitHub Pages has no SPA rewrite rule, so a
-deep link such as `/work` requests a file that does not exist and Pages serves
-`404.html`; the app boots from it and the router renders the real route.
+GitHub Pages has no SPA rewrite rule, so the build writes a real file for each
+route — `work.html`, `studio.html` and so on — identical to `index.html` apart
+from that page's own title and description. Pages serves `/work` from
+`work.html`, so a deep link is an ordinary page. A new route needs an entry in
+`pageMeta.json` to get its file.
+
+`404.html` is a copy of `index.html` for everything else: the two redirect
+paths above, and addresses that match nothing. The app boots from it and the
+router either redirects or shows the not-found page.
 
 ## Product logos
 
@@ -118,7 +151,7 @@ performance, security — deliberately carry no logos.
 
 ## The journey map
 
-The map at the foot of the Experience page is plain inline SVG. Its country
+The map that opens the Experience page is plain inline SVG. Its country
 outlines live in `src/components/mapPaths.ts`, generated once from Natural
 Earth 1:110m (via the `world-atlas` package) and projected with `d3-geo` into
 a fixed 1280x709 frame. None of those packages is a dependency — the paths were

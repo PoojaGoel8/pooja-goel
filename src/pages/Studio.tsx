@@ -4,6 +4,7 @@ import { Copy, Section, usePageMeta } from "../components/Page";
 import TutoringDiagram from "../components/TutoringDiagram";
 import { asset } from "../lib/asset";
 import { studioBands, studioIntro, type StudioBand } from "../data/content";
+import pageMeta from "../data/pageMeta.json";
 
 /** Placeholder frame shown in development where photographs are still to come. */
 function AwaitingImages({ label }: { label: string }) {
@@ -20,7 +21,7 @@ function AwaitingImages({ label }: { label: string }) {
  * page reads as a studio wall rather than a tidy grid.
  */
 function Collage() {
-  const [stage, diwali, aerial] = studioIntro.collage;
+  const [stage, paint, aerial] = studioIntro.collage;
 
   return (
     <div className="grid grid-cols-2 items-end gap-3 md:grid-cols-12 md:gap-4">
@@ -35,10 +36,10 @@ function Collage() {
       </Reveal>
       <Reveal delay={120} className="md:col-span-3">
         <img
-          src={asset(diwali.src)}
-          alt={diwali.alt}
-          width={diwali.w}
-          height={diwali.h}
+          src={asset(paint.src)}
+          alt={paint.alt}
+          width={paint.w}
+          height={paint.h}
           loading="lazy"
           className="h-full w-full rounded-[2px] object-cover md:aspect-[3/4]"
         />
@@ -128,7 +129,7 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-[0.95rem] text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent"
+              className="-my-1.5 inline-flex items-center gap-2 py-1.5 text-[0.95rem] text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent"
             >
               {link.label}
               <span aria-hidden>↗</span>
@@ -218,10 +219,7 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
 }
 
 export default function Studio() {
-  usePageMeta(
-    "Studio",
-    "Face painting with Colourzone Melbourne, portraiture and commissions, Indian dance on festival stages, aerial, and four years tutoring at the University of Melbourne.",
-  );
+  usePageMeta(pageMeta.pages.studio);
 
   return (
     <>
@@ -246,8 +244,17 @@ export default function Studio() {
       >
         <ul className="grid grid-cols-2 gap-3 border-t border-rule pt-10 lg:grid-cols-5">
           {studioBands.map((band, i) => (
-            <Reveal key={band.slug} delay={i * 60} className="h-full">
-              <li className="h-full">
+            // An odd count leaves the last tile alone on a two-column row, so
+            // it takes the whole row there instead of half of it.
+            <li
+              key={band.slug}
+              className={
+                i === studioBands.length - 1 && studioBands.length % 2 === 1
+                  ? "col-span-2 lg:col-span-1"
+                  : undefined
+              }
+            >
+              <Reveal delay={i * 60} className="h-full">
                 <a
                   href={`#${band.slug}`}
                   className="group flex h-full flex-col rounded-[3px] border border-rule bg-paper p-5 transition-colors duration-300 hover:border-accent/50 hover:bg-shell/50"
@@ -271,8 +278,8 @@ export default function Studio() {
                     ↓
                   </span>
                 </a>
-              </li>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
         </ul>
       </nav>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { volunteering } from "../data/content";
 import { Icon } from "./icons";
@@ -7,9 +7,10 @@ import { Icon } from "./icons";
  * Volunteering as a list beside a panel, not an accordion.
  *
  * Expanding downward pushed the detail below the fold, so choosing a role
- * showed you nothing. The panel sits alongside instead and swaps in place;
- * on a narrow screen it falls under the list, but it is always on screen
- * because exactly one role is ever open.
+ * showed you nothing. The panel sits alongside instead and swaps in place.
+ * On a narrow screen it falls under the list, where it can be below the
+ * fold — so picking a role there nudges the page just far enough to bring
+ * the top of the panel into view, and leaves the list on screen above it.
  *
  * All four panels stay in the DOM, stacked in one grid cell with the
  * inactive ones hidden by `visibility`. The page stays whole for a search
@@ -19,6 +20,21 @@ import { Icon } from "./icons";
 
 export default function Volunteering() {
   const [active, setActive] = useState(0);
+  const panel = useRef<HTMLDivElement>(null);
+
+  const choose = (i: number) => {
+    setActive(i);
+
+    const top = panel.current?.getBoundingClientRect().top;
+    if (top === undefined) return;
+
+    // Only when the panel has not made it onto the screen. Side by side, or
+    // already in view, this does nothing at all.
+    const peek = 200;
+    if (top > window.innerHeight - peek) {
+      window.scrollBy({ top: top - (window.innerHeight - peek) });
+    }
+  };
 
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
@@ -30,7 +46,7 @@ export default function Volunteering() {
               key={item.role}
               type="button"
               aria-pressed={on}
-              onClick={() => setActive(i)}
+              onClick={() => choose(i)}
               className={[
                 "group flex w-full items-start gap-4 rounded-[3px] border px-4 py-4 text-left transition-colors duration-300",
                 on
@@ -68,7 +84,7 @@ export default function Volunteering() {
         })}
       </div>
 
-      <div className="grid">
+      <div ref={panel} className="grid">
         {volunteering.map((item, i) => {
           const on = i === active;
           return (

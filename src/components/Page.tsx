@@ -1,12 +1,25 @@
 import { useEffect } from "react";
 
 import Reveal from "./Reveal";
-import { site } from "../data/content";
+import pageMeta from "../data/pageMeta.json";
 
-/** Sets the document title and description for a route. */
-export function usePageMeta(title: string, description?: string) {
+/**
+ * Sets the document title and description for a route.
+ *
+ * The words live in data/pageMeta.json, not here, because the build reads the
+ * same file to stamp them into each route's own HTML file — which is what a
+ * link preview or a crawler sees, since neither runs this hook. A `null` title
+ * is the home page, which takes the site's full title rather than a prefix.
+ */
+export function usePageMeta({
+  title,
+  description,
+}: {
+  title: string | null;
+  description?: string;
+}) {
   useEffect(() => {
-    document.title = `${title} — ${site.name}`;
+    document.title = title ? `${title} — ${pageMeta.siteName}` : pageMeta.defaultTitle;
     if (!description) return;
     const tag = document.querySelector('meta[name="description"]');
     if (tag) tag.setAttribute("content", description);

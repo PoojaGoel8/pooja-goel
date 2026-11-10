@@ -167,7 +167,7 @@ export default function JourneyMap() {
               ].join(" ")}
             >
               {item.label}
-              <span className={on ? "ml-2.5 text-paper/70" : "ml-2.5 text-muted"}>
+              <span className={on ? "ml-2.5 text-paper" : "ml-2.5 text-muted"}>
                 {item.years}
               </span>
             </button>

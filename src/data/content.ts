@@ -483,10 +483,6 @@ export type Volunteering = {
   icon: IconName;
   /** Shown as written. */
   period: string;
-  /** "YYYY-MM", used to place the bar on the timeline. */
-  from: string;
-  /** null means it is still running. */
-  to: string | null;
   summary: string;
   body: string[];
 };
@@ -502,8 +498,6 @@ export const volunteering: Volunteering[] = [
     icon: "compass" as const,
     org: "The University of Melbourne",
     period: "Feb 2026 — present",
-    from: "2026-02",
-    to: null,
     summary: "Mentoring current students through the university's industry and alumni programme.",
     body: [
       "The programme pairs current students with working graduates and professionals across STEM, business, law, education and the arts. I mentor on the engineering side.",
@@ -515,8 +509,6 @@ export const volunteering: Volunteering[] = [
     icon: "signal" as const,
     org: "STEM Sisters",
     period: "Jul 2023 — Jun 2024",
-    from: "2023-07",
-    to: "2024-06",
     summary: "Supporting the mission to empower women of colour in STEM.",
     body: [
       "STEM Sisters works to make science and technology careers reachable for women of colour in Australia.",
@@ -528,8 +520,6 @@ export const volunteering: Volunteering[] = [
     icon: "book" as const,
     org: "Faculty of Engineering and IT, the University of Melbourne",
     period: "Mar 2021 — Nov 2022",
-    from: "2021-03",
-    to: "2022-11",
     summary:
       "Representing the Faculty of Engineering and Information Technology to its students.",
     body: [
@@ -542,8 +532,6 @@ export const volunteering: Volunteering[] = [
     icon: "spark" as const,
     org: "The University of Melbourne",
     period: "Mar 2021 — Nov 2021",
-    from: "2021-03",
-    to: "2021-11",
     summary: "Mentoring young girls considering a career in STEM.",
     body: [
       "Worked with school-age girls on what careers in STEM actually involve day to day, and on finding which part of it they were drawn to rather than treating it as one undifferentiated choice.",
@@ -558,7 +546,7 @@ export const recognition = [
     org: "Faculty of Engineering and Information Technology, University of Melbourne",
   },
   {
-    title: "Standout Submission — Undefined",
+    title: "Standout Submission — “Undefined”",
     org: "UMSU Creative Arts, University of Melbourne",
     href: "https://umsu.unimelb.edu.au/news/article/7860/Pooja-Goel-Undefined/",
   },
@@ -750,10 +738,9 @@ export const studioBands: StudioBand[] = [
 /**
  * LinkedIn recommendations, shown at the foot of the Work page.
  *
- * Empty until real quotes are added — the section renders nothing at all while
- * this array is empty, so there is never a half-finished block on the site.
- * Paste each one as written on LinkedIn; do not paraphrase someone else's
- * words.
+ * The section renders nothing at all while this array is empty, so there is
+ * never a half-finished block on the site. Paste each one as written on
+ * LinkedIn; do not paraphrase someone else's words.
  */
 export type Recommendation = {
   /**

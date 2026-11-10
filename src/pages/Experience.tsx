@@ -1,4 +1,5 @@
 import Reveal from "../components/Reveal";
+import { BrandMark, markFor } from "../components/brands";
 import { Icon } from "../components/icons";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
@@ -195,14 +196,28 @@ export default function Experience() {
                   </h3>
 
                   <ul className="mt-5 flex flex-1 flex-wrap content-start gap-1.5">
-                    {group.items.map((item) => (
-                      <li
-                        key={item}
-                        className="rounded-full border border-rule/80 px-2.5 py-1 text-[0.8rem] leading-normal text-graphite"
-                      >
-                        {item}
-                      </li>
-                    ))}
+                    {group.items.map((item) => {
+                      const mark = markFor(item);
+
+                      return (
+                        <li
+                          key={item}
+                          className={[
+                            "inline-flex items-center rounded-full border border-rule/80 py-1 text-[0.8rem] leading-normal text-graphite",
+                            // A mark needs a little more room on its own side.
+                            mark ? "gap-1.5 pl-2 pr-2.5" : "px-2.5",
+                          ].join(" ")}
+                        >
+                          {mark && (
+                            <BrandMark
+                              name={mark}
+                              className="h-[0.95rem] w-[0.95rem] shrink-0 text-muted"
+                            />
+                          )}
+                          {item}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </article>
               </Reveal>

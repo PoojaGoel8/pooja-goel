@@ -88,6 +88,27 @@ paths kept as redirects: `/tutoring` → `/studio#tutoring` and `/testimonials` 
 deep link such as `/work` requests a file that does not exist and Pages serves
 `404.html`; the app boots from it and the router renders the real route.
 
+## Technology marks
+
+The capability chips on the Experience page carry small product marks, in
+`src/components/brands.tsx`. Two kinds sit there:
+
+- The real brand marks, path data copied out of [Simple Icons]. That project is
+  CC0; the trademarks stay with their owners, and these are used nominatively —
+  to name a tool that has actually been worked with.
+- Drawn marks for the Microsoft products. Microsoft had its logos removed from
+  Simple Icons, so there is no redistributable Azure, SQL Server, PowerShell or
+  Azure DevOps mark. Rather than lift one off Microsoft's own brand pages, these
+  say what the product *is* — a cloud, a globe, a prompt — and let the chip's
+  label name it.
+
+Nothing is installed for this: the paths are copied in, so no icon package ships
+at runtime. A chip only gets a mark if its exact label appears in the `byLabel`
+table in that file, so renaming a skill in `content.ts` drops its mark until the
+table is updated to match.
+
+[Simple Icons]: https://simpleicons.org
+
 ## Images and documents
 
 Source photographs are processed into web assets before being committed. Two

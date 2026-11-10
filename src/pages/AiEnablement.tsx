@@ -1,3 +1,4 @@
+import AiDiagram from "../components/AiDiagram";
 import Reveal from "../components/Reveal";
 import { Copy, PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
@@ -61,6 +62,7 @@ export default function AiEnablement() {
         eyebrow="AI enablement"
         title="Models are the easy part. Getting them to the data is not."
         lede={aiIntro.lede}
+        aside={<AiDiagram />}
       />
 
       <div className="mx-auto max-w-shell px-6 md:px-10">

@@ -18,18 +18,19 @@ export function PageHeader({
   eyebrow,
   title,
   lede,
+  aside,
   className = "",
 }: {
   eyebrow: string;
   title: string;
   lede?: string;
+  /** Optional figure for the space the headline leaves empty on the right. */
+  aside?: React.ReactNode;
   /** Mostly for trimming the bottom padding on a header with no lede. */
   className?: string;
 }) {
-  return (
-    <header
-      className={`mx-auto max-w-shell px-6 pb-14 pt-20 md:px-10 md:pb-20 md:pt-28 ${className}`}
-    >
+  const words = (
+    <div>
       <p className="eyebrow animate-rise">{eyebrow}</p>
       <h1 className="mt-5 max-w-[20ch] animate-rise font-display text-[2.6rem] font-normal leading-[1.08] tracking-[-0.015em] md:text-[3.9rem]">
         {title}
@@ -38,6 +39,23 @@ export function PageHeader({
         <p className="copy mt-8 max-w-prose animate-rise text-[1.15rem] md:text-[1.25rem]">
           {lede}
         </p>
+      )}
+    </div>
+  );
+
+  return (
+    <header
+      className={`mx-auto max-w-shell px-6 pb-14 pt-20 md:px-10 md:pb-20 md:pt-28 ${className}`}
+    >
+      {aside ? (
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:items-center lg:gap-16">
+          {words}
+          {/* Below lg the headline already has the full width, so the figure
+              sits under it at a size that does not dominate the page. */}
+          <div className="mx-auto w-full max-w-[22rem] animate-rise lg:max-w-none">{aside}</div>
+        </div>
+      ) : (
+        words
       )}
     </header>
   );

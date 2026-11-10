@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import ContactMenu from "./ContactMenu";
+import { SingaporeTime, StatusDot } from "./Console";
 import { site } from "../data/content";
 import { asset } from "../lib/asset";
 
@@ -18,12 +19,12 @@ function Monogram() {
   return (
     <Link
       to="/"
-      className="group -my-2 flex items-baseline gap-2.5 py-2 font-display text-[1.3rem] font-medium leading-none tracking-tight"
+      className="group -my-2 flex items-baseline gap-2 py-2 font-poster text-[1.45rem] uppercase leading-none tracking-[0.01em]"
     >
       <span>{site.name}</span>
       <span
         aria-hidden
-        className="h-1.5 w-1.5 translate-y-[-0.15rem] rounded-full bg-accent transition-transform duration-300 group-hover:scale-150"
+        className="h-1.5 w-1.5 rounded-full bg-accent transition-transform duration-300 group-hover:scale-150"
       />
     </Link>
   );
@@ -106,24 +107,27 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-40 border-b border-rule bg-paper/90 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-5 md:px-10">
+      <header className="sticky top-0 z-40 border-b border-rule bg-paper/80 backdrop-blur-md">
+        <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-4 md:px-10">
           <Monogram />
 
           <nav className="hidden items-center gap-7 lg:flex">
-            {nav.map((item) => (
+            {nav.map((item, i) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
                   [
-                    "relative text-[0.95rem] transition-colors",
+                    "relative font-mono text-[0.72rem] uppercase tracking-[0.12em] transition-colors",
                     isActive ? "text-ink" : "text-muted hover:text-ink",
                   ].join(" ")
                 }
               >
                 {({ isActive }) => (
                   <>
+                    <span aria-hidden className="mr-1.5 text-accent">
+                      0{i + 1}
+                    </span>
                     {item.label}
                     <span
                       aria-hidden
@@ -192,7 +196,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 to={item.to}
                 className={({ isActive }) =>
                   [
-                    "block border-b border-rule/60 py-3 text-[1.05rem] last:border-0",
+                    "block border-b border-rule/60 py-3 font-poster text-[1.9rem] uppercase leading-tight last:border-0",
                     isActive ? "text-accent" : "text-graphite",
                   ].join(" ")
                 }
@@ -223,53 +227,78 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         {children}
       </main>
 
-      <footer className="rule-top mt-24 bg-shell">
-        <div className="mx-auto max-w-shell px-6 py-14 md:px-10">
-          <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="font-display text-2xl leading-tight">{site.name}</p>
-              <p className="mt-1.5 text-[0.95rem] text-muted">
-                {site.role} · {site.location}
-              </p>
-            </div>
+      <footer className="relative mt-24 overflow-hidden border-t border-rule bg-shell">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-40 left-1/2 h-[26rem] w-[60rem] -translate-x-1/2 rounded-full bg-accent/[0.08] blur-[120px]"
+        />
+        <div className="relative mx-auto max-w-shell px-6 pb-10 pt-16 md:px-10 md:pt-24">
+          <div className="flex items-center gap-5">
+            <p className="eyebrow shrink-0">[ Contact ]</p>
+            <span aria-hidden className="h-px flex-1 bg-rule" />
+          </div>
 
-            <div className="flex flex-wrap gap-x-8 gap-y-1 text-[0.95rem]">
+          <p
+            aria-hidden
+            className="poster mt-8 text-[clamp(4.2rem,17vw,15rem)] text-ink"
+          >
+            Say hello<span className="text-accent">.</span>
+          </p>
+
+          <a
+            href={`mailto:${site.email}`}
+            className="mt-8 inline-block break-all py-1.5 font-display text-[1.35rem] text-ink underline decoration-accent/50 decoration-1 underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent md:text-[2.2rem]"
+          >
+            {site.email}
+          </a>
+
+          <div className="mt-14 grid gap-8 border-t border-rule pt-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+            <div className="flex flex-wrap gap-x-7 gap-y-1 font-mono text-[0.74rem] uppercase tracking-[0.12em]">
               <a
                 href={asset(site.resume)}
                 download
-                className="inline-flex items-center gap-2 py-1.5 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                className="py-1.5 text-graphite transition-colors hover:text-accent"
               >
-                Résumé
-                <span aria-hidden>↓</span>
-              </a>
-              <a
-                href={`mailto:${site.email}`}
-                className="py-1.5 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-              >
-                {site.email}
+                Résumé ↓
               </a>
               <a
                 href={site.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="py-1.5 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                className="py-1.5 text-graphite transition-colors hover:text-accent"
               >
-                LinkedIn
+                LinkedIn ↗
               </a>
               <a
                 href={site.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="py-1.5 text-graphite underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                className="py-1.5 text-graphite transition-colors hover:text-accent"
               >
-                Instagram
+                Instagram ↗
               </a>
             </div>
+
+            <p className="flex items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-muted">
+              <StatusDot />
+              <span>
+                {site.location} · <SingaporeTime />
+              </span>
+            </p>
           </div>
 
-          <p className="mt-12 text-[0.8rem] text-muted">
-            © {new Date().getFullYear()} {site.name}
-          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-muted">
+            <p>
+              © {new Date().getFullYear()} {site.name} · {site.role}
+            </p>
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="py-1.5 transition-colors hover:text-accent"
+            >
+              Back to top ↑
+            </button>
+          </div>
         </div>
       </footer>
     </div>

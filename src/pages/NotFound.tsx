@@ -6,8 +6,11 @@ export default function NotFound() {
   usePageMeta({ title: "Not found" });
 
   return (
-    <section className="mx-auto flex max-w-shell flex-col items-start px-6 py-28 md:px-10 md:py-40">
-      <p className="eyebrow">404</p>
+    <section className="mx-auto flex max-w-shell flex-col items-start px-6 py-16 md:px-10 md:py-24">
+      <p aria-hidden className="poster text-[clamp(6rem,30vw,20rem)] text-ink">
+        404<span className="text-accent">.</span>
+      </p>
+      <p className="eyebrow mt-8">[ Error 404 ] · 0 rows returned</p>
       <h1 className="mt-5 font-display text-[2.4rem] font-normal leading-[1.1] tracking-[-0.02em] md:text-[3.4rem]">
         That page does not exist.
       </h1>

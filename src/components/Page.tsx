@@ -44,8 +44,8 @@ export function PageHeader({
 }) {
   const words = (
     <div>
-      <p className="eyebrow animate-rise">{eyebrow}</p>
-      <h1 className="mt-5 max-w-[20ch] animate-rise font-display text-[2.6rem] font-normal leading-[1.08] tracking-[-0.015em] md:text-[3.9rem]">
+      <p className="eyebrow animate-rise">[ {eyebrow} ]</p>
+      <h1 className="mt-5 max-w-[20ch] animate-rise font-display text-[2.2rem] font-normal leading-[1.06] tracking-[-0.025em] md:text-[3.3rem]">
         {title}
       </h1>
       {lede && (
@@ -58,8 +58,20 @@ export function PageHeader({
 
   return (
     <header
-      className={`mx-auto max-w-shell px-6 pb-14 pt-20 md:px-10 md:pb-20 md:pt-28 ${className}`}
+      className={`mx-auto max-w-shell px-6 pb-14 pt-10 md:px-10 md:pb-20 md:pt-14 ${className}`}
     >
+      {/* The page's name at poster size. The sentence below is the real
+          heading; this is the cover it sits under, so it is hidden from
+          screen readers rather than read out twice. */}
+      <p
+        aria-hidden
+        className="poster animate-rise text-[clamp(3.6rem,14.5vw,12rem)] text-ink"
+      >
+        {eyebrow}
+        <span className="text-accent">.</span>
+      </p>
+
+      <div className="mt-10 border-t border-rule pt-10 md:mt-14 md:pt-14">
       {aside ? (
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:items-center lg:gap-16">
           {words}
@@ -70,6 +82,7 @@ export function PageHeader({
       ) : (
         words
       )}
+      </div>
     </header>
   );
 }
@@ -90,9 +103,14 @@ export function Section({
     <section className={`mx-auto max-w-shell px-6 py-16 md:px-10 md:py-24 ${className}`}>
       {(eyebrow || title) && (
         <Reveal className="mb-12 md:mb-16">
-          {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+          {eyebrow && (
+            <div className="flex items-center gap-5">
+              <p className="eyebrow shrink-0">{eyebrow}</p>
+              <span aria-hidden className="h-px flex-1 bg-rule" />
+            </div>
+          )}
           {title && (
-            <h2 className="mt-4 max-w-[24ch] font-display text-[1.9rem] font-normal leading-[1.15] tracking-[-0.01em] md:text-[2.6rem]">
+            <h2 className="mt-6 max-w-[24ch] font-display text-[1.9rem] font-normal leading-[1.1] tracking-[-0.02em] md:text-[2.7rem]">
               {title}
             </h2>
           )}

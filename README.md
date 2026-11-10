@@ -23,7 +23,7 @@ path.
 ### Gaps waiting on content
 
 Anything in `content.ts` written as `// TODO — …` is a deliberate gap. It
-renders as a dashed pink box while running locally and is **hidden entirely in
+renders as a dashed orange box while running locally and is **hidden entirely in
 the published build**, so an unfinished note can never reach the live site.
 Replace the line with real copy and it becomes ordinary body text.
 
@@ -49,6 +49,23 @@ place of its description.
 The preview image is `public/og-card.jpg`. To redraw it after changing the
 headline or the portrait, run `python scripts/make-og-card.py` (needs Pillow,
 and the Windows fonts it names) and commit the result.
+
+## Design
+
+A dark "production console": warm black, bone text, one signal orange, and a
+status green used only for online and uptime marks. The colours are defined
+once, by role, in `tailwind.config.js` — `paper` is the page, `ink` the text,
+`accent` the orange — so a palette change there reaches every component.
+
+Four faces, all from Google Fonts: Anton for poster-size words (the name, page
+titles, the footer), Space Grotesk for headings, Inter for reading, JetBrains
+Mono for labels.
+
+The database furniture lives in `src/components/Console.tsx`: the typed psql
+query in the hero, the rotating ring of text, the stack marquee, the count-up
+figures, the uptime strip and the Singapore clock. Each is decoration over
+content that is also on the page as text, so each is hidden from screen
+readers, and each holds still for anyone who has asked for reduced motion.
 
 ## Running locally
 
@@ -99,6 +116,7 @@ src/data/content.ts    all site copy
 src/data/pageMeta.json title and description for each route
 src/pages/             one file per route
 src/components/        layout, navigation, shared pieces
+src/components/Console the console furniture: terminal, marquee, counters
 src/lib/asset.ts       base-path-aware asset URLs
 public/assets/         images and downloadable documents
 public/og-card.jpg     the image a shared link unfurls with

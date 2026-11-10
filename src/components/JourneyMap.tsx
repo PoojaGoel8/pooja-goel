@@ -85,17 +85,18 @@ export default function JourneyMap() {
         aria-hidden="true"
         focusable="false"
       >
-        {countries.map((c) => {
+        {/* Keyed by position as well: a few Natural Earth shapes have no id. */}
+        {countries.map((c, i) => {
           if (!c.key) {
             return (
-              <path key={c.id} d={c.d} className="fill-rule/70 stroke-paper" strokeWidth={0.9} />
+              <path key={`${c.id}-${i}`} d={c.d} className="fill-rule/70 stroke-paper" strokeWidth={0.9} />
             );
           }
 
           const on = active === c.key;
           return (
             <path
-              key={c.id}
+              key={`${c.id}-${i}`}
               d={c.d}
               onClick={() => setActive(c.key as Key)}
               className={[

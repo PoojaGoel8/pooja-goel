@@ -52,15 +52,19 @@ const labels: Record<LogoName, string> = {
 };
 
 export function Logo({ name }: { name: LogoName }) {
+  // Each mark sits on a light chip: several are drawn in black or navy for a
+  // white page, and on the dark one they would disappear.
   return (
+    <span className="flex h-[2rem] w-[2rem] items-center justify-center rounded-[6px] bg-ink">
     <img
       src={asset(`/assets/logos/${name}.svg`)}
       alt={labels[name]}
       title={labels[name]}
       width={24}
       height={24}
-      className="h-[1.45rem] w-[1.45rem] object-contain"
+      className="h-[1.3rem] w-[1.3rem] object-contain"
     />
+    </span>
   );
 }
 

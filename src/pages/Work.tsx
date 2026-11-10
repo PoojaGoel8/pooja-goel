@@ -101,7 +101,7 @@ function Outcomes({ outcome }: { outcome: CaseStudy["outcome"] }) {
     <dl className="grid grid-cols-2 gap-x-6 gap-y-8 border-y border-rule py-8 lg:grid-cols-4">
       {outcome.map((item) => (
         <div key={item.label}>
-          <dt className="font-display text-[2rem] font-normal leading-none tracking-[-0.02em]">
+          <dt className="poster text-[2.6rem] text-ink md:text-[3.4rem]">
             {item.value}
           </dt>
           <dd className="mt-2.5 text-[0.85rem] leading-relaxed text-muted">{item.label}</dd>

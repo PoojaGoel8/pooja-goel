@@ -223,9 +223,14 @@ export default function Studio() {
 
   return (
     <>
-      <header className="mx-auto max-w-shell px-6 pb-12 pt-20 md:px-10 md:pb-16 md:pt-28">
-        <p className="eyebrow animate-rise">Studio</p>
-        <h1 className="mt-5 max-w-[16ch] animate-rise font-display text-[2.6rem] font-normal leading-[1.04] tracking-[-0.02em] md:text-[4rem]">
+      <header className="mx-auto max-w-shell px-6 pb-12 pt-10 md:px-10 md:pb-16 md:pt-14">
+        <p aria-hidden className="poster animate-rise text-[clamp(3.6rem,14.5vw,12rem)] text-ink">
+          Studio<span className="text-accent">.</span>
+        </p>
+        <p className="eyebrow mt-10 animate-rise border-t border-rule pt-10 md:mt-14 md:pt-14">
+          [ Studio ]
+        </p>
+        <h1 className="mt-5 max-w-[16ch] animate-rise font-display text-[2.2rem] font-normal leading-[1.06] tracking-[-0.025em] md:text-[3.3rem]">
           The other practice.
         </h1>
         <p className="copy mt-8 max-w-prose animate-rise text-[1.15rem] md:text-[1.25rem]">

@@ -644,7 +644,7 @@ export const journey: JourneyStop[] = [
   {
     key: "australia",
     label: "Australia",
-    years: "2021 — 2026",
+    years: "2021 — present",
     heading: "Where it became production work",
     lede: "A master's in Melbourne, then four years running database services for a licensed wagering platform.",
     entries: [
@@ -673,7 +673,7 @@ export const journey: JourneyStop[] = [
   {
     key: "singapore",
     label: "Singapore",
-    years: "Now",
+    years: "Based here",
     heading: "What the market here is solving for",
     lede: "Singapore is working through the same combination I have spent four years inside: regulated data, cloud migration under real constraints, and AI that has to run on operational systems rather than in a demo.",
     entries: [

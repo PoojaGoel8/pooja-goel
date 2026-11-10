@@ -5,7 +5,7 @@ import { LogoStrip } from "../components/Logo";
 import { Icon } from "../components/icons";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
-import { advocacy, recognition, site, skillGroups } from "../data/content";
+import { advocacy, recognition, skillGroups } from "../data/content";
 
 const JourneyMap = lazy(() => import("../components/JourneyMap"));
 
@@ -21,25 +21,6 @@ export default function Experience() {
         eyebrow="Experience"
         title="Four years of production, and the training that preceded it."
       />
-
-      <div className="mx-auto -mt-6 max-w-shell px-6 pb-10 md:px-10 md:pb-14">
-        <a
-          href={asset(site.resume)}
-          download
-          className="group inline-flex items-center gap-3 rounded-[2px] border border-rule px-5 py-3 text-[0.95rem] text-graphite transition-colors hover:border-accent hover:text-accent"
-        >
-          Download résumé
-          <span
-            aria-hidden
-            className="transition-transform duration-300 group-hover:translate-y-0.5"
-          >
-            ↓
-          </span>
-          <span className="font-mono text-[0.7rem] uppercase tracking-[0.08em] text-muted">
-            PDF
-          </span>
-        </a>
-      </div>
 
       <Section eyebrow="The route here" title="India, Australia, Singapore.">
         <Reveal>

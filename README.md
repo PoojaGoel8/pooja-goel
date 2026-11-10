@@ -133,10 +133,16 @@ The component is lazy-loaded from `Experience.tsx`: the path data is about
 rather than riding in the bundle every page downloads. The `Suspense` fallback
 reserves the map's aspect ratio so the page does not jump when the chunk lands.
 
-What each place says is `journey` in `content.ts`. The map itself is
-`aria-hidden`: clicking a country works with a mouse, but everything it does is
-reachable from the three buttons beside it, so it does not become a second set
-of tab stops saying the same thing.
+What each place says is `journey` in `content.ts`. For India and Australia it
+does not restate anything: it reads `roles` and `education`, filtered by their
+`place`, so the map and the CV data cannot drift apart. `roles` is stored
+newest-first, which is the order the map wants — the current role leads.
+Singapore is the exception, with its own four entries, because it is about what
+that market is working through rather than a history.
+
+The map itself is `aria-hidden`: clicking a country works with a mouse, but
+everything it does is reachable from the three buttons below it, so it does not
+become a second set of tab stops saying the same thing.
 
 ## Images and documents
 

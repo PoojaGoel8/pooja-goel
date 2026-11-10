@@ -5,7 +5,7 @@ import { LogoStrip } from "../components/Logo";
 import { Icon } from "../components/icons";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
-import { advocacy, education, recognition, roles, site, skillGroups } from "../data/content";
+import { advocacy, recognition, site, skillGroups } from "../data/content";
 
 const JourneyMap = lazy(() => import("../components/JourneyMap"));
 
@@ -41,70 +41,23 @@ export default function Experience() {
         </a>
       </div>
 
-      <div className="mx-auto max-w-shell px-6 md:px-10">
-        <div className="border-t border-rule">
-          {roles.map((role) => (
-            <Reveal key={`${role.title}-${role.period}`}>
-              <article className="grid gap-5 border-b border-rule py-10 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.4fr)] md:gap-14 md:py-14">
-                <div>
-                  <h2 className="font-display text-[1.35rem] font-normal leading-snug">
-                    {role.title}
-                  </h2>
-                  <p className="mt-2 text-[0.95rem] text-graphite">{role.org}</p>
-                  <p className="mt-1 text-[0.85rem] text-muted">{role.place}</p>
-                  <p className="mt-4 font-mono text-[0.75rem] uppercase tracking-[0.08em] text-accent">
-                    {role.period}
-                  </p>
-                </div>
+      <Section eyebrow="The route here" title="India, Australia, Singapore.">
+        <Reveal>
+          {/* Reserve the map's own ratio so the split chunk arriving does not
+              shove the page around. */}
+          <Suspense fallback={<div className="mx-auto aspect-[760/560] w-full max-w-[760px]" />}>
+            <JourneyMap />
+          </Suspense>
+        </Reveal>
+      </Section>
 
-                <ul className="space-y-4">
-                  {role.points.map((point, i) => (
-                    <li
-                      key={i}
-                      className="flex gap-3.5 text-[1.0425rem] leading-[1.72] text-graphite"
-                    >
-                      <span aria-hidden className="mt-[0.7em] h-px w-4 shrink-0 bg-rule" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-
-      <Section eyebrow="Education" title="Australia, by way of India.">
+      <Section eyebrow="Recognition" title="Awards, and the work beside the work.">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-16">
           <div className="space-y-10">
-            {education.map((item) => (
-              <Reveal key={item.title}>
-                <article>
-                  <h3 className="font-display text-[1.3rem] font-normal leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-[0.95rem] text-graphite">{item.org}</p>
-                  <p className="mt-1 font-mono text-[0.75rem] uppercase tracking-[0.08em] text-muted">
-                    {item.period}
-                  </p>
-                  <ul className="mt-5 space-y-2.5">
-                    {item.notes.map((note) => (
-                      <li key={note} className="flex gap-3 text-[0.95rem] text-graphite">
-                        <span aria-hidden className="text-accent">
-                          ·
-                        </span>
-                        <span>{note}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </Reveal>
-            ))}
-
             <Reveal>
-              <article className="rule-top pt-8">
-                <h3 className="eyebrow">Recognition</h3>
-                <ul className="mt-5 space-y-5">
+              <article>
+                {/* The section is already titled Recognition. */}
+                <ul className="space-y-5">
                   {recognition.map((item) => (
                     <li key={item.title}>
                       <p className="text-[1rem] leading-snug text-ink">
@@ -216,16 +169,6 @@ export default function Experience() {
           </div>
         </div>
       </section>
-
-      <Section eyebrow="The route here" title="India, Australia, Singapore.">
-        <Reveal>
-          {/* Reserve the map's own ratio so the split chunk arriving does not
-              shove the page around. */}
-          <Suspense fallback={<div className="aspect-[760/560] w-full lg:w-[55%]" />}>
-            <JourneyMap />
-          </Suspense>
-        </Reveal>
-      </Section>
     </>
   );
 }

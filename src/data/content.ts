@@ -373,6 +373,7 @@ export const education = [
   {
     title: "Master of Information Systems (Professional)",
     org: "The University of Melbourne",
+    place: "Australia",
     period: "Feb 2021 — Dec 2022",
     notes: [
       "Melbourne School of Engineering Scholarship, 2020",
@@ -382,7 +383,8 @@ export const education = [
   },
   {
     title: "Bachelor of Technology, Computer Science and Engineering",
-    org: "SRM Institute of Science and Technology, India",
+    org: "SRM Institute of Science and Technology",
+    place: "India",
     period: "Jul 2016 — Jun 2020",
     notes: ["First Class with Distinction"],
   },
@@ -609,7 +611,13 @@ export const recommendations: Recommendation[] = [];
 export type JourneyEntry = {
   title: string;
   meta: string;
-  body: string;
+  body?: string;
+  points?: string[];
+};
+
+export type JourneyGroup = {
+  title: string;
+  entries: JourneyEntry[];
 };
 
 export type JourneyStop = {
@@ -618,8 +626,37 @@ export type JourneyStop = {
   years: string;
   heading: string;
   lede: string;
-  entries: JourneyEntry[];
+  /**
+   * Two groups for the places she has lived — education beside work. Singapore
+   * has one, because it is about what that market is working through rather
+   * than a history. A single group renders without its title.
+   */
+  groups: JourneyGroup[];
 };
+
+/**
+ * `roles` and `education` stay the single source for the history: the map
+ * reads them rather than restating them, so the two cannot drift apart.
+ * `roles` is already newest-first, which is the order wanted here — the
+ * current PointsBet role leads.
+ */
+const rolesIn = (place: string): JourneyEntry[] =>
+  roles
+    .filter((role) => role.place === place)
+    .map((role) => ({
+      title: role.title,
+      meta: `${role.org} · ${role.period}`,
+      points: role.points,
+    }));
+
+const educationIn = (place: string): JourneyEntry[] =>
+  education
+    .filter((item) => item.place === place)
+    .map((item) => ({
+      title: item.title,
+      meta: `${item.org} · ${item.period}`,
+      points: item.notes,
+    }));
 
 export const journey: JourneyStop[] = [
   {
@@ -628,17 +665,9 @@ export const journey: JourneyStop[] = [
     years: "2016 — 2022",
     heading: "Where the engineering started",
     lede: "Four years of computer science and engineering, and a first stint holding a delivery schedule together.",
-    entries: [
-      {
-        title: "Bachelor of Technology, Computer Science and Engineering",
-        meta: "SRM Institute of Science and Technology · 2016 — 2020",
-        body: "First Class with Distinction. The grounding — systems, networks and databases — that everything since has been built on.",
-      },
-      {
-        title: "Project Management Intern",
-        meta: "Ladder Media · Nov 2021 — Feb 2022",
-        body: "Coordinated 20-plus people across functions and 50-plus workstreams, improving delivery turnaround by 65%, and shaped the material that went into investor presentations.",
-      },
+    groups: [
+      { title: "Education", entries: educationIn("India") },
+      { title: "Work", entries: rolesIn("India") },
     ],
   },
   {
@@ -646,28 +675,10 @@ export const journey: JourneyStop[] = [
     label: "Australia",
     years: "2021 — present",
     heading: "Where it became production work",
-    lede: "A master's in Melbourne, then four years running database services for a licensed wagering platform.",
-    entries: [
-      {
-        title: "Master of Information Systems (Professional)",
-        meta: "The University of Melbourne · Feb 2021 — Dec 2022",
-        body: "Melbourne School of Engineering and Melbourne Graduate scholarships, and the Dean's Honour List for the Faculty of Engineering and IT.",
-      },
-      {
-        title: "Graduate Data Services Engineer",
-        meta: "PointsBet · Jul — Nov 2022",
-        body: "Moved six-plus databases from on-premises to Azure without breaking continuity, lifted availability to 99.99% across 13 production environments, and consolidated 11 databases through two acquisition integrations.",
-      },
-      {
-        title: "Data Services Engineer",
-        meta: "PointsBet · Nov 2022 — present",
-        body: "100% server uptime through high-volume periods, SQL Server infrastructure delivered inside a two-day SLA, and a 67% cut in issue resolution time through AI-driven monitoring and agentic alert diagnosis.",
-      },
-      {
-        title: "Academic Tutor, Professional IS Consulting",
-        meta: "The University of Melbourne · Feb 2022 — Nov 2025",
-        body: "Postgraduate tutorials run alongside a full-time engineering role.",
-      },
+    lede: "A master's in Melbourne, then four years running database services for a licensed wagering platform — where a slow query is a lost customer and an outage is a regulatory conversation.",
+    groups: [
+      { title: "Education", entries: educationIn("Australia") },
+      { title: "Work", entries: rolesIn("Australia") },
     ],
   },
   {
@@ -676,26 +687,31 @@ export const journey: JourneyStop[] = [
     years: "Based here",
     heading: "What the market here is solving for",
     lede: "Singapore is working through the same combination I have spent four years inside: regulated data, cloud migration under real constraints, and AI that has to run on operational systems rather than in a demo.",
-    entries: [
+    groups: [
       {
-        title: "Legacy estates that have to reach the cloud intact",
-        meta: "Cloud migration",
-        body: "Modernisation here is gated less by appetite than by the risk of moving systems that cannot stop. That is the move I have already made: six-plus production databases from on-premises to Azure with business continuity held throughout, and eleven more consolidated through two acquisitions with integrity and compliance intact.",
-      },
-      {
-        title: "AI that is limited by the data underneath it",
-        meta: "AI enablement",
-        body: "The national AI programmes have pushed adoption into ordinary enterprises, which makes data quality, lineage and access control the constraint rather than the model. That join is exactly what I built for the hackathon: wiring Databricks into Azure AI Foundry so the AI layer read governed, intact data.",
-      },
-      {
-        title: "Regulated workloads where the operator stays accountable",
-        meta: "Governance",
-        body: "Financial regulation here treats cloud as outsourcing — oversight, recoverability and knowing where data sits stay the institution's responsibility, whoever runs the hardware. Licensed wagering taught the same discipline: tested restores, rehearsed failovers, auditable access, and changes that can be reversed.",
-      },
-      {
-        title: "Availability measured as a commercial number",
-        meta: "Reliability",
-        body: "Trading hours, settlement windows and peak events do not negotiate. High availability, replication, disaster recovery and honest RTO and RPO targets are the day job here rather than a project with an end date.",
+        title: "Where the work lands",
+        entries: [
+          {
+            title: "Legacy estates that have to reach the cloud intact",
+            meta: "Cloud migration",
+            body: "Modernisation here is gated less by appetite than by the risk of moving systems that cannot stop. That is the move I have already made: six-plus production databases from on-premises to Azure with business continuity held throughout, and eleven more consolidated through two acquisitions with integrity and compliance intact.",
+          },
+          {
+            title: "AI that is limited by the data underneath it",
+            meta: "AI enablement",
+            body: "The national AI programmes have pushed adoption into ordinary enterprises, which makes data quality, lineage and access control the constraint rather than the model. That join is exactly what I built for the hackathon: wiring Databricks into Azure AI Foundry so the AI layer read governed, intact data.",
+          },
+          {
+            title: "Regulated workloads where the operator stays accountable",
+            meta: "Governance",
+            body: "Financial regulation here treats cloud as outsourcing — oversight, recoverability and knowing where data sits stay the institution's responsibility, whoever runs the hardware. Licensed wagering taught the same discipline: tested restores, rehearsed failovers, auditable access, and changes that can be reversed.",
+          },
+          {
+            title: "Availability measured as a commercial number",
+            meta: "Reliability",
+            body: "Trading hours, settlement windows and peak events do not negotiate. High availability, replication, disaster recovery and honest RTO and RPO targets are the day job here rather than a project with an end date.",
+          },
+        ],
       },
     ],
   },

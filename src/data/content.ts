@@ -451,6 +451,8 @@ export type StudioBand = {
   images: { src: string; alt: string; caption?: string; w: number; h: number }[];
   /** Which side the images sit on at desktop width. */
   side?: "left" | "right";
+  /** A drawn figure for a band that has no photographs and expects none. */
+  figure?: "tutoring";
   /** True for bands whose photographs are still to come, so the layout keeps a slot for them. */
   awaitsImages?: boolean;
   /** True when the images run full width under the prose rather than beside it. */
@@ -573,6 +575,7 @@ export const studioBands: StudioBand[] = [
   {
     slug: "tutoring",
     icon: "book" as const,
+    figure: "tutoring" as const,
     blurb: "Four years of it, at the University of Melbourne",
     eyebrow: "The University of Melbourne",
     title: "Tutoring",

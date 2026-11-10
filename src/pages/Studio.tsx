@@ -1,6 +1,7 @@
 import Reveal from "../components/Reveal";
 import { Icon } from "../components/icons";
 import { Copy, Section, usePageMeta } from "../components/Page";
+import TutoringDiagram from "../components/TutoringDiagram";
 import { asset } from "../lib/asset";
 import { studioBands, studioIntro, type StudioBand } from "../data/content";
 
@@ -58,8 +59,9 @@ function Collage() {
 
 function Band({ band, index }: { band: StudioBand; index: number }) {
   const imagesFirst = band.side === "left";
-  // A band with no photographs and none expected runs as a single column.
-  const hasMedia = band.images.length > 0 || Boolean(band.awaitsImages);
+  // A band with no photographs and none expected runs as a single column —
+  // unless it has a drawn figure to put in the other one.
+  const hasMedia = band.images.length > 0 || Boolean(band.awaitsImages) || Boolean(band.figure);
 
   // A single tall portrait would otherwise stretch to the full column width and
   // run far past the prose beside it, leaving a long gap.
@@ -84,7 +86,8 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
           )}
         </figure>
       ))}
-      {band.images.length === 0 && (
+      {band.figure === "tutoring" && <TutoringDiagram />}
+      {band.images.length === 0 && !band.figure && (
         <AwaitingImages label={`Photographs to come — ${band.title.toLowerCase()}`} />
       )}
     </div>

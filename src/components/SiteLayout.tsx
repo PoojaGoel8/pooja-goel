@@ -96,7 +96,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-5 md:px-10">
           <Monogram />
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-7 md:flex">
             {nav.map((item) => (
               <NavLink
                 key={item.to}
@@ -122,6 +122,13 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 )}
               </NavLink>
             ))}
+
+            <a
+              href={`mailto:${site.email}`}
+              className="rounded-full border border-accent/45 px-4 py-1.5 text-[0.9rem] text-accent transition-colors duration-300 hover:bg-accent hover:text-paper"
+            >
+              Contact
+            </a>
           </nav>
 
           <button
@@ -162,6 +169,14 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 {item.label}
               </NavLink>
             ))}
+
+            <a
+              href={`mailto:${site.email}`}
+              onClick={() => setOpen(false)}
+              className="mt-5 inline-flex rounded-full border border-accent/45 px-5 py-2 text-[1rem] text-accent"
+            >
+              Contact
+            </a>
           </nav>
         )}
       </header>

@@ -1,3 +1,5 @@
+import { useId, useState } from "react";
+
 import Reveal from "../components/Reveal";
 import { Copy, PageHeader, Pending, Section, usePageMeta } from "../components/Page";
 import {
@@ -9,6 +11,87 @@ import {
 } from "../data/content";
 
 const isTodo = (line: string) => line.trimStart().startsWith("//");
+
+/**
+ * A section of a case study that opens on click.
+ *
+ * The body is always in the DOM — collapsed with a 0fr grid row rather than
+ * unmounted — so it is still there for anyone reading the page with search,
+ * with find-in-page, or without JavaScript having run. `visibility` is part of
+ * the transition so it only flips to hidden once the row has finished closing;
+ * hiding it immediately would cut the animation off, and leaving it visible
+ * would let a keyboard land on links inside a shut panel.
+ */
+function Disclosure({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+
+  return (
+    <div className="border-t border-rule">
+      <h3>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls={id}
+          className="group flex w-full items-center justify-between gap-6 py-6 text-left"
+        >
+          <span
+            className={[
+              "eyebrow transition-colors duration-300",
+              open ? "text-accent" : "group-hover:text-accent",
+            ].join(" ")}
+          >
+            {label}
+          </span>
+
+          <span
+            aria-hidden
+            className={[
+              "flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
+              open
+                ? "rotate-180 border-accent bg-accent text-paper"
+                : "border-rule text-graphite group-hover:border-accent group-hover:text-accent",
+            ].join(" ")}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3.5 w-3.5"
+            >
+              <path d="M5 9l7 7 7-7" />
+            </svg>
+          </span>
+        </button>
+      </h3>
+
+      <div
+        id={id}
+        className={[
+          // The clipping belongs on the child, not here: `overflow: hidden` on
+          // the grid container gives it a definite block size, and the 1fr row
+          // then resolves against zero and the panel never opens.
+          "grid transition-[grid-template-rows,visibility] duration-300 ease-out motion-reduce:transition-none",
+          open ? "visible grid-rows-[1fr]" : "invisible grid-rows-[0fr]",
+        ].join(" ")}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="max-w-prose pb-9">{children}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Outcomes({ outcome }: { outcome: CaseStudy["outcome"] }) {
   return (
@@ -40,17 +123,13 @@ function Study({ study, index }: { study: CaseStudy; index: number }) {
         <p className="copy mt-6 max-w-prose text-[1.1rem]">{study.summary}</p>
       </Reveal>
 
-      <div className="mt-14 grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-16">
-        <Reveal>
-          <h3 className="eyebrow">The situation</h3>
-          <div className="mt-5">
-            <Copy paragraphs={study.context} />
-          </div>
-        </Reveal>
+      <Reveal className="mt-12 border-b border-rule">
+        <Disclosure label="The situation">
+          <Copy paragraphs={study.context} />
+        </Disclosure>
 
-        <Reveal delay={90}>
-          <h3 className="eyebrow">What I did</h3>
-          <ul className="mt-5 space-y-4">
+        <Disclosure label="What I did">
+          <ul className="space-y-4">
             {study.approach.map((line, i) =>
               isTodo(line) ? (
                 <Pending key={i}>{line}</Pending>
@@ -62,8 +141,8 @@ function Study({ study, index }: { study: CaseStudy; index: number }) {
               ),
             )}
           </ul>
-        </Reveal>
-      </div>
+        </Disclosure>
+      </Reveal>
 
       <Reveal className="mt-14">
         <Outcomes outcome={study.outcome} />

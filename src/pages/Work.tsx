@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 
 import Reveal from "../components/Reveal";
+import WorkDiagram from "../components/WorkDiagram";
 import { Copy, PageHeader, Pending, Section, usePageMeta } from "../components/Page";
 import {
   alsoDelivered,
@@ -176,6 +177,7 @@ export default function Work() {
         eyebrow="Work"
         title="Migrations, availability, and the estate underneath both."
         lede="Two pieces of work in detail, because they are the ones where the decisions mattered more than the tooling. Everything here was delivered in a licensed wagering environment, where downtime is a commercial problem and a regulatory one at the same time."
+        aside={<WorkDiagram />}
       />
 
       <div className="mx-auto max-w-shell space-y-20 px-6 pb-8 md:space-y-28 md:px-10">

@@ -11,6 +11,8 @@
  * DBA workflows, and the retrieval groundwork underneath them.
  */
 
+import { Cylinder, FigureLabel, figureProps } from "./figures";
+
 /** A four-point sparkle — the one piece of shorthand repeated in each panel. */
 function Spark({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
   return (
@@ -23,45 +25,13 @@ function Spark({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
   );
 }
 
-/** A database cylinder, the shape every panel is ultimately about. */
-function Cylinder({ x, y, rx = 21 }: { x: number; y: number; rx?: number }) {
-  const ry = rx * 0.35;
-  const h = 26;
-  return (
-    <g transform={`translate(${x} ${y})`}>
-      <ellipse cx={0} cy={0} rx={rx} ry={ry} />
-      <path d={`M${-rx} 0v${h}c0 ${ry * 1.55} ${rx * 0.47} ${ry} ${rx} ${ry}s${rx} ${-ry * 0.45} ${rx} ${-ry}V0`} />
-      <path d={`M${-rx} ${h / 2}c0 ${ry * 1.55} ${rx * 0.47} ${ry} ${rx} ${ry}s${rx} ${-ry * 0.45} ${rx} ${-ry}`} />
-    </g>
-  );
-}
-
-function Label({ x, y, children }: { x: number; y: number; children: string }) {
-  return (
-    <text
-      x={x}
-      y={y}
-      textAnchor="middle"
-      className="fill-muted font-sans text-[13px] uppercase"
-      style={{ letterSpacing: "0.1em" }}
-    >
-      {children}
-    </text>
-  );
-}
-
 export default function AiDiagram() {
   return (
     <svg
       viewBox="0 0 420 420"
       role="img"
       aria-label="Four strands of the work: a knowledge assistant, agentic monitoring, automated workflows, and grounded retrieval."
-      className="w-full"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      {...figureProps}
     >
       <rect
         x="0.7"
@@ -84,7 +54,7 @@ export default function AiDiagram() {
         <circle cx="48" cy="1" r="2.6" className="fill-accent" stroke="none" />
         <Spark x={64} y={-44} s={0.85} />
       </g>
-      <Label x={105} y={178}>Knowledge assistant</Label>
+      <FigureLabel x={105} y={178}>Knowledge assistant</FigureLabel>
 
       {/* ---------------------------------------------- agentic monitoring */}
       <g transform="translate(315 96)" className="text-graphite">
@@ -94,7 +64,7 @@ export default function AiDiagram() {
         <circle cx="8" cy="-16" r="5" className="fill-accent stroke-paper" strokeWidth="2" />
         <Spark x={54} y={-42} s={0.85} />
       </g>
-      <Label x={315} y={178}>Agentic monitoring</Label>
+      <FigureLabel x={315} y={178}>Agentic monitoring</FigureLabel>
 
       {/* ---------------------------------------------- automated workflows */}
       <g transform="translate(105 306)" className="text-graphite">
@@ -109,7 +79,7 @@ export default function AiDiagram() {
         <path d="M52 17l-6 5 6 5" className="stroke-rule" />
         <Spark x={58} y={-44} s={0.85} />
       </g>
-      <Label x={105} y={388}>DBA automation</Label>
+      <FigureLabel x={105} y={388}>DBA automation</FigureLabel>
 
       {/* ---------------------------------------------- grounded retrieval */}
       <g transform="translate(315 300)" className="text-graphite">
@@ -137,7 +107,7 @@ export default function AiDiagram() {
         <Cylinder x={0} y={-4} rx={21} />
         <Spark x={56} y={-48} s={0.85} />
       </g>
-      <Label x={315} y={388}>Grounded retrieval</Label>
+      <FigureLabel x={315} y={388}>Grounded retrieval</FigureLabel>
     </svg>
   );
 }

@@ -1,11 +1,12 @@
 import { Suspense, lazy } from "react";
 
 import Reveal from "../components/Reveal";
+import Volunteering from "../components/Volunteering";
 import { LogoStrip } from "../components/Logo";
 import { Icon } from "../components/icons";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
-import { advocacy, recognition, skillGroups } from "../data/content";
+import { recognition, skillGroups } from "../data/content";
 
 const JourneyMap = lazy(() => import("../components/JourneyMap"));
 
@@ -35,9 +36,9 @@ export default function Experience() {
         </Reveal>
       </Section>
 
-      <Section eyebrow="Recognition" title="Awards, and the work beside the work.">
-        <div className="grid gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-16">
-          <div className="space-y-10">
+      <Section eyebrow="Recognition" title="Awards and honours.">
+        <div>
+          <div>
             <Reveal>
               <article>
                 {/* The section is already titled Recognition. */}
@@ -65,19 +66,10 @@ export default function Experience() {
                 </ul>
               </article>
             </Reveal>
-
-            <Reveal>
-              <article className="rule-top pt-8">
-                <h3 className="eyebrow">{advocacy.title}</h3>
-                <p className="mt-3 max-w-prose text-[1rem] leading-[1.7] text-graphite">
-                  {advocacy.body}
-                </p>
-              </article>
-            </Reveal>
           </div>
 
-          <Reveal delay={120}>
-            <div className="space-y-6">
+          <Reveal delay={120} className="mt-12">
+            <div className="grid gap-6 sm:grid-cols-2">
               <figure>
                 <img
                   src={asset("/assets/images/graduation.webp")}
@@ -108,6 +100,12 @@ export default function Experience() {
             </div>
           </Reveal>
         </div>
+      </Section>
+
+      <Section eyebrow="Volunteering" title="The work beside the work.">
+        <Reveal>
+          <Volunteering />
+        </Reveal>
       </Section>
 
       <section className="bg-shell">

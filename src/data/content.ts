@@ -621,7 +621,9 @@ export type Recommendation = {
  * Written by colleagues and managers. Lightly trimmed, never reworded, and
  * every trim marked with an ellipsis. Two deliberate omissions, both noted
  * where they occur: an internal compliance matter, and a company value whose
- * name does not belong on a public page.
+ * name does not belong on a public page. Internal system names are cut the
+ * same way — an ellipsis where one sat inline, and the whole parenthetical
+ * where it was an aside.
  */
 export const recommendations: Recommendation[] = [
   {
@@ -630,8 +632,8 @@ export const recommendations: Recommendation[] = [
     highlight:
       "Pooja consistently demonstrates deep technical ownership, attention to detail and problem-solving mindset.",
     quote: [
-      "A long overdue shoutout to Pooja Goel who took full ownership of SRC prep works in the DB space. She not only identified queries that would have been pain points during busy AFL and race days but she came up with recommendations/tweaks and worked closely with Value Streams to address the risks.",
-      "She also proactively seeks out ways to eliminate recurring and mundane tasks such as archiving TBS data to improve performance, and she did this by identifying and implementing robust, long-term solutions. Pooja consistently demonstrates deep technical ownership, attention to detail and problem-solving mindset.",
+      "A long overdue shoutout to Pooja Goel who took full ownership of … prep works in the DB space. She not only identified queries that would have been pain points during busy AFL and race days but she came up with recommendations/tweaks and worked closely with Value Streams to address the risks.",
+      "She also proactively seeks out ways to eliminate recurring and mundane tasks such as archiving … data to improve performance, and she did this by identifying and implementing robust, long-term solutions. Pooja consistently demonstrates deep technical ownership, attention to detail and problem-solving mindset.",
     ],
   },
   {
@@ -650,7 +652,7 @@ export const recommendations: Recommendation[] = [
     highlight:
       "Not only did the introduction of TTL on the documents address the throttling issue on the container, it also improved the back-end performance.",
     quote: [
-      "Shoutout to Pooja Goel for the optimization work she did on casino data store (UserGamingActivity cosmos container). Not only did the introduction of TTL (time to live) on the documents address the throttling issue on the container, it also improved the back-end performance which calculates the trending and popular casino games.",
+      "Shoutout to Pooja Goel for the optimization work she did on casino data store. Not only did the introduction of TTL (time to live) on the documents address the throttling issue on the container, it also improved the back-end performance which calculates the trending and popular casino games.",
     ],
   },
   {

@@ -86,6 +86,10 @@ export const capabilities = [
   },
 ];
 
+/**
+ * Ordered so the three groups with product logos fill the first row of the
+ * grid; the rest name practices and carry none.
+ */
 export const skillGroups = [
   {
     title: "Databases & cloud",
@@ -100,6 +104,43 @@ export const skillGroups = [
       "MySQL",
       "Azure Cosmos DB",
       "On-premises and cloud estates",
+    ],
+  },
+  {
+    title: "Automation & tooling",
+    icon: "automation" as const,
+    logos: [
+      "powershell", "python", "githubactions", "githubcopilot", "azuredevops",
+      "terraform", "grafana", "yaml",
+    ] as LogoName[],
+    items: [
+      "PowerShell",
+      "Python",
+      "GitHub Actions",
+      "GitHub Copilot",
+      "Azure DevOps",
+      "Terraform",
+      "Bicep",
+      "YAML",
+      "Grafana",
+      "SSMS",
+    ],
+  },
+  {
+    title: "AI & evaluation",
+    icon: "ai" as const,
+    logos: [
+      "claude", "githubcopilot", "azure", "databricks",
+    ] as LogoName[],
+    items: [
+      "LLM knowledge assistants",
+      "Agentic AI",
+      "Vector databases",
+      "Embeddings",
+      "Semantic search",
+      "Proof-of-concept design",
+      "Benchmarking",
+      "Test-case development",
     ],
   },
   {
@@ -144,43 +185,6 @@ export const skillGroups = [
       "Governance policy",
       "Data integrity",
       "Compliance support",
-    ],
-  },
-  {
-    title: "Automation & tooling",
-    icon: "automation" as const,
-    logos: [
-      "powershell", "python", "githubactions", "githubcopilot", "azuredevops",
-      "terraform", "grafana", "yaml",
-    ] as LogoName[],
-    items: [
-      "PowerShell",
-      "Python",
-      "GitHub Actions",
-      "GitHub Copilot",
-      "Azure DevOps",
-      "Terraform",
-      "Bicep",
-      "YAML",
-      "Grafana",
-      "SSMS",
-    ],
-  },
-  {
-    title: "AI & evaluation",
-    icon: "ai" as const,
-    logos: [
-      "claude", "githubcopilot", "azure", "databricks",
-    ] as LogoName[],
-    items: [
-      "LLM knowledge assistants",
-      "Agentic AI",
-      "Vector databases",
-      "Embeddings",
-      "Semantic search",
-      "Proof-of-concept design",
-      "Benchmarking",
-      "Test-case development",
     ],
   },
 ];

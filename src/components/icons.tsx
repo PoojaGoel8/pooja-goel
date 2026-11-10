@@ -18,7 +18,10 @@ export type IconName =
   | "frame"
   | "note"
   | "hammock"
-  | "book";
+  | "book"
+  | "compass"
+  | "signal"
+  | "spark";
 
 const paths: Record<IconName, React.ReactNode> = {
   // Stacked storage — databases and cloud estates.
@@ -107,6 +110,33 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <path d="M3 5.5h18" />
       <path d="M7 5.5Q7 15.5 12 15.5Q17 15.5 17 5.5" />
+    </>
+  ),
+
+  // A compass rose — mentoring, which is mostly pointing.
+  compass: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M15.6 8.4l-2.2 5-5 2.2 2.2-5z" />
+    </>
+  ),
+
+  // Carrying something outward — the ambassador work.
+  signal: (
+    <>
+      <circle cx="12" cy="12" r="2.3" />
+      <path d="M7.9 7.9a5.8 5.8 0 000 8.2" />
+      <path d="M16.1 16.1a5.8 5.8 0 000-8.2" />
+      <path d="M5 5a9.9 9.9 0 000 14" />
+      <path d="M19 19a9.9 9.9 0 000-14" />
+    </>
+  ),
+
+  // A small star and a smaller one — the thing you hope to set off.
+  spark: (
+    <>
+      <path d="M10 3.4l1.7 4.4 4.4 1.7-4.4 1.7L10 15.6l-1.7-4.4L3.9 9.5l4.4-1.7z" />
+      <path d="M17.6 14.6l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />
     </>
   ),
 

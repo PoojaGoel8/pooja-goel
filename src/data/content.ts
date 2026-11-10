@@ -403,6 +403,7 @@ export const education = [
 export type Volunteering = {
   role: string;
   org: string;
+  icon: IconName;
   /** Shown as written. */
   period: string;
   /** "YYYY-MM", used to place the bar on the timeline. */
@@ -421,6 +422,7 @@ export type Volunteering = {
 export const volunteering: Volunteering[] = [
   {
     role: "Career and Industry Mentor",
+    icon: "compass" as const,
     org: "The University of Melbourne",
     period: "Feb 2026 — present",
     from: "2026-02",
@@ -433,6 +435,7 @@ export const volunteering: Volunteering[] = [
   },
   {
     role: "Ambassador",
+    icon: "signal" as const,
     org: "STEM Sisters",
     period: "Jul 2023 — Jun 2024",
     from: "2023-07",
@@ -445,6 +448,7 @@ export const volunteering: Volunteering[] = [
   },
   {
     role: "Student Ambassador",
+    icon: "book" as const,
     org: "Faculty of Engineering and IT, the University of Melbourne",
     period: "Mar 2021 — Nov 2022",
     from: "2021-03",
@@ -458,6 +462,7 @@ export const volunteering: Volunteering[] = [
   },
   {
     role: "STEM Mentor",
+    icon: "spark" as const,
     org: "The University of Melbourne",
     period: "Mar 2021 — Nov 2021",
     from: "2021-03",

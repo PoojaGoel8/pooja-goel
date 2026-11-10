@@ -9,6 +9,7 @@
  * Anything marked TODO is a deliberate gap waiting on content.
  */
 
+import type { LogoName } from "../components/Logo";
 import type { IconName } from "../components/icons";
 
 /**
@@ -89,6 +90,9 @@ export const skillGroups = [
   {
     title: "Databases & cloud",
     icon: "database" as const,
+    logos: [
+      "microsoftsqlserver", "azuresqldatabase", "cosmosdb", "postgresql", "mysql",
+    ] as LogoName[],
     items: [
       "Microsoft SQL Server",
       "Azure SQL",
@@ -101,6 +105,7 @@ export const skillGroups = [
   {
     title: "Operations & reliability",
     icon: "pulse" as const,
+    logos: [] as LogoName[],
     items: [
       "Production support",
       "Monitoring",
@@ -117,6 +122,7 @@ export const skillGroups = [
   {
     title: "Performance & migration",
     icon: "migration" as const,
+    logos: [] as LogoName[],
     items: [
       "Query tuning",
       "Index tuning",
@@ -130,6 +136,7 @@ export const skillGroups = [
   {
     title: "Security & governance",
     icon: "shield" as const,
+    logos: [] as LogoName[],
     items: [
       "Database access controls",
       "Data-plane RBAC",
@@ -142,6 +149,10 @@ export const skillGroups = [
   {
     title: "Automation & tooling",
     icon: "automation" as const,
+    logos: [
+      "powershell", "python", "githubactions", "githubcopilot", "azuredevops",
+      "terraform", "grafana", "yaml",
+    ] as LogoName[],
     items: [
       "PowerShell",
       "Python",
@@ -158,6 +169,9 @@ export const skillGroups = [
   {
     title: "AI & evaluation",
     icon: "ai" as const,
+    logos: [
+      "claude", "githubcopilot", "azure", "databricks",
+    ] as LogoName[],
     items: [
       "LLM knowledge assistants",
       "Agentic AI",

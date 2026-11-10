@@ -88,25 +88,32 @@ paths kept as redirects: `/tutoring` → `/studio#tutoring` and `/testimonials` 
 deep link such as `/work` requests a file that does not exist and Pages serves
 `404.html`; the app boots from it and the router renders the real route.
 
-## Technology marks
+## Product logos
 
-The capability chips on the Experience page carry small product marks, in
-`src/components/brands.tsx`. Two kinds sit there:
+Each capability card on the Experience page carries a strip of official product
+logos in its header. The files are in `public/assets/logos/`, and which card
+shows which is the `logos` array on each group in `content.ts`.
 
-- The real brand marks, path data copied out of [Simple Icons]. That project is
-  CC0; the trademarks stay with their owners, and these are used nominatively —
-  to name a tool that has actually been worked with.
-- Drawn marks for the Microsoft products. Microsoft had its logos removed from
-  Simple Icons, so there is no redistributable Azure, SQL Server, PowerShell or
-  Azure DevOps mark. Rather than lift one off Microsoft's own brand pages, these
-  say what the product *is* — a cloud, a globe, a prompt — and let the chip's
-  label name it.
+They are the vendors' own marks, from [Devicon] (MIT) — Databricks excepted,
+which Devicon does not carry, so that one is the [Simple Icons] silhouette
+painted the official brand red. The trademarks belong to their owners and are
+used nominatively, to name tools that have actually been worked with. Neither
+package is a dependency: the files were copied in and the packages removed.
 
-Nothing is installed for this: the paths are copied in, so no icon package ships
-at runtime. A chip only gets a mark if its exact label appears in the `byLabel`
-table in that file, so renaming a skill in `content.ts` drops its mark until the
-table is updated to match.
+Two things to know before adding more:
 
+- **Serve them as files, not inlined SVG.** Several carry internal gradients
+  under terse ids — SQL Server and PowerShell both define `id="a"` — which
+  collide the moment two are inlined into one page.
+- **Check for `xmlns`.** An SVG loaded through `<img>` is parsed as its own XML
+  document, so a file missing the namespace renders as a broken image even
+  though it would have been fine inlined. Devicon's Copilot mark ships without
+  it.
+
+The three cards that name practices rather than products — operations,
+performance, security — deliberately carry no logos.
+
+[Devicon]: https://devicon.dev
 [Simple Icons]: https://simpleicons.org
 
 ## Images and documents

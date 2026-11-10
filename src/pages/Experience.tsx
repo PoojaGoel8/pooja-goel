@@ -1,5 +1,5 @@
 import Reveal from "../components/Reveal";
-import { BrandMark, markFor } from "../components/brands";
+import { LogoStrip } from "../components/Logo";
 import { Icon } from "../components/icons";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
@@ -182,11 +182,12 @@ export default function Experience() {
             {skillGroups.map((group, i) => (
               <Reveal key={group.title} delay={i * 60}>
                 <article className="group flex h-full flex-col rounded-[3px] border border-rule bg-paper p-6 transition-colors duration-300 hover:border-accent/40 md:p-7">
-                  <header className="flex items-start justify-between gap-4">
+                  <header className="flex items-start gap-4">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-soft/70 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-paper">
                       <Icon name={group.icon} className="h-[1.15rem] w-[1.15rem]" />
                     </span>
-                    <span className="font-mono text-[0.7rem] tracking-[0.08em] text-muted">
+                    <LogoStrip names={group.logos} />
+                    <span className="ml-auto shrink-0 font-mono text-[0.7rem] tracking-[0.08em] text-muted">
                       {String(group.items.length).padStart(2, "0")}
                     </span>
                   </header>
@@ -196,28 +197,14 @@ export default function Experience() {
                   </h3>
 
                   <ul className="mt-5 flex flex-1 flex-wrap content-start gap-1.5">
-                    {group.items.map((item) => {
-                      const mark = markFor(item);
-
-                      return (
-                        <li
-                          key={item}
-                          className={[
-                            "inline-flex items-center rounded-full border border-rule/80 py-1 text-[0.8rem] leading-normal text-graphite",
-                            // A mark needs a little more room on its own side.
-                            mark ? "gap-1.5 pl-2 pr-2.5" : "px-2.5",
-                          ].join(" ")}
-                        >
-                          {mark && (
-                            <BrandMark
-                              name={mark}
-                              className="h-[0.95rem] w-[0.95rem] shrink-0 text-muted"
-                            />
-                          )}
-                          {item}
-                        </li>
-                      );
-                    })}
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-full border border-rule/80 px-2.5 py-1 text-[0.8rem] leading-normal text-graphite"
+                      >
+                        {item}
+                      </li>
+                    ))}
                   </ul>
                 </article>
               </Reveal>

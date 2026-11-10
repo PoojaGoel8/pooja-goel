@@ -1,9 +1,13 @@
+import { Suspense, lazy } from "react";
+
 import Reveal from "../components/Reveal";
 import { LogoStrip } from "../components/Logo";
 import { Icon } from "../components/icons";
 import { PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
 import { advocacy, education, recognition, roles, site, skillGroups } from "../data/content";
+
+const JourneyMap = lazy(() => import("../components/JourneyMap"));
 
 export default function Experience() {
   usePageMeta(
@@ -212,6 +216,16 @@ export default function Experience() {
           </div>
         </div>
       </section>
+
+      <Section eyebrow="The route here" title="India, Australia, Singapore.">
+        <Reveal>
+          {/* Reserve the map's own ratio so the split chunk arriving does not
+              shove the page around. */}
+          <Suspense fallback={<div className="aspect-[760/560] w-full lg:w-[55%]" />}>
+            <JourneyMap />
+          </Suspense>
+        </Reveal>
+      </Section>
     </>
   );
 }

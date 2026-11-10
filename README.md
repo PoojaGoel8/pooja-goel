@@ -116,6 +116,28 @@ performance, security — deliberately carry no logos.
 [Devicon]: https://devicon.dev
 [Simple Icons]: https://simpleicons.org
 
+## The journey map
+
+The map at the foot of the Experience page is plain inline SVG. Its country
+outlines live in `src/components/mapPaths.ts`, generated once from Natural
+Earth 1:110m (via the `world-atlas` package) and projected with `d3-geo` into
+a fixed 760x560 frame. None of those packages is a dependency — the paths were
+pasted in, so no projection runs in the browser. Coordinates are rounded to
+whole pixels, which at this size is invisible and roughly halves the file.
+
+Singapore has no polygon at 1:110m, so it is drawn as a marker at its real
+coordinates instead of a shape.
+
+The component is lazy-loaded from `Experience.tsx`: the path data is about
+12 kB gzipped and appears on no other route, so it is split into its own chunk
+rather than riding in the bundle every page downloads. The `Suspense` fallback
+reserves the map's aspect ratio so the page does not jump when the chunk lands.
+
+What each place says is `journey` in `content.ts`. The map itself is
+`aria-hidden`: clicking a country works with a mouse, but everything it does is
+reachable from the three buttons beside it, so it does not become a second set
+of tab stops saying the same thing.
+
 ## Images and documents
 
 Source photographs are processed into web assets before being committed. Two

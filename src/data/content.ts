@@ -270,9 +270,11 @@ export const aiIntro = {
   lede: "AI adoption in an engineering org tends to stall in the same place: the models are fine, but nobody can safely connect them to the operational data that would make them useful. That connection is a database problem, which is why I find myself in the middle of it.",
 };
 
+/** `short` is the one-word label the radial selector shows. */
 export const aiWork = [
   {
     title: "An LLM knowledge assistant for the DBA function",
+    short: "Assistant",
     body: "Built an internal assistant that answers the questions the database team fields over and over — performance tuning guidance, database standards, operational procedures, data access rules — with context rather than a link to a wiki page.",
     results: [
       "30+ recurring query types absorbed",
@@ -281,21 +283,25 @@ export const aiWork = [
   },
   {
     title: "Agentic monitoring and incident diagnosis",
+    short: "Monitoring",
     body: "Implemented AI-driven monitoring with agentic alert diagnosis and automated incident post-mortem reporting, so that an alert arrives with a first opinion attached and a post-mortem writes its own first draft.",
     results: ["67% reduction in issue resolution time"],
   },
   {
     title: "Six DBA workflows, automated",
+    short: "Automation",
     body: "Automated data access requests, task creation, audit reporting, pull request validation, third-party script review and compliance processes using GitHub Actions and GitHub Copilot — the administrative weight that quietly consumes a database team's week.",
     results: ["70% reduction in manual effort", "6 workflows automated"],
   },
   {
     title: "Retrieval groundwork",
+    short: "Retrieval",
     body: "Explored vector databases, embeddings and semantic search to improve how operational knowledge is retrieved — the unglamorous layer that decides whether an AI answer is grounded or invented.",
     results: [],
   },
   {
     title: "Evaluating what is actually worth adopting",
+    short: "Evaluation",
     body: "Led proofs of concept for Azure Storage Actions, data-plane RBAC, Copilot agents, MCP servers, burst capacity and PostgreSQL index tuning — designing test cases, benchmarking configurations and reporting on performance, scalability, security and cost.",
     results: ["80% efficiency gain", "Cost reduced by a third", "15+ configurations benchmarked"],
   },
@@ -704,7 +710,7 @@ export const journey: JourneyStop[] = [
           {
             title: "Regulated workloads where the operator stays accountable",
             meta: "Governance",
-            body: "Financial regulation here treats cloud as outsourcing — oversight, recoverability and knowing where data sits stay the institution's responsibility, whoever runs the hardware. Licensed wagering taught the same discipline: tested restores, rehearsed failovers, auditable access, and changes that can be reversed.",
+            body: "Two regimes point the same way. The PDPA makes an organisation accountable for personal data it holds however many processors sit underneath, and the financial sector's rules treat cloud as outsourcing, so oversight and recoverability stay with the institution whoever runs the hardware. Both come down to knowing where data sits and who touched it. Licensed wagering taught exactly that discipline: tested restores, rehearsed failovers, auditable access, and changes that can be reversed.",
           },
           {
             title: "Availability measured as a commercial number",

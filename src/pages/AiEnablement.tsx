@@ -1,8 +1,9 @@
 import AiDiagram from "../components/AiDiagram";
+import AiHub from "../components/AiHub";
 import Reveal from "../components/Reveal";
 import { Copy, PageHeader, Section, usePageMeta } from "../components/Page";
 import { asset } from "../lib/asset";
-import { aiIntro, aiWork, hackathon } from "../data/content";
+import { aiIntro, hackathon } from "../data/content";
 
 function Hackathon() {
   return (
@@ -65,40 +66,11 @@ export default function AiEnablement() {
         aside={<AiDiagram />}
       />
 
-      <div className="mx-auto max-w-shell px-6 md:px-10">
-        <div className="border-t border-rule">
-          {aiWork.map((item, i) => (
-            <Reveal key={item.title}>
-              <article className="grid gap-6 border-b border-rule py-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] md:gap-14 md:py-14">
-                <div className="flex items-baseline gap-5">
-                  <span className="font-mono text-[0.8rem] text-accent">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h2 className="font-display text-[1.4rem] font-normal leading-snug md:text-[1.7rem]">
-                    {item.title}
-                  </h2>
-                </div>
-
-                <div>
-                  <p className="text-[1.0625rem] leading-[1.75] text-graphite">{item.body}</p>
-                  {item.results.length > 0 && (
-                    <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-                      {item.results.map((result) => (
-                        <li
-                          key={result}
-                          className="font-mono text-[0.78rem] uppercase tracking-[0.08em] text-accent"
-                        >
-                          {result}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </div>
+      <Section eyebrow="The work" title="Five strands, one at a time.">
+        <Reveal>
+          <AiHub />
+        </Reveal>
+      </Section>
 
       <div className="mt-20 md:mt-28">
         <Hackathon />

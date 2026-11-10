@@ -43,16 +43,22 @@ function Marker({
   return (
     <g className="cursor-pointer" onClick={onSelect}>
       {/* A generous invisible target: the visible dot is far too small to hit. */}
-      <circle cx={at.x} cy={at.y} r={26} fill="transparent" />
+      <circle cx={at.x} cy={at.y} r={40} fill="transparent" />
       {active && !onShape && (
-        <circle cx={at.x} cy={at.y} r={13} className="fill-accent/20 [r:20px] sm:[r:13px]" />
+        <circle cx={at.x} cy={at.y} r={13} className="fill-accent/20 [r:30px] sm:[r:13px]" />
       )}
-      <circle cx={at.x} cy={at.y} r={6} className={`${dot} [r:10px] sm:[r:6px]`} strokeWidth={2} />
+      <circle cx={at.x} cy={at.y} r={6} className={`${dot} [r:16px] sm:[r:6px]`} strokeWidth={2} />
       <text
         x={at.x}
         y={at.y - 17}
         textAnchor="middle"
-        className={["font-sans text-[26px] tracking-wide transition-colors sm:text-[15px]", label_].join(" ")}
+        className={[
+          // The offset has to grow with the type below sm, or the bigger
+          // mobile dot sits on top of its own label.
+          "font-sans text-[43px] tracking-wide transition-colors [transform:translateY(-24px)]",
+          "sm:text-[17px] sm:[transform:translateY(0px)]",
+          label_,
+        ].join(" ")}
       >
         {label}
       </text>
@@ -75,14 +81,14 @@ export default function JourneyMap() {
       */}
       <svg
         viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
-        className="mx-auto w-full max-w-[760px]"
+        className="w-full"
         aria-hidden="true"
         focusable="false"
       >
         {countries.map((c) => {
           if (!c.key) {
             return (
-              <path key={c.id} d={c.d} className="fill-rule/70 stroke-paper" strokeWidth={0.7} />
+              <path key={c.id} d={c.d} className="fill-rule/70 stroke-paper" strokeWidth={0.9} />
             );
           }
 
@@ -96,7 +102,7 @@ export default function JourneyMap() {
                 "cursor-pointer stroke-paper transition-colors duration-300",
                 on ? "fill-accent" : "fill-accent-soft hover:fill-accent/50",
               ].join(" ")}
-              strokeWidth={0.7}
+              strokeWidth={0.9}
             />
           );
         })}
@@ -105,15 +111,15 @@ export default function JourneyMap() {
         <path
           d={arc(waypoints.chennai, waypoints.melbourne)}
           className="fill-none stroke-accent/45"
-          strokeWidth={1.4}
-          strokeDasharray="5 6"
+          strokeWidth={1.8}
+          strokeDasharray="7 9"
           strokeLinecap="round"
         />
         <path
           d={arc(waypoints.melbourne, points.singapore)}
           className="fill-none stroke-accent/45"
-          strokeWidth={1.4}
-          strokeDasharray="5 6"
+          strokeWidth={1.8}
+          strokeDasharray="7 9"
           strokeLinecap="round"
         />
 

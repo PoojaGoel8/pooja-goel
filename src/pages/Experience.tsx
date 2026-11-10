@@ -17,16 +17,19 @@ export default function Experience() {
 
   return (
     <>
+      {/* No lede here, so the stock bottom padding plus the section's top
+          padding left a void under the title. */}
       <PageHeader
         eyebrow="Experience"
         title="Four years of production, and the training that preceded it."
+        className="pb-6 md:pb-8"
       />
 
-      <Section eyebrow="The route here" title="India, Australia, Singapore.">
+      <Section eyebrow="The route here" title="India, Australia, Singapore." className="pt-6 md:pt-10">
         <Reveal>
           {/* Reserve the map's own ratio so the split chunk arriving does not
               shove the page around. */}
-          <Suspense fallback={<div className="mx-auto aspect-[760/560] w-full max-w-[760px]" />}>
+          <Suspense fallback={<div className="aspect-[1280/709] w-full" />}>
             <JourneyMap />
           </Suspense>
         </Reveal>

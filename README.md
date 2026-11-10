@@ -121,9 +121,22 @@ performance, security — deliberately carry no logos.
 The map at the foot of the Experience page is plain inline SVG. Its country
 outlines live in `src/components/mapPaths.ts`, generated once from Natural
 Earth 1:110m (via the `world-atlas` package) and projected with `d3-geo` into
-a fixed 760x560 frame. None of those packages is a dependency — the paths were
+a fixed 1280x709 frame. None of those packages is a dependency — the paths were
 pasted in, so no projection runs in the browser. Coordinates are rounded to
 whole pixels, which at this size is invisible and roughly halves the file.
+
+The frame is a wide band, 27E to 195E and 38N to 46S, because the map runs the
+full width of the page: India to Australia on its own is a tall, narrow region,
+and widening the window fills that width with context countries rather than
+stretching anything. Two things to know if you regenerate it. The window runs
+past 180E, so the projection must be rotated onto its own centre or Mercator
+clips it at the antimeridian. And the frame cannot be sized from a lat/lon
+rectangle's projected bounds — d3 densifies polygon edges as great circles, so
+the top edge bulges north; the scale is computed arithmetically instead.
+
+Sizes inside the SVG are in viewBox units, so they shrink with the map. A phone
+renders it at roughly a quarter scale, which is why the labels and markers have
+much larger values below the `sm` breakpoint.
 
 Singapore has no polygon at 1:110m, so it is drawn as a marker at its real
 coordinates instead of a shape.

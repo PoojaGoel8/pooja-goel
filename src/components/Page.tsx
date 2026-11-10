@@ -18,13 +18,18 @@ export function PageHeader({
   eyebrow,
   title,
   lede,
+  className = "",
 }: {
   eyebrow: string;
   title: string;
   lede?: string;
+  /** Mostly for trimming the bottom padding on a header with no lede. */
+  className?: string;
 }) {
   return (
-    <header className="mx-auto max-w-shell px-6 pb-14 pt-20 md:px-10 md:pb-20 md:pt-28">
+    <header
+      className={`mx-auto max-w-shell px-6 pb-14 pt-20 md:px-10 md:pb-20 md:pt-28 ${className}`}
+    >
       <p className="eyebrow animate-rise">{eyebrow}</p>
       <h1 className="mt-5 max-w-[20ch] animate-rise font-display text-[2.6rem] font-normal leading-[1.08] tracking-[-0.015em] md:text-[3.9rem]">
         {title}

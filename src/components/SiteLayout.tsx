@@ -96,7 +96,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-5 md:px-10">
           <Monogram />
 
-          <nav className="hidden items-center gap-7 md:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {nav.map((item) => (
               <NavLink
                 key={item.to}
@@ -124,6 +124,20 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             ))}
 
             <a
+              href={asset(site.resume)}
+              download
+              className="group rounded-full border border-rule px-4 py-1.5 text-[0.9rem] text-graphite transition-colors duration-300 hover:border-accent hover:text-accent"
+            >
+              Résumé
+              <span
+                aria-hidden
+                className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-y-0.5"
+              >
+                ↓
+              </span>
+            </a>
+
+            <a
               href={`mailto:${site.email}`}
               className="rounded-full border border-accent/45 px-4 py-1.5 text-[0.9rem] text-accent transition-colors duration-300 hover:bg-accent hover:text-paper"
             >
@@ -136,7 +150,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label="Menu"
-            className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] md:hidden"
+            className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] lg:hidden"
           >
             <span
               className={[
@@ -154,7 +168,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {open && (
-          <nav className="border-t border-rule px-6 pb-5 pt-2 md:hidden">
+          <nav className="border-t border-rule px-6 pb-5 pt-2 lg:hidden">
             {nav.map((item) => (
               <NavLink
                 key={item.to}
@@ -170,13 +184,24 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
               </NavLink>
             ))}
 
-            <a
-              href={`mailto:${site.email}`}
-              onClick={() => setOpen(false)}
-              className="mt-5 inline-flex rounded-full border border-accent/45 px-5 py-2 text-[1rem] text-accent"
-            >
-              Contact
-            </a>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <a
+                href={asset(site.resume)}
+                download
+                onClick={() => setOpen(false)}
+                className="inline-flex rounded-full border border-rule px-5 py-2 text-[1rem] text-graphite"
+              >
+                Résumé <span aria-hidden className="ml-1.5">↓</span>
+              </a>
+
+              <a
+                href={`mailto:${site.email}`}
+                onClick={() => setOpen(false)}
+                className="inline-flex rounded-full border border-accent/45 px-5 py-2 text-[1rem] text-accent"
+              >
+                Contact
+              </a>
+            </div>
           </nav>
         )}
       </header>

@@ -9,6 +9,7 @@ import {
   recommendations,
   site,
   type CaseStudy,
+  type Recommendation,
 } from "../data/content";
 
 const isTodo = (line: string) => line.trimStart().startsWith("//");
@@ -216,37 +217,19 @@ function Recommendations() {
         <Reveal className="mb-12 md:mb-16">
           <p className="eyebrow">Recommendations</p>
           <h2 className="mt-4 max-w-[24ch] font-display text-[1.9rem] font-normal leading-[1.15] tracking-[-0.01em] md:text-[2.5rem]">
-            In other people's words.
+            In other people&rsquo;s words.
           </h2>
         </Reveal>
 
-        <div className="border-t border-rule">
+        <div className="border-b border-rule">
           {recommendations.map((item) => (
             <Reveal key={item.name}>
-              <figure className="grid gap-6 border-b border-rule py-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.7fr)] md:gap-14 md:py-14">
-                <blockquote className="font-display text-[1.25rem] font-normal leading-[1.45] tracking-[-0.01em] text-ink md:text-[1.5rem]">
-                  <span aria-hidden className="text-accent">
-                    “
-                  </span>
-                  {item.quote}
-                  <span aria-hidden className="text-accent">
-                    ”
-                  </span>
-                </blockquote>
-
-                <figcaption>
-                  <p className="font-medium text-ink">{item.name}</p>
-                  <p className="mt-1.5 text-[0.9rem] leading-relaxed text-graphite">{item.role}</p>
-                  <p className="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted">
-                    {item.relationship}
-                  </p>
-                </figcaption>
-              </figure>
+              <Recommended item={item} />
             </Reveal>
           ))}
         </div>
 
-        <Reveal className="mt-8">
+        <Reveal className="mt-10">
           <a
             href={site.linkedin}
             target="_blank"
@@ -259,5 +242,103 @@ function Recommendations() {
         </Reveal>
       </div>
     </section>
+  );
+}
+
+/**
+ * The pulled line, with the rest of the recommendation behind a click.
+ *
+ * The head is built from spans rather than divs and paragraphs because it
+ * lives inside a button, which may only contain phrasing content. Same
+ * collapse mechanics as the case studies above: the body stays in the DOM,
+ * the clipping sits on the grid child, and `visibility` rides the transition
+ * so a keyboard cannot land inside a shut panel.
+ */
+function Recommended({ item }: { item: Recommendation }) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+  const more = item.quote?.length ? item.quote : null;
+
+  const head = (
+    <span className="grid gap-5 md:grid-cols-[minmax(0,1.55fr)_minmax(0,0.85fr)] md:gap-12">
+      <span className="font-display text-[1.2rem] font-normal leading-[1.45] tracking-[-0.01em] text-ink md:text-[1.4rem]">
+        <span aria-hidden className="text-accent">
+          &ldquo;
+        </span>
+        {item.highlight}
+        <span aria-hidden className="text-accent">
+          &rdquo;
+        </span>
+      </span>
+
+      <span className="flex items-start justify-between gap-5">
+        <span>
+          <span className="block font-medium text-ink">{item.name}</span>
+          <span className="mt-1.5 block text-[0.88rem] leading-relaxed text-graphite">
+            {item.role}
+          </span>
+        </span>
+
+        {more && (
+          <span
+            aria-hidden
+            className={[
+              "mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
+              open
+                ? "rotate-180 border-accent bg-accent text-paper"
+                : "border-rule text-graphite group-hover:border-accent group-hover:text-accent",
+            ].join(" ")}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3.5 w-3.5"
+            >
+              <path d="M5 9l7 7 7-7" />
+            </svg>
+          </span>
+        )}
+      </span>
+    </span>
+  );
+
+  if (!more) {
+    return <div className="border-t border-rule py-9">{head}</div>;
+  }
+
+  return (
+    <div className="border-t border-rule">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={id}
+        className="group block w-full py-9 text-left"
+      >
+        {head}
+      </button>
+
+      <div
+        id={id}
+        className={[
+          "grid transition-[grid-template-rows,visibility] duration-300 ease-out motion-reduce:transition-none",
+          open ? "visible grid-rows-[1fr]" : "invisible grid-rows-[0fr]",
+        ].join(" ")}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="max-w-prose space-y-5 pb-10">
+            {more.map((paragraph) => (
+              <p key={paragraph} className="text-[1rem] leading-[1.75] text-graphite">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

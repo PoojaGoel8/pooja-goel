@@ -605,15 +605,68 @@ export const studioBands: StudioBand[] = [
  * words.
  */
 export type Recommendation = {
-  quote: string;
+  /**
+   * The line shown before anyone clicks — their words, not a summary of them.
+   * Quoting is fine; paraphrasing someone else's recommendation is not.
+   */
+  highlight: string;
+  /** The rest of it. Omitted when the highlight is the whole thing. */
+  quote?: string[];
   name: string;
-  /** Their title at the time they wrote it. */
+  /** Their title when they wrote it. */
   role: string;
-  /** How they know her, e.g. "Managed Pooja directly". */
-  relationship: string;
 };
 
-export const recommendations: Recommendation[] = [];
+/**
+ * Written by colleagues and managers. Lightly trimmed, never reworded, and
+ * every trim marked with an ellipsis. Two deliberate omissions, both noted
+ * where they occur: an internal compliance matter, and a company value whose
+ * name does not belong on a public page.
+ */
+export const recommendations: Recommendation[] = [
+  {
+    name: "May Lozano",
+    role: "Engineering Manager, Data Services · PointsBet",
+    highlight:
+      "Pooja consistently demonstrates deep technical ownership, attention to detail and problem-solving mindset.",
+    quote: [
+      "A long overdue shoutout to Pooja Goel who took full ownership of SRC prep works in the DB space. She not only identified queries that would have been pain points during busy AFL and race days but she came up with recommendations/tweaks and worked closely with Value Streams to address the risks.",
+      "She also proactively seeks out ways to eliminate recurring and mundane tasks such as archiving TBS data to improve performance, and she did this by identifying and implementing robust, long-term solutions. Pooja consistently demonstrates deep technical ownership, attention to detail and problem-solving mindset.",
+    ],
+  },
+  {
+    name: "Praveen Kumar",
+    role: "Head of Data, Technology · PointsBet",
+    highlight:
+      "The level of planning she demonstrated ensured a seamless upgrade with zero impact on the operations.",
+    quote: [
+      "Shoutout to Pooja Goel for the upgrade of SQL Server and PostgreSQL flexible servers to latest and greatest version of each database platform. … Despite the hurdles that came with unsupported features from version gaps and dependencies on application deployment, she took all necessary precautions and spent hours in preparation to cover all cases that can go wrong with the upgrade. The level of planning she demonstrated ensured a seamless upgrade with zero impact on the operations.",
+      "Synergy With Other Teams — she exemplified this value through collaboration and communication with other teams, making it instrumental for the ifs and buts across all parties to transpire resulting to No Surprises during the activities.",
+    ],
+  },
+  {
+    name: "Hung Vu",
+    role: "Engineering Manager, Technology · PointsBet",
+    highlight:
+      "Not only did the introduction of TTL on the documents address the throttling issue on the container, it also improved the back-end performance.",
+    quote: [
+      "Shoutout to Pooja Goel for the optimization work she did on casino data store (UserGamingActivity cosmos container). Not only did the introduction of TTL (time to live) on the documents address the throttling issue on the container, it also improved the back-end performance which calculates the trending and popular casino games.",
+    ],
+  },
+  {
+    name: "Tulika Kalra",
+    role: "Strategic Human Resource Professional · Gap Inc.",
+    highlight: "You will be a great asset to any team & to any organization.",
+    quote: [
+      "This goes out to the most awesome team member. All the best! Rise and Shine!! You will be a great asset to any team & to any organization.",
+    ],
+  },
+  {
+    name: "Neha Chopra",
+    role: "Managing Director · Great Place to Work India",
+    highlight: "Proactive, Inspiring, Energetic, Compassionate — an amazing intern in Pooja Goel.",
+  },
+];
 
 /* --------------------------------------------------------------- journey */
 

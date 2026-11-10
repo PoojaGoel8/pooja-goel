@@ -37,7 +37,7 @@ export const site = {
 /* ------------------------------------------------------------------ home */
 
 export const hero = {
-  lede: "I keep production databases alive. Four years of SQL Server, PostgreSQL and Azure — high availability, migrations, performance, access control — and a growing conviction that the database team is where AI adoption either becomes real or quietly stalls.",
+  lede: "I keep production databases alive. Over four years of SQL Server, PostgreSQL and Azure — high availability, migrations, performance, access control — and a growing conviction that the database team is where AI adoption either becomes real or quietly stalls.",
   secondary:
     "Data Services Engineer at PointsBet, working across on-premises and Azure estates in a regulated, always-on industry.",
 };
@@ -55,7 +55,7 @@ export const arc = {
   body: [
     "I trained as a computer engineer in India, then moved to Australia for a Master of Information Systems and stayed — first as a graduate engineer, then running database services for a wagering platform where a slow query is a lost customer and an outage is a regulatory conversation.",
     "That environment taught me the thing this whole site is really about: reliability is not a feature you add. It is a set of habits — tested restores, rehearsed failovers, access you can audit, changes you can reverse — applied relentlessly and mostly invisibly.",
-    "I am now based in Singapore, which runs on the same combination I have spent four years inside: regulated industries, cloud-first platforms, and real appetite for putting AI to work on operational data rather than in a demo.",
+    "I am now based in Singapore, which runs on the same combination I have spent over four years inside: regulated industries, cloud-first platforms, and real appetite for putting AI to work on operational data rather than in a demo.",
   ],
 };
 
@@ -684,7 +684,7 @@ export const journey: JourneyStop[] = [
     label: "Australia",
     years: "2021 — present",
     heading: "Where it became production work",
-    lede: "A master's in Melbourne, then four years running database services for a licensed wagering platform — where a slow query is a lost customer and an outage is a regulatory conversation.",
+    lede: "A master's in Melbourne, then over four years running database services for a licensed wagering platform — where a slow query is a lost customer and an outage is a regulatory conversation.",
     groups: [
       { title: "Education", entries: educationIn("Australia") },
       { title: "Work", entries: rolesIn("Australia") },
@@ -695,7 +695,7 @@ export const journey: JourneyStop[] = [
     label: "Singapore",
     years: "Based here",
     heading: "What the market here is solving for",
-    lede: "Singapore is working through the same combination I have spent four years inside: regulated data, cloud migration under real constraints, and AI that has to run on operational systems rather than in a demo.",
+    lede: "Singapore is working through the same combination I have spent over four years inside: regulated data, cloud migration under real constraints, and AI that has to run on operational systems rather than in a demo.",
     groups: [
       {
         title: "Where the work lands",

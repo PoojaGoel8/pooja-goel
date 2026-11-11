@@ -434,8 +434,8 @@ export const roles = [
     place: "Australia",
     period: "Nov 2022 — present",
     points: [
-      "Maintained 100% server uptime and no performance degradation through high-volume periods by optimising database servers, queries and configuration across environments.",
-      "Delivered SQL Server infrastructure for business expansion within a two-day SLA, leading provisioning and operational readiness from setup to deployment.",
+      "Migrated 6+ databases from on-premises to Azure, improving scalability by 90% while maintaining business continuity.",
+      "Led two acquisition-related database migrations and consolidations, integrating 11 databases with data integrity and compliance intact.",
       "Reduced database issue resolution time by 67% through AI-driven monitoring, agentic alert diagnosis and automated incident post-mortem reporting.",
     ],
   },
@@ -445,9 +445,9 @@ export const roles = [
     place: "Australia",
     period: "Jul 2022 — Nov 2022",
     points: [
-      "Migrated 6+ databases from on-premises to Azure, improving scalability by 90% while maintaining business continuity.",
+      "Maintained 100% server uptime and no performance degradation through high-volume periods by optimising database servers, queries and configuration across environments.",
+      "Delivered SQL Server infrastructure for business expansion within a two-day SLA, leading provisioning and operational readiness from setup to deployment.",
       "Improved database availability to 99.99% by implementing and optimising high availability, replication and recovery across 13 production environments.",
-      "Led two acquisition-related database migrations and consolidations, integrating 11 databases with data integrity and compliance intact.",
     ],
   },
   {

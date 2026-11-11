@@ -398,7 +398,6 @@ export const hackathon = {
     "It is the clearest example I have of why this role matters to AI work. The idea was the team's; the reason it could run on real data rather than a mock-up was the plumbing underneath it.",
     ...(DEV ? ["// TODO — the technical specifics: what moved between Databricks and AI Foundry, how identity and network access were handled, what happened to anything sensitive before the model saw it, and the schema contract the AI layer read from."] : []),
   ],
-  award: "People's Choice Award",
   image: {
     src: "/assets/images/hackathon.webp",
     alt: "Pooja presenting during the hackathon",

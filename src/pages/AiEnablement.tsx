@@ -6,38 +6,28 @@ import { asset } from "../lib/asset";
 import { aiIntro, hackathon } from "../data/content";
 import pageMeta from "../data/pageMeta.json";
 
+/**
+ * Words on the left, photograph on the right. The photo is tall and narrow,
+ * so stacked under the heading it left a column of empty space beside it;
+ * beside the text the two run to about the same height.
+ */
 function Hackathon() {
   return (
     <section className="bg-shell">
       <div className="mx-auto max-w-shell px-6 py-20 md:px-10 md:py-28">
-        <div className="grid gap-12 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-20">
+        <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,19rem)] md:items-center md:gap-16 lg:gap-24">
           <Reveal>
-            <p className="eyebrow">{hackathon.eyebrow}</p>
+            <p className="eyebrow">
+              <span aria-hidden className="mr-2">
+                ★
+              </span>
+              {hackathon.eyebrow}
+            </p>
             <h2 className="mt-4 font-display text-[1.9rem] font-normal leading-[1.12] tracking-[-0.01em] md:text-[2.5rem]">
               {hackathon.title}
             </h2>
-            <p className="mt-8 inline-flex items-center gap-3 rounded-full border border-accent/30 bg-paper px-4 py-2 text-[0.8rem] font-medium uppercase tracking-[0.1em] text-accent">
-              <span aria-hidden>★</span>
-              {hackathon.award}
-            </p>
 
-            <figure className="mt-10 max-w-[17rem]">
-              <img
-                src={asset(hackathon.image.src)}
-                alt={hackathon.image.alt}
-                width={440}
-                height={750}
-                loading="lazy"
-                className="w-full rounded-[2px] object-cover"
-              />
-              <figcaption className="mt-2.5 text-[0.82rem] text-muted">
-                {hackathon.image.caption}
-              </figcaption>
-            </figure>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <p className="copy max-w-prose text-[1.1rem]">{hackathon.summary}</p>
+            <p className="copy mt-8 max-w-prose text-[1.1rem]">{hackathon.summary}</p>
 
             <div className="mt-9">
               <h3 className="eyebrow">My part in it</h3>
@@ -45,6 +35,22 @@ function Hackathon() {
                 <Copy paragraphs={hackathon.role} />
               </div>
             </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <figure className="mx-auto max-w-[17rem] md:mx-0 md:max-w-none">
+              <img
+                src={asset(hackathon.image.src)}
+                alt={hackathon.image.alt}
+                width={440}
+                height={750}
+                loading="lazy"
+                className="w-full rounded-[3px] border border-rule object-cover"
+              />
+              <figcaption className="mt-2.5 text-[0.82rem] text-muted">
+                {hackathon.image.caption}
+              </figcaption>
+            </figure>
           </Reveal>
         </div>
       </div>

@@ -674,7 +674,7 @@ export const studioBands: StudioBand[] = [
         src: "/assets/images/artwork-peacock.webp",
         alt: "A commissioned painting of a peacock and a kiwi in ink and colour",
         w: 361,
-        h: 640,
+        h: 536,
         caption: "A commissioned pair — a peacock and a kiwi.",
       },
     ],

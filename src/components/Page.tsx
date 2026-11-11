@@ -26,7 +26,11 @@ export function usePageMeta({
   }, [title, description]);
 }
 
-/** The standard page opening: eyebrow, title, and an optional lede. */
+/**
+ * The standard page opening: the page's name at poster size, then an eyebrow,
+ * title and optional lede under a rule. Without a title the poster word is the
+ * whole header, and becomes the page's heading itself.
+ */
 export function PageHeader({
   eyebrow,
   title,
@@ -35,7 +39,7 @@ export function PageHeader({
   className = "",
 }: {
   eyebrow: string;
-  title: string;
+  title?: string;
   lede?: string;
   /** Optional figure for the space the headline leaves empty on the right. */
   aside?: React.ReactNode;
@@ -56,6 +60,23 @@ export function PageHeader({
     </div>
   );
 
+  const poster = "poster animate-rise text-[clamp(3.6rem,14.5vw,12rem)] text-ink";
+
+  if (!title) {
+    return (
+      <header
+        className={`mx-auto max-w-shell px-6 pb-14 pt-10 md:px-10 md:pb-20 md:pt-14 ${className}`}
+      >
+        <h1 className={poster}>
+          {eyebrow}
+          <span aria-hidden className="text-accent">
+            .
+          </span>
+        </h1>
+      </header>
+    );
+  }
+
   return (
     <header
       className={`mx-auto max-w-shell px-6 pb-14 pt-10 md:px-10 md:pb-20 md:pt-14 ${className}`}
@@ -63,10 +84,7 @@ export function PageHeader({
       {/* The page's name at poster size. The sentence below is the real
           heading; this is the cover it sits under, so it is hidden from
           screen readers rather than read out twice. */}
-      <p
-        aria-hidden
-        className="poster animate-rise text-[clamp(3.6rem,14.5vw,12rem)] text-ink"
-      >
+      <p aria-hidden className={poster}>
         {eyebrow}
         <span className="text-accent">.</span>
       </p>

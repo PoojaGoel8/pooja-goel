@@ -20,7 +20,6 @@ export default function Experience() {
           padding left a void under the title. */}
       <PageHeader
         eyebrow="Experience"
-        title="Over four years of production, and the training that preceded it."
         className="pb-6 md:pb-8"
       />
 

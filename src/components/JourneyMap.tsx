@@ -201,9 +201,9 @@ export default function JourneyMap() {
         ) : (
           /* A single group is the whole panel, so its title would only repeat
              the heading above it. Its entries become the grid directly. */
-          <ul className="mt-14 grid gap-x-14 gap-y-12 md:grid-cols-2">
+          <ul className="mt-14 grid gap-5 md:grid-cols-2 md:gap-6">
             {stop.groups[0].entries.map((entry) => (
-              <Entry key={entry.title} entry={entry} />
+              <Entry key={entry.title} entry={entry} boxed />
             ))}
           </ul>
         )}
@@ -212,9 +212,20 @@ export default function JourneyMap() {
   );
 }
 
-function Entry({ entry }: { entry: JourneyEntry }) {
+/**
+ * `boxed` sets an entry in its own card. Singapore's entries are side-by-side
+ * themes rather than a timeline, and without an edge each one ran into its
+ * neighbour.
+ */
+function Entry({ entry, boxed = false }: { entry: JourneyEntry; boxed?: boolean }) {
   return (
-    <li className="flex gap-4">
+    <li
+      className={
+        boxed
+          ? "flex gap-4 rounded-[3px] border border-rule bg-shell p-6 md:p-8"
+          : "flex gap-4"
+      }
+    >
       {/* The organisation is named in the line under the title, so the logo
           is decoration and stays out of the accessibility tree. */}
       {entry.logo && (

@@ -415,6 +415,7 @@ export const hackathon = {
  * the seal from SRM's logo as Wikipedia carries it, without the wordmark.
  * `flytbase.svg` is FlytBase's own square mark, from flytbase.com.
  * `emids.png` is emids' own profile icon, from emids.com.
+ * `levelinfinite.jpg` is Level Infinite's logo from its LinkedIn page.
  */
 export const orgLogos: Record<string, string> = {
   PointsBet: "/assets/logos/pointsbet.png",
@@ -423,6 +424,7 @@ export const orgLogos: Record<string, string> = {
   "SRM Institute of Science and Technology": "/assets/logos/srm.png",
   FlytBase: "/assets/logos/flytbase.svg",
   emids: "/assets/logos/emids.png",
+  "Level Infinite": "/assets/logos/levelinfinite.jpg",
 };
 
 export const roles = [
@@ -489,6 +491,16 @@ export const roles = [
     points: [
       "Devised the onboarding program, induction plan, training needs analysis, career framework, first-time manager program and wellness initiatives.",
       "Achieved a 100% day-one satisfaction rate among new joiners.",
+    ],
+  },
+  {
+    title: "Content Writer (Part-time)",
+    org: "Level Infinite",
+    place: "India",
+    period: "Apr 2017 — Apr 2018",
+    points: [
+      "Wrote short stories and articles for magazines and online platforms, shaping the online pieces for search with SEO.",
+      "Proofread the monthly magazine and took it through to publication.",
     ],
   },
 ];
@@ -901,7 +913,7 @@ export const journey: JourneyStop[] = [
     label: "India",
     years: "2016 — 2022",
     heading: "Where the engineering started",
-    lede: "Four years of computer science and engineering, and three internships, from building onboarding and people programs to holding a delivery schedule together.",
+    lede: "Four years of computer science and engineering, part-time writing alongside it, and three internships, from building onboarding and people programs to holding a delivery schedule together.",
     groups: [
       { title: "Education", entries: educationIn("India") },
       { title: "Work", entries: rolesIn("India") },

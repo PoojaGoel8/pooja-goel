@@ -194,6 +194,7 @@ written. `pointsbet.png` is PointsBet's own app icon from pointsbet.com.au,
 `srm.png` is the seal from SRM's logo on Wikipedia,
 `flytbase.svg` is FlytBase's square mark from flytbase.com,
 `emids.png` is emids' profile icon from emids.com,
+`levelinfinite.jpg` is Level Infinite's logo from its LinkedIn page,
 and the University of Melbourne reuses `unimelb.svg`. An organisation not
 in that list shows no logo.
 

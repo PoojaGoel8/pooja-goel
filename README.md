@@ -166,9 +166,11 @@ performance, security — deliberately carry no logos.
 
 The Volunteering section groups its roles under each organisation's logo,
 set in `volunteerOrgs` in `content.ts`. `unimelb.svg` is the University of
-Melbourne's own mark, taken from its website. STEM Sisters has no file yet,
-so it shows its initials in a badge; drop the logo into
-`public/assets/logos/` and set its `logo` path to replace them.
+Melbourne's own mark, taken from its website. `stemsisters.png` is the
+STEM Sisters emblem with its white background made transparent and the
+"SISTERS" line cropped off, since that navy text all but vanishes on the
+site's near-black and the name is printed beside the badge anyway. An
+organisation with no `logo` falls back to its initials in a badge.
 
 [Devicon]: https://devicon.dev
 [Simple Icons]: https://simpleicons.org

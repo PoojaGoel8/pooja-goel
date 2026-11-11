@@ -489,7 +489,7 @@ export const volunteerOrgs = {
   },
   stemsisters: {
     name: "STEM Sisters",
-    logo: undefined as string | undefined,
+    logo: "/assets/logos/stemsisters.png" as string | undefined,
     initials: "SS",
   },
 } as const;

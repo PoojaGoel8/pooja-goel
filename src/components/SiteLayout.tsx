@@ -70,8 +70,10 @@ function Pager({ pathname }: { pathname: string }) {
   const here = nav.findIndex((item) => item.to === path);
   if (here === -1) return null;
 
-  const prev = nav[(here - 1 + nav.length) % nav.length];
-  const next = nav[(here + 1) % nav.length];
+  // The pager runs Home to Studio and stops at each end: Home has only a way
+  // forward, Studio only a way back.
+  const prev = here > 0 ? nav[here - 1] : null;
+  const next = here < nav.length - 1 ? nav[here + 1] : null;
   const number = (item: (typeof nav)[number]) => `0${nav.indexOf(item)}`;
 
   const card =
@@ -83,25 +85,31 @@ function Pager({ pathname }: { pathname: string }) {
 
   return (
     <nav aria-label="More pages" className="mx-auto mt-16 w-full max-w-shell px-6 md:mt-24 md:px-10">
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[3px] border border-rule bg-rule">
-        <Link to={prev.to} rel="prev" className={card}>
-          <span className={label}>
-            <span aria-hidden className="mr-1.5 inline-block transition-transform duration-300 group-hover:-translate-x-1">
-              ←
+      <div
+        className={`grid gap-px overflow-hidden rounded-[3px] border border-rule bg-rule ${prev && next ? "grid-cols-2" : "grid-cols-1"}`}
+      >
+        {prev && (
+          <Link to={prev.to} rel="prev" className={card}>
+            <span className={label}>
+              <span aria-hidden className="mr-1.5 inline-block transition-transform duration-300 group-hover:-translate-x-1">
+                ←
+              </span>
+              Previous <span aria-hidden className="hidden text-accent sm:inline">· {number(prev)}</span>
             </span>
-            Previous <span aria-hidden className="hidden text-accent sm:inline">· {number(prev)}</span>
-          </span>
-          <span className={title}>{prev.label}</span>
-        </Link>
-        <Link to={next.to} rel="next" className={`${card} items-end text-right`}>
-          <span className={label}>
-            Next <span aria-hidden className="hidden text-accent sm:inline">· {number(next)}</span>
-            <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">
-              →
+            <span className={title}>{prev.label}</span>
+          </Link>
+        )}
+        {next && (
+          <Link to={next.to} rel="next" className={`${card} items-end text-right`}>
+            <span className={label}>
+              Next <span aria-hidden className="hidden text-accent sm:inline">· {number(next)}</span>
+              <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </span>
-          </span>
-          <span className={title}>{next.label}</span>
-        </Link>
+            <span className={title}>{next.label}</span>
+          </Link>
+        )}
       </div>
     </nav>
   );

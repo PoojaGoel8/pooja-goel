@@ -406,6 +406,17 @@ export const hackathon = {
 
 /* ------------------------------------------------------------ experience */
 
+/**
+ * Logos for the organisations in `roles` and `education`, keyed by `org`
+ * exactly as written there. An organisation missing from this list simply
+ * shows no logo. `pointsbet.png` is PointsBet's own app icon, from
+ * pointsbet.com.au.
+ */
+export const orgLogos: Record<string, string> = {
+  PointsBet: "/assets/logos/pointsbet.png",
+  "The University of Melbourne": "/assets/logos/unimelb.svg",
+};
+
 export const roles = [
   {
     title: "Data Services Engineer",
@@ -801,6 +812,8 @@ export const recommendations: Recommendation[] = [
 export type JourneyEntry = {
   title: string;
   meta: string;
+  /** The organisation's logo, for the history entries that have one. */
+  logo?: string;
   body?: string;
   points?: string[];
   /** Singapore only: what the market needs, then what she brings to it. */
@@ -839,6 +852,7 @@ const rolesIn = (place: string): JourneyEntry[] =>
     .map((role) => ({
       title: role.title,
       meta: `${role.org} · ${role.period}`,
+      logo: orgLogos[role.org],
       points: role.points,
     }));
 
@@ -848,6 +862,7 @@ const educationIn = (place: string): JourneyEntry[] =>
     .map((item) => ({
       title: item.title,
       meta: `${item.org} · ${item.period}`,
+      logo: orgLogos[item.org],
       points: item.notes,
     }));
 

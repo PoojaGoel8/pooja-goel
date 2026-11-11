@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { asset } from "../lib/asset";
 import { journey, type JourneyEntry, type JourneyStop } from "../data/content";
 import { MAP_HEIGHT, MAP_WIDTH, countries, points, waypoints } from "./mapPaths";
 
@@ -213,46 +214,60 @@ export default function JourneyMap() {
 
 function Entry({ entry }: { entry: JourneyEntry }) {
   return (
-    <li>
-      <p className="text-[1.05rem] font-medium leading-snug text-ink">{entry.title}</p>
-      <p className="mt-2 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-accent">
-        {entry.meta}
-      </p>
-
-      {entry.body && (
-        <p className="mt-3.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.body}</p>
+    <li className="flex gap-4">
+      {/* The organisation is named in the line under the title, so the logo
+          is decoration and stays out of the accessibility tree. */}
+      {entry.logo && (
+        <img
+          src={asset(entry.logo)}
+          alt=""
+          width={40}
+          height={40}
+          loading="lazy"
+          className="mt-0.5 h-10 w-10 shrink-0 rounded-[6px] object-contain"
+        />
       )}
+      <div className="min-w-0 flex-1">
+        <p className="text-[1.05rem] font-medium leading-snug text-ink">{entry.title}</p>
+        <p className="mt-2 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-accent">
+          {entry.meta}
+        </p>
 
-      {/* Singapore's entries come in two halves, labelled so the reader can
-          see where the market ends and the claim about her begins. */}
-      {entry.market && (
-        <div className="mt-4">
-          <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-muted">
-            The market
-          </p>
-          <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.market}</p>
-        </div>
-      )}
+        {entry.body && (
+          <p className="mt-3.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.body}</p>
+        )}
 
-      {entry.fit && (
-        <div className="mt-5 border-l-2 border-accent pl-4">
-          <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-accent">
-            What I bring
-          </p>
-          <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-ink">{entry.fit}</p>
-        </div>
-      )}
+        {/* Singapore's entries come in two halves, labelled so the reader can
+            see where the market ends and the claim about her begins. */}
+        {entry.market && (
+          <div className="mt-4">
+            <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-muted">
+              The market
+            </p>
+            <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.market}</p>
+          </div>
+        )}
 
-      {entry.points && (
-        <ul className="mt-4 space-y-3">
-          {entry.points.map((point) => (
-            <li key={point} className="flex gap-3 text-[0.95rem] leading-[1.7] text-graphite">
-              <span aria-hidden className="mt-[0.72em] h-px w-3.5 shrink-0 bg-accent" />
-              <span>{point}</span>
-            </li>
-          ))}
-        </ul>
-      )}
+        {entry.fit && (
+          <div className="mt-5 border-l-2 border-accent pl-4">
+            <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-accent">
+              What I bring
+            </p>
+            <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-ink">{entry.fit}</p>
+          </div>
+        )}
+
+        {entry.points && (
+          <ul className="mt-4 space-y-3">
+            {entry.points.map((point) => (
+              <li key={point} className="flex gap-3 text-[0.95rem] leading-[1.7] text-graphite">
+                <span aria-hidden className="mt-[0.72em] h-px w-3.5 shrink-0 bg-accent" />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </li>
   );
 }

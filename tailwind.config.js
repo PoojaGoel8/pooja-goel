@@ -5,19 +5,20 @@ export default {
     extend: {
       // The names are roles, not colours, so every component follows the
       // palette without being touched: `paper` is whatever the page sits on,
-      // `ink` whatever is printed on it. The palette is a dark console —
-      // warm black, bone text, and one signal orange.
+      // `ink` whatever is printed on it. The values are CSS variables, set in
+      // index.css — the dark console everywhere, and a light palette under
+      // `.theme-light` for the Studio page.
       colors: {
-        paper: "#0F0E0C",
-        shell: "#181613",
-        ink: "#F2EDE4",
-        graphite: "#C9C1B5",
-        muted: "#968D80",
-        rule: "#2D2A25",
-        accent: "#FF6B3D",
-        "accent-soft": "#3A1F14",
+        paper: "rgb(var(--c-paper) / <alpha-value>)",
+        shell: "rgb(var(--c-shell) / <alpha-value>)",
+        ink: "rgb(var(--c-ink) / <alpha-value>)",
+        graphite: "rgb(var(--c-graphite) / <alpha-value>)",
+        muted: "rgb(var(--c-muted) / <alpha-value>)",
+        rule: "rgb(var(--c-rule) / <alpha-value>)",
+        accent: "rgb(var(--c-accent) / <alpha-value>)",
+        "accent-soft": "rgb(var(--c-accent-soft) / <alpha-value>)",
         // Status green, used only for "online" and uptime marks.
-        signal: "#5BE38E",
+        signal: "rgb(var(--c-signal) / <alpha-value>)",
       },
       fontFamily: {
         // Headlines and sentence-length titles.

@@ -75,6 +75,24 @@ function render(page) {
     "og:description",
   );
 
+  // A page in the light palette starts light, rather than flashing dark until
+  // the app loads and switches it. The colours match LIGHT in SiteLayout.
+  if (page.theme === "light") {
+    html = swap(html, /<html lang="en">/, '<html lang="en" class="theme-light">', "<html>");
+    html = swap(
+      html,
+      /<meta\s+name="theme-color"\s+content="[^"]*"\s*\/>/,
+      '<meta name="theme-color" content="#F6F1E9" />',
+      "theme-color",
+    );
+    html = swap(
+      html,
+      /<meta\s+name="color-scheme"\s+content="[^"]*"\s*\/>/,
+      '<meta name="color-scheme" content="light" />',
+      "color-scheme",
+    );
+  }
+
   if (siteUrl) {
     const url = siteUrl + page.path.slice(1);
     const absolute = [

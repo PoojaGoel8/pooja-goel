@@ -1,10 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import ContactMenu from "./ContactMenu";
 import { SingaporeTime, StatusDot } from "./Console";
 import { site } from "../data/content";
 import { asset } from "../lib/asset";
+import pageMeta from "../data/pageMeta.json";
+
+/**
+ * A page can ask for the light palette with `"theme": "light"` in
+ * pageMeta.json — the Studio page does, since it is the one page that is not
+ * about the engineering. The build stamps the same class into that page's own
+ * HTML file, so a direct visit is light from the first paint; this keeps it
+ * right while moving between pages inside the app.
+ */
+const LIGHT = { theme: "#F6F1E9", scheme: "light" };
+const DARK = { theme: "#0F0E0C", scheme: "dark" };
+
+function usePageTheme(pathname: string) {
+  useLayoutEffect(() => {
+    const path = pathname.replace(/\/+$/, "") || "/";
+    const page = Object.values(pageMeta.pages).find((p) => p.path === path) as
+      | { theme?: string }
+      | undefined;
+    const light = page?.theme === "light";
+    const { theme, scheme } = light ? LIGHT : DARK;
+
+    document.documentElement.classList.toggle("theme-light", light);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme);
+    document.querySelector('meta[name="color-scheme"]')?.setAttribute("content", scheme);
+  }, [pathname]);
+}
 
 /** In reading order. The header lists them all; the pager walks through them. */
 const baseNav = [
@@ -84,6 +110,7 @@ function Pager({ pathname }: { pathname: string }) {
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
+  usePageTheme(pathname);
 
   useEffect(() => {
     setOpen(false);

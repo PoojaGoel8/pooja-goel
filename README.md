@@ -53,9 +53,18 @@ and the Windows fonts it names) and commit the result.
 ## Design
 
 A dark "production console": warm black, bone text, one signal orange, and a
-status green used only for online and uptime marks. The colours are defined
-once, by role, in `tailwind.config.js` — `paper` is the page, `ink` the text,
-`accent` the orange — so a palette change there reaches every component.
+status green used only for online and uptime marks. The colours are named
+by role in `tailwind.config.js` — `paper` is the page, `ink` the text, `accent`
+the orange — and their values are CSS variables in `src/index.css`, so a
+palette change there reaches every component.
+
+The Studio page is the exception: it switches to a light palette, warm
+gallery paper with a darker orange, because it is the one page that is not
+about the engineering. A page opts in with `"theme": "light"` in
+`pageMeta.json`. The build stamps the `theme-light` class into that page's
+own HTML file so a direct visit is light from the first paint, and
+`SiteLayout` keeps the class right while moving between pages. Header,
+pager and footer follow the palette too.
 
 Four faces, all from Google Fonts: Anton for poster-size words (the name, page
 titles, the footer), Space Grotesk for headings, Inter for reading, JetBrains

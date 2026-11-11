@@ -17,15 +17,15 @@ function AwaitingImages({ label }: { label: string }) {
 }
 
 /**
- * Three photographs set at different heights and widths, so the top of the
- * page reads as a studio wall rather than a tidy grid.
+ * Two photographs at different heights and widths, so the top of the page
+ * reads as a studio wall rather than a tidy grid.
  */
 function Collage() {
-  const [stage, paint, aerial] = studioIntro.collage;
+  const [stage, paint] = studioIntro.collage;
 
   return (
-    <div className="grid grid-cols-2 items-end gap-3 md:grid-cols-12 md:gap-4">
-      <Reveal className="col-span-2 md:col-span-7">
+    <div className="grid grid-cols-3 items-end gap-3 md:grid-cols-12 md:gap-4">
+      <Reveal className="col-span-2 md:col-span-8">
         <img
           src={asset(stage.src)}
           alt={stage.alt}
@@ -34,7 +34,7 @@ function Collage() {
           className="h-full w-full rounded-[2px] object-cover md:aspect-[3/2]"
         />
       </Reveal>
-      <Reveal delay={120} className="md:col-span-3">
+      <Reveal delay={120} className="md:col-span-4">
         <img
           src={asset(paint.src)}
           alt={paint.alt}
@@ -42,16 +42,6 @@ function Collage() {
           height={paint.h}
           loading="lazy"
           className="h-full w-full rounded-[2px] object-cover md:aspect-[3/4]"
-        />
-      </Reveal>
-      <Reveal delay={220} className="md:col-span-2">
-        <img
-          src={asset(aerial.src)}
-          alt={aerial.alt}
-          width={aerial.w}
-          height={aerial.h}
-          loading="lazy"
-          className="h-full w-full rounded-[2px] object-cover md:aspect-[2/3]"
         />
       </Reveal>
     </div>

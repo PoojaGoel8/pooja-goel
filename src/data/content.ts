@@ -585,7 +585,7 @@ export const recognition = [
 /* ---------------------------------------------------------------- studio */
 
 export const studioIntro = {
-  lede: "Face paint, portraits on commission, Indian dance on festival stages, aerial hammock, and four years of teaching. None of it is a break from the engineering — it is the same attention paid to a different surface, and it is where the colour on this site comes from.",
+  lede: "Face paint, portraits on commission, Indian dance on festival stages, and four years of teaching. None of it is a break from the engineering — it is the same attention paid to a different surface, and it is where the colour on this site comes from.",
   /** The offset collage at the top of the page. */
   collage: [
     {
@@ -599,12 +599,6 @@ export const studioIntro = {
       alt: "A lion design with a painted muzzle and tongue",
       w: 361,
       h: 640,
-    },
-    {
-      src: "/assets/images/aerial.webp",
-      alt: "Pooja inverted in an aerial hammock",
-      w: 800,
-      h: 1000,
     },
   ],
 };
@@ -723,25 +717,6 @@ export const studioBands: StudioBand[] = [
     needsDetail: true,
   },
   {
-    slug: "aerial",
-    icon: "hammock" as const,
-    blurb: "Hammock training, upside down",
-    eyebrow: "Training",
-    title: "Aerial",
-    body: [
-      "Aerial hammock. Upside down, mostly, working out how much of your own weight you can hold and exactly where you can hold it from.",
-    ],
-    images: [
-      {
-        src: "/assets/images/aerial.webp",
-        alt: "Pooja inverted in an aerial hammock",
-        w: 800,
-        h: 1000,
-      },
-    ],
-    side: "left",
-  },
-  {
     slug: "tutoring",
     icon: "book" as const,
     figure: "tutoring" as const,
@@ -756,7 +731,7 @@ export const studioBands: StudioBand[] = [
       ...(DEV ? ["// TODO — what the subject actually covered week to week, and roughly how many students across the four years."] : []),
     ],
     images: [],
-    side: "right",
+    side: "left",
     pullQuote:
       "The explanation that works is almost never the one you prepared.",
     needsDetail: true,

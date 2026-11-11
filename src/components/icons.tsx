@@ -17,7 +17,6 @@ export type IconName =
   | "palette"
   | "frame"
   | "note"
-  | "hammock"
   | "book"
   | "compass"
   | "signal"
@@ -101,15 +100,6 @@ const paths: Record<IconName, React.ReactNode> = {
       <circle cx="17.2" cy="15.4" r="2.3" />
       <path d="M9.3 17.8V6.4l10.2-2.2v11.2" />
       <path d="M9.3 9.6l10.2-2.2" />
-    </>
-  ),
-
-  // Fabric slung from a rig — aerial. A shallow, wide arc: a deeper curve
-  // reads as a funnel at this size.
-  hammock: (
-    <>
-      <path d="M3 5.5h18" />
-      <path d="M7 5.5Q7 15.5 12 15.5Q17 15.5 17 5.5" />
     </>
   ),
 

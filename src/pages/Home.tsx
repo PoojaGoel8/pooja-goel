@@ -231,13 +231,13 @@ function Capabilities() {
 
 function SelectedWork() {
   return (
-    <Section eyebrow="[04] Selected work" title="Two migrations worth writing down.">
+    <Section eyebrow="[04] Selected projects" title="Two migrations worth writing down.">
       <ol className="border-b border-rule">
         {caseStudies.map((study, i) => (
           <li key={study.slug}>
             <Reveal delay={i * 90}>
               <Link
-                to={`/work#${study.slug}`}
+                to={`/projects#${study.slug}`}
                 className="group grid gap-x-8 gap-y-4 border-t border-rule py-9 transition-colors md:grid-cols-[4rem_minmax(0,1fr)_3rem] md:items-start md:py-12"
               >
                 <span className="font-mono text-[0.8rem] text-accent">

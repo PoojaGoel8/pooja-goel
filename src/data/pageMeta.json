@@ -8,20 +8,20 @@
       "description": "Pooja Goel is a database administrator working across SQL Server, PostgreSQL and Azure — high availability, migrations, database security, and the data groundwork that makes AI usable in production.",
       "social": "Databases that stay up, stay fast and stay governed — across on-premises and Azure."
     },
-    "work": {
-      "path": "/work",
-      "title": "Work",
+    "experience": {
+      "path": "/experience",
+      "title": "Experience",
+      "description": "Roles, education and recognition — Data Services Engineer at PointsBet, Master of Information Systems at the University of Melbourne."
+    },
+    "projects": {
+      "path": "/projects",
+      "title": "Projects",
       "description": "Database migration, high availability and estate consolidation case studies — Azure, SQL Server and acquisition integration."
     },
     "aiEnablement": {
       "path": "/ai-enablement",
       "title": "AI Enablement",
       "description": "LLM knowledge assistants, agentic alert diagnosis, automated DBA workflows, vector search and proof-of-concept evaluation — AI grounded in governed operational data."
-    },
-    "experience": {
-      "path": "/experience",
-      "title": "Experience",
-      "description": "Roles, education and recognition — Data Services Engineer at PointsBet, Master of Information Systems at the University of Melbourne."
     },
     "studio": {
       "path": "/studio",

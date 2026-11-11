@@ -139,15 +139,16 @@ scripts/postbuild      per-route HTML, 404.html, sitemap, .nojekyll
 scripts/make-og-card   redraws og-card.jpg; run by hand, not by the build
 ```
 
-Routes are `/`, `/work`, `/ai-enablement`, `/experience` and `/studio`,
-declared in `src/App.tsx`. Two former pages now live as sections, with their old
-paths kept as redirects: `/tutoring` → `/studio#tutoring` and `/testimonials` →
-`/work#recommendations`.
+Routes are `/`, `/experience`, `/projects`, `/ai-enablement` and `/studio`,
+declared in `src/App.tsx`, in the order the header lists them. Old paths are
+kept as redirects: `/work` → `/projects` (the page's former name, anchors
+included), and two former pages that now live as sections, `/tutoring` →
+`/studio#tutoring` and `/testimonials` → `/projects#recommendations`.
 
 GitHub Pages has no SPA rewrite rule, so the build writes a real file for each
-route — `work.html`, `studio.html` and so on — identical to `index.html` apart
-from that page's own title and description. Pages serves `/work` from
-`work.html`, so a deep link is an ordinary page. A new route needs an entry in
+route — `projects.html`, `studio.html` and so on — identical to `index.html` apart
+from that page's own title and description. Pages serves `/projects` from
+`projects.html`, so a deep link is an ordinary page. A new route needs an entry in
 `pageMeta.json` to get its file.
 
 `404.html` is a copy of `index.html` for everything else: the two redirect

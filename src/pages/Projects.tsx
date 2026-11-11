@@ -167,13 +167,13 @@ function Study({ study, index }: { study: CaseStudy; index: number }) {
   );
 }
 
-export default function Work() {
-  usePageMeta(pageMeta.pages.work);
+export default function Projects() {
+  usePageMeta(pageMeta.pages.projects);
 
   return (
     <>
       <PageHeader
-        eyebrow="Work"
+        eyebrow="Projects"
         title="Migrations, availability, and the estate underneath both."
         lede="Two pieces of work in detail, because they are the ones where the decisions mattered more than the tooling. Everything here was delivered in a licensed wagering environment, where downtime is a commercial problem and a regulatory one at the same time."
         aside={<WorkDiagram />}

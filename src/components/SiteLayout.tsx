@@ -35,9 +35,9 @@ function usePageTheme(pathname: string) {
 /** In reading order. The header lists them all; the pager walks through them. */
 const baseNav = [
   { to: "/", label: "Home" },
-  { to: "/work", label: "Work" },
-  { to: "/ai-enablement", label: "AI Enablement" },
   { to: "/experience", label: "Experience" },
+  { to: "/projects", label: "Projects" },
+  { to: "/ai-enablement", label: "AI Enablement" },
   { to: "/studio", label: "Studio" },
 ];
 

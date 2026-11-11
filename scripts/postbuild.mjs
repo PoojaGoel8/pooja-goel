@@ -1,9 +1,9 @@
 /**
  * Post-build steps for GitHub Pages.
  *
- * 1. Every route gets its own HTML file — work.html, studio.html and so on —
- *    carrying that page's title and description. Pages serves /work from
- *    work.html with a 200, so a deep link is a real page rather than a
+ * 1. Every route gets its own HTML file — projects.html, studio.html and so
+ *    on — carrying that page's title and description. Pages serves /projects
+ *    from projects.html with a 200, so a deep link is a real page rather than a
  *    "not found" that happens to boot the app, and a link pasted into
  *    LinkedIn or Slack unfurls with the right words: those previews read the
  *    HTML and never run the JavaScript that would otherwise set them.

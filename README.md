@@ -192,6 +192,7 @@ The history on the journey map carries logos too: `orgLogos` in
 written. `pointsbet.png` is PointsBet's own app icon from pointsbet.com.au,
 `laddermedia.png` is the ladder cut from Ladder Media's header logo,
 `srm.png` is the seal from SRM's logo on Wikipedia,
+`flytbase.svg` is FlytBase's square mark from flytbase.com,
 and the University of Melbourne reuses `unimelb.svg`. An organisation not
 in that list shows no logo.
 

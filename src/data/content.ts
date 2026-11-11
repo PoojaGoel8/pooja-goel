@@ -664,6 +664,7 @@ export const studioBands: StudioBand[] = [
     ],
     side: "left",
     links: [
+      { label: site.instagramHandle, href: site.instagram },
       {
         label: "Read it on UMSU Creative Arts",
         href: "https://umsu.unimelb.edu.au/news/article/7860/Pooja-Goel-Undefined/",

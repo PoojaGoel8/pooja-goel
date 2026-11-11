@@ -1,6 +1,6 @@
 import Reveal from "../components/Reveal";
 import { Icon } from "../components/icons";
-import { Copy, Section, usePageMeta } from "../components/Page";
+import { Copy, usePageMeta } from "../components/Page";
 import TutoringDiagram from "../components/TutoringDiagram";
 import { asset } from "../lib/asset";
 import { studioBands, studioIntro, type StudioBand } from "../data/content";
@@ -104,7 +104,7 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
     return (
       <article
         id={band.slug}
-        className="scroll-mt-28 border-t border-rule py-14 first:border-t-0 md:py-20"
+        className="scroll-mt-28 border-t border-rule py-14 first:border-t-0 first:pt-10 md:py-20 md:first:pt-14"
       >
         <Reveal>{prose}</Reveal>
 
@@ -139,7 +139,7 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
   return (
     <article
       id={band.slug}
-      className="scroll-mt-28 border-t border-rule py-14 first:border-t-0 md:py-20"
+      className="scroll-mt-28 border-t border-rule py-14 first:border-t-0 first:pt-10 md:py-20 md:first:pt-14"
     >
       <div
         className={
@@ -214,7 +214,7 @@ export default function Studio() {
       {/* Four bands is more than fits on a screen, so give the reader a way in. */}
       <nav
         aria-label="Sections of this page"
-        className="mx-auto max-w-shell px-6 pb-14 md:px-10 md:pb-20"
+        className="mx-auto max-w-shell px-6 md:px-10"
       >
         <ul className="grid grid-cols-2 gap-3 border-t border-rule pt-10 lg:grid-cols-4">
           {studioBands.map((band, i) => (
@@ -258,13 +258,13 @@ export default function Studio() {
         </ul>
       </nav>
 
-      <Section className="py-0 md:py-0">
-        <div>
-          {studioBands.map((band, i) => (
-            <Band key={band.slug} band={band} index={i} />
-          ))}
-        </div>
-      </Section>
+      {/* A plain wrapper rather than <Section>: Section's own padding cannot
+          be overridden from outside, and it put a tall empty gap here. */}
+      <section className="mx-auto max-w-shell px-6 md:px-10">
+        {studioBands.map((band, i) => (
+          <Band key={band.slug} band={band} index={i} />
+        ))}
+      </section>
     </>
   );
 }

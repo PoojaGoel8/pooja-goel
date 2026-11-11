@@ -185,6 +185,7 @@ organisation with no `logo` falls back to its initials in a badge.
 The history on the journey map carries logos too: `orgLogos` in
 `content.ts`, keyed by each role's or qualification's `org` exactly as
 written. `pointsbet.png` is PointsBet's own app icon from pointsbet.com.au,
+`laddermedia.png` is the ladder cut from Ladder Media's header logo,
 and the University of Melbourne reuses `unimelb.svg`. An organisation not
 in that list shows no logo.
 

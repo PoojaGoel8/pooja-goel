@@ -476,48 +476,64 @@ export const education = [
   },
 ];
 
+/**
+ * The organisations the volunteering sits under. A missing `logo` shows the
+ * initials instead, in a badge the same size, so a logo can be added later by
+ * dropping the file into public/assets/logos/ and naming it here.
+ */
+export const volunteerOrgs = {
+  unimelb: {
+    name: "The University of Melbourne",
+    logo: "/assets/logos/unimelb.svg",
+    initials: "UoM",
+  },
+  stemsisters: {
+    name: "STEM Sisters",
+    logo: undefined as string | undefined,
+    initials: "SS",
+  },
+} as const;
+
 export type Volunteering = {
   role: string;
-  org: string;
-  icon: IconName;
+  orgKey: keyof typeof volunteerOrgs;
+  /** The faculty or programme within the organisation, where there is one. */
+  unit?: string;
   /** Shown as written. */
   period: string;
   summary: string;
   body: string[];
+  /** The programme's own page. */
+  link: string;
+  linkLabel: string;
 };
 
 /**
- * Newest first. The prose frames what each role involved; it does not claim
- * numbers — how many students, how many sessions — because those are Pooja's
- * to supply and a portfolio is the wrong place to estimate them.
+ * Grouped by organisation — the University of Melbourne's three roles together,
+ * then STEM Sisters — and newest first within each, so the timeline across the
+ * list is deliberately not strict.
+ *
+ * The prose frames what each role involved; it does not claim numbers — how
+ * many students, how many sessions — because those are Pooja's to supply and a
+ * portfolio is the wrong place to estimate them.
  */
 export const volunteering: Volunteering[] = [
   {
     role: "Career and Industry Mentor",
-    icon: "compass" as const,
-    org: "The University of Melbourne",
+    orgKey: "unimelb",
     period: "Feb 2026 — present",
     summary: "Mentoring current students through the university's industry and alumni programme.",
     body: [
       "The programme pairs current students with working graduates and professionals across STEM, business, law, education and the arts. I mentor on the engineering side.",
       "Most of what a student needs at that point is not technical. It is knowing which parts of a degree carry into a first job, how to read a job description written for someone more senior, and what the first two years of working actually look like. Those are the questions no subject covers, and they are far easier to answer than to find.",
     ],
-  },
-  {
-    role: "Ambassador",
-    icon: "signal" as const,
-    org: "STEM Sisters",
-    period: "Jul 2023 — Jun 2024",
-    summary: "Supporting the mission to empower women of colour in STEM.",
-    body: [
-      "STEM Sisters works to make science and technology careers reachable for women of colour in Australia.",
-      "A good deal of what decides whether someone stays in this field never gets written down — who to ask, what is normal to find hard, which doors are genuinely open. It travels through networks, and it reaches people unevenly. An ambassador's job is to put some of it in front of the people those networks were never going to reach.",
-    ],
+    link: "https://mentoring.unimelb.edu.au/",
+    linkLabel: "The mentoring programme",
   },
   {
     role: "Student Ambassador",
-    icon: "book" as const,
-    org: "Faculty of Engineering and IT, the University of Melbourne",
+    orgKey: "unimelb",
+    unit: "Faculty of Engineering and IT",
     period: "Mar 2021 — Nov 2022",
     summary:
       "Representing the Faculty of Engineering and Information Technology to its students.",
@@ -525,17 +541,32 @@ export const volunteering: Volunteering[] = [
       "I worked with the faculty to help students through their time in the department — prospective students deciding whether to come, and current ones working out how to navigate it once they had.",
       "Doing it for nearly two years while studying meant answering, from the other side, the same questions I had been asking a year earlier. That turns out to be the most useful vantage point there is for the job.",
     ],
+    link: "https://education.unimelb.edu.au/study/current-students/enrich-your-studies/graduate-education-ambassador-program",
+    linkLabel: "The ambassador program",
   },
   {
     role: "STEM Mentor",
-    icon: "spark" as const,
-    org: "The University of Melbourne",
+    orgKey: "unimelb",
     period: "Mar 2021 — Nov 2021",
     summary: "Mentoring young girls considering a career in STEM.",
     body: [
       "Worked with school-age girls on what careers in STEM actually involve day to day, and on finding which part of it they were drawn to rather than treating it as one undifferentiated choice.",
       "Encouragement in general does very little at that age. What lands is one specific person doing one specific job, described plainly enough that it stops sounding like someone else's life.",
     ],
+    link: "https://students.unimelb.edu.au/careers/get-advice/career-mentoring/stem-mentoring-program",
+    linkLabel: "The STEM mentoring program",
+  },
+  {
+    role: "Ambassador",
+    orgKey: "stemsisters",
+    period: "Jul 2023 — Jun 2024",
+    summary: "Supporting the mission to empower women of colour in STEM.",
+    body: [
+      "STEM Sisters works to make science and technology careers reachable for women of colour in Australia.",
+      "A good deal of what decides whether someone stays in this field never gets written down — who to ask, what is normal to find hard, which doors are genuinely open. It travels through networks, and it reaches people unevenly. An ambassador's job is to put some of it in front of the people those networks were never going to reach.",
+    ],
+    link: "https://stemsisters.org.au/",
+    linkLabel: "STEM Sisters",
   },
 ];
 

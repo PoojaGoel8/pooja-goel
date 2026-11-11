@@ -697,13 +697,6 @@ export const studioBands: StudioBand[] = [
         h: 1000,
         caption: "Ente Keralam.",
       },
-      {
-        src: "/assets/images/dance-diwali.webp",
-        alt: "The routine on the big screen at Diwali: Festival of Lights, Federation Square",
-        w: 1000,
-        h: 1776,
-        caption: "Diwali: Festival of Lights, Federation Square.",
-      },
     ],
     side: "right",
     needsDetail: true,

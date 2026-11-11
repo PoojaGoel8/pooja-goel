@@ -24,7 +24,8 @@ function Band({ band, index }: { band: StudioBand; index: number }) {
 
   // A single tall portrait would otherwise stretch to the full column width and
   // run far past the prose beside it, leaving a long gap.
-  const single = band.images.length === 1;
+  // A wide one is fine at full width, so only a tall one is held narrower.
+  const single = band.images.length === 1 && band.images[0].h > band.images[0].w;
 
   const media = (
     <div className={band.images.length > 1 ? "grid gap-4 sm:grid-cols-2" : ""}>

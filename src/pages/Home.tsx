@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import Reveal from "../components/Reveal";
+import RoutePins from "../components/RoutePins";
 import { Icon } from "../components/icons";
 import { Copy, Section, usePageMeta } from "../components/Page";
 import {
@@ -184,9 +185,8 @@ function Arc() {
         <div className="grid gap-12 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-20">
           <Reveal>
             <p className="eyebrow">[02] {arc.eyebrow}</p>
-            <h2 className="mt-5 font-display text-[1.9rem] font-normal leading-[1.1] tracking-[-0.02em] md:text-[2.6rem]">
-              {arc.heading}
-            </h2>
+            <h2 className="sr-only">{arc.heading}</h2>
+            <RoutePins />
           </Reveal>
           <Reveal delay={100}>
             <Copy paragraphs={arc.body} />

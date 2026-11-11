@@ -411,12 +411,14 @@ export const hackathon = {
  * exactly as written there. An organisation missing from this list simply
  * shows no logo. `pointsbet.png` is PointsBet's own app icon, from
  * pointsbet.com.au. `laddermedia.png` is the ladder from Ladder Media's own
- * header logo, cropped out of the wordmark onto a white square.
+ * header logo, cropped out of the wordmark onto a white square. `srm.png` is
+ * the seal from SRM's logo as Wikipedia carries it, without the wordmark.
  */
 export const orgLogos: Record<string, string> = {
   PointsBet: "/assets/logos/pointsbet.png",
   "The University of Melbourne": "/assets/logos/unimelb.svg",
   "Ladder Media": "/assets/logos/laddermedia.png",
+  "SRM Institute of Science and Technology": "/assets/logos/srm.png",
 };
 
 export const roles = [

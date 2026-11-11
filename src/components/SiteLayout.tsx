@@ -14,7 +14,7 @@ import pageMeta from "../data/pageMeta.json";
  * HTML file, so a direct visit is light from the first paint; this keeps it
  * right while moving between pages inside the app.
  */
-const LIGHT = { theme: "#EFE3D0", scheme: "light" };
+const LIGHT = { theme: "#F5A36F", scheme: "light" };
 const DARK = { theme: "#0F0E0C", scheme: "dark" };
 
 function usePageTheme(pathname: string) {

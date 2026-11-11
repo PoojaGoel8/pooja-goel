@@ -58,13 +58,14 @@ by role in `tailwind.config.js` — `paper` is the page, `ink` the text, `accent
 the orange — and their values are CSS variables in `src/index.css`, so a
 palette change there reaches every component.
 
-The Studio page is the exception: it switches to a light palette, warm
-sand-coloured paper with a darker orange, because it is the one page that is not
-about the engineering. A page opts in with `"theme": "light"` in
-`pageMeta.json`. The build stamps the `theme-light` class into that page's
-own HTML file so a direct visit is light from the first paint, and
-`SiteLayout` keeps the class right while moving between pages. Header,
-pager and footer follow the palette too.
+The Studio page is the exception: it inverts the scheme, black on a soft
+orange instead of orange on black, because it is the one page that is not
+about the engineering. The palette is still called `theme-light`. A page
+opts in with `"theme": "light"` in `pageMeta.json`. The build stamps the
+`theme-light` class into that page's own HTML file so a direct visit has
+the right colours from the first paint, and `SiteLayout` keeps the class
+right while moving between pages. Header, pager and footer follow the
+palette too.
 
 Four faces, all from Google Fonts: Anton for poster-size words (the name, page
 titles, the footer), Space Grotesk for headings, Inter for reading, JetBrains

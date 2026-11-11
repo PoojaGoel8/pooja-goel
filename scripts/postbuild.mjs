@@ -82,7 +82,7 @@ function render(page) {
     html = swap(
       html,
       /<meta\s+name="theme-color"\s+content="[^"]*"\s*\/>/,
-      '<meta name="theme-color" content="#EFE3D0" />',
+      '<meta name="theme-color" content="#F5A36F" />',
       "theme-color",
     );
     html = swap(

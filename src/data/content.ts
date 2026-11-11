@@ -414,6 +414,7 @@ export const hackathon = {
  * header logo, cropped out of the wordmark onto a white square. `srm.png` is
  * the seal from SRM's logo as Wikipedia carries it, without the wordmark.
  * `flytbase.svg` is FlytBase's own square mark, from flytbase.com.
+ * `emids.png` is emids' own profile icon, from emids.com.
  */
 export const orgLogos: Record<string, string> = {
   PointsBet: "/assets/logos/pointsbet.png",
@@ -421,6 +422,7 @@ export const orgLogos: Record<string, string> = {
   "Ladder Media": "/assets/logos/laddermedia.png",
   "SRM Institute of Science and Technology": "/assets/logos/srm.png",
   FlytBase: "/assets/logos/flytbase.svg",
+  emids: "/assets/logos/emids.png",
 };
 
 export const roles = [
@@ -477,6 +479,16 @@ export const roles = [
       "Led the re-engineering of the onboarding program, evaluating and proposing new technology.",
       "Increased hiring efficiency by more than 90%.",
       "Increased the HR department's process efficiency by more than 50% through the new process.",
+    ],
+  },
+  {
+    title: "Management Trainee",
+    org: "emids",
+    place: "India",
+    period: "Feb 2020 — Jun 2020",
+    points: [
+      "Devised the onboarding program, induction plan, training needs analysis, career framework, first-time manager program and wellness initiatives.",
+      "Achieved a 100% day-one satisfaction rate among new joiners.",
     ],
   },
 ];
@@ -889,7 +901,7 @@ export const journey: JourneyStop[] = [
     label: "India",
     years: "2016 — 2022",
     heading: "Where the engineering started",
-    lede: "Four years of computer science and engineering, and two internships: one rebuilding how a team onboards its hires, one holding a delivery schedule together.",
+    lede: "Four years of computer science and engineering, and three internships, from building onboarding and people programs to holding a delivery schedule together.",
     groups: [
       { title: "Education", entries: educationIn("India") },
       { title: "Work", entries: rolesIn("India") },

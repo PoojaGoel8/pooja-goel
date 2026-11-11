@@ -6,7 +6,9 @@ import { SingaporeTime, StatusDot } from "./Console";
 import { site } from "../data/content";
 import { asset } from "../lib/asset";
 
+/** In reading order. The header lists them all; the pager walks through them. */
 const baseNav = [
+  { to: "/", label: "Home" },
   { to: "/work", label: "Work" },
   { to: "/ai-enablement", label: "AI Enablement" },
   { to: "/experience", label: "Experience" },
@@ -27,6 +29,55 @@ function Monogram() {
         className="h-1.5 w-1.5 rounded-full bg-accent transition-transform duration-300 group-hover:scale-150"
       />
     </Link>
+  );
+}
+
+/**
+ * Previous and next page, at the foot of every page and just above the
+ * contact footer, so a reader who reaches the end has somewhere to go without
+ * climbing back to the header. It wraps round: Studio leads back to Home.
+ * Not shown on the not-found page, which has no place in the order.
+ */
+function Pager({ pathname }: { pathname: string }) {
+  // A trailing slash is the same page: /work/ is /work.
+  const path = pathname.replace(/\/+$/, "") || "/";
+  const here = nav.findIndex((item) => item.to === path);
+  if (here === -1) return null;
+
+  const prev = nav[(here - 1 + nav.length) % nav.length];
+  const next = nav[(here + 1) % nav.length];
+  const number = (item: (typeof nav)[number]) => `0${nav.indexOf(item)}`;
+
+  const card =
+    "group flex h-full flex-col justify-between gap-6 bg-paper p-5 transition-colors duration-300 hover:bg-shell sm:p-7 md:p-9";
+  const label =
+    "whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.12em] text-muted transition-colors group-hover:text-accent sm:text-[0.7rem]";
+  const title =
+    "font-poster text-[1.55rem] uppercase leading-[0.95] text-ink transition-colors duration-300 group-hover:text-accent sm:text-[2.2rem] md:text-[3rem]";
+
+  return (
+    <nav aria-label="More pages" className="mx-auto mt-16 w-full max-w-shell px-6 md:mt-24 md:px-10">
+      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[3px] border border-rule bg-rule">
+        <Link to={prev.to} rel="prev" className={card}>
+          <span className={label}>
+            <span aria-hidden className="mr-1.5 inline-block transition-transform duration-300 group-hover:-translate-x-1">
+              ←
+            </span>
+            Previous <span aria-hidden className="hidden text-accent sm:inline">· {number(prev)}</span>
+          </span>
+          <span className={title}>{prev.label}</span>
+        </Link>
+        <Link to={next.to} rel="next" className={`${card} items-end text-right`}>
+          <span className={label}>
+            Next <span aria-hidden className="hidden text-accent sm:inline">· {number(next)}</span>
+            <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </span>
+          <span className={title}>{next.label}</span>
+        </Link>
+      </div>
+    </nav>
   );
 }
 
@@ -116,6 +167,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
               <NavLink
                 key={item.to}
                 to={item.to}
+                end
                 className={({ isActive }) =>
                   [
                     "relative font-mono text-[0.72rem] uppercase tracking-[0.12em] transition-colors",
@@ -126,7 +178,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 {({ isActive }) => (
                   <>
                     <span aria-hidden className="mr-1.5 text-accent">
-                      0{i + 1}
+                      0{i}
                     </span>
                     {item.label}
                     <span
@@ -194,6 +246,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
               <NavLink
                 key={item.to}
                 to={item.to}
+                end
                 className={({ isActive }) =>
                   [
                     "block border-b border-rule/60 py-3 font-poster text-[1.9rem] uppercase leading-tight last:border-0",
@@ -227,7 +280,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         {children}
       </main>
 
-      <footer className="relative mt-24 overflow-hidden border-t border-rule bg-shell">
+      <Pager pathname={pathname} />
+
+      <footer className="relative mt-16 overflow-hidden md:mt-20 border-t border-rule bg-shell">
         <div
           aria-hidden
           className="pointer-events-none absolute -bottom-40 left-1/2 h-[26rem] w-[60rem] -translate-x-1/2 rounded-full bg-accent/[0.08] blur-[120px]"

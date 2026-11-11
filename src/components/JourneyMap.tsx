@@ -218,6 +218,18 @@ export default function JourneyMap() {
  * neighbour.
  */
 function Entry({ entry, boxed = false }: { entry: JourneyEntry; boxed?: boolean }) {
+  const collapsible = !boxed && !!entry.points?.length;
+  const points = entry.points && (
+    <ul className="mt-4 space-y-3">
+      {entry.points.map((point) => (
+        <li key={point} className="flex gap-3 text-[0.95rem] leading-[1.7] text-graphite">
+          <span aria-hidden className="mt-[0.72em] h-px w-3.5 shrink-0 bg-accent" />
+          <span>{point}</span>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
     <li
       className={
@@ -239,44 +251,65 @@ function Entry({ entry, boxed = false }: { entry: JourneyEntry; boxed?: boolean 
         />
       )}
       <div className="min-w-0 flex-1">
-        <p className="text-[1.05rem] font-medium leading-snug text-ink">{entry.title}</p>
-        <p className="mt-2 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-accent">
-          {entry.meta}
-        </p>
-
-        {entry.body && (
-          <p className="mt-3.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.body}</p>
-        )}
-
-        {/* Singapore's entries come in two halves, labelled so the reader can
-            see where the market ends and the claim about her begins. */}
-        {entry.market && (
-          <div className="mt-4">
-            <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-muted">
-              The market
+        {collapsible ? (
+          /* India and Australia are a history to scan: the roles and degrees
+             show at a glance and each opens on its details. A native
+             <details> keeps the points in the page for search and
+             find-in-page, and gives keyboard and screen-reader support free. */
+          <details className="group">
+            <summary className="group/summary flex cursor-pointer list-none items-start justify-between gap-4 rounded-[2px] [&::-webkit-details-marker]:hidden">
+              <span className="min-w-0">
+                <span className="block text-[1.05rem] font-medium leading-snug text-ink transition-colors group-hover/summary:text-accent">
+                  {entry.title}
+                </span>
+                <span className="mt-2 block font-mono text-[0.72rem] uppercase tracking-[0.08em] text-accent">
+                  {entry.meta}
+                </span>
+              </span>
+              <span
+                aria-hidden
+                className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-rule text-muted transition-[color,border-color,transform] duration-300 group-open:rotate-180 group-hover/summary:border-accent group-hover/summary:text-accent"
+              >
+                <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <path d="M3.5 6l4.5 4.5L12.5 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </summary>
+            {points}
+          </details>
+        ) : (
+          <>
+            <p className="text-[1.05rem] font-medium leading-snug text-ink">{entry.title}</p>
+            <p className="mt-2 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-accent">
+              {entry.meta}
             </p>
-            <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.market}</p>
-          </div>
-        )}
 
-        {entry.fit && (
-          <div className="mt-5 border-l-2 border-accent pl-4">
-            <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-accent">
-              What I bring
-            </p>
-            <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-ink">{entry.fit}</p>
-          </div>
-        )}
+            {entry.body && (
+              <p className="mt-3.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.body}</p>
+            )}
 
-        {entry.points && (
-          <ul className="mt-4 space-y-3">
-            {entry.points.map((point) => (
-              <li key={point} className="flex gap-3 text-[0.95rem] leading-[1.7] text-graphite">
-                <span aria-hidden className="mt-[0.72em] h-px w-3.5 shrink-0 bg-accent" />
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
+            {/* Singapore's entries come in two halves, labelled so the reader can
+                see where the market ends and the claim about her begins. */}
+            {entry.market && (
+              <div className="mt-4">
+                <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-muted">
+                  The market
+                </p>
+                <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.market}</p>
+              </div>
+            )}
+
+            {entry.fit && (
+              <div className="mt-5 border-l-2 border-accent pl-4">
+                <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-accent">
+                  What I bring
+                </p>
+                <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-ink">{entry.fit}</p>
+              </div>
+            )}
+
+            {points}
+          </>
         )}
       </div>
     </li>

@@ -46,7 +46,7 @@ export const metrics = [
   { value: "99.99%", label: "Availability across 13 production environments" },
   { value: "100%", label: "Server uptime through peak wagering periods" },
   { value: "67%", label: "Faster database issue resolution" },
-  { value: "60+", label: "Engineering hours returned each month" },
+  { value: "60+", label: "AI-enabled engineering hours returned each month" },
 ];
 
 export const arc = {
@@ -54,7 +54,7 @@ export const arc = {
   heading: "India, Australia, Singapore",
   body: [
     "I trained as a computer engineer in India, then moved to Australia for a Master of Information Systems and stayed — first as a graduate engineer, then running database services for a wagering platform where a slow query is a lost customer and an outage is a regulatory conversation.",
-    "That environment taught me the thing this whole site is really about: reliability is not a feature you add. It is a set of habits — tested restores, rehearsed failovers, access you can audit, changes you can reverse — applied relentlessly and mostly invisibly.",
+    "The environment taught me what this whole site is really about: reliability is not a feature you add. It is a set of habits — tested restores, rehearsed failovers, access you can audit, changes you can reverse — applied relentlessly and mostly invisibly.",
     "I am now based in Singapore, which runs on the same combination I have spent over four years inside: regulated industries, cloud-first platforms, and real appetite for putting AI to work on operational data rather than in a demo.",
   ],
 };

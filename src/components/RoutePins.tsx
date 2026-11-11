@@ -115,17 +115,55 @@ function Pin({ place }: { place: Place }) {
   );
 }
 
+/*
+ * Fixed geometry, so the curve can be drawn once without measuring anything.
+ * A pin is 48 x 62 px; each row is ROW px tall; each pin sits `x` px in from
+ * the left, which staggers them and lets the route swing between them.
+ */
+const ROW = 112;
+const PIN_W = 48;
+const PIN_H = 62;
+const X = [0, 44, 6];
+
+/** One leg: from a pin's tip, curving down to the top of the next pin's head. */
+function leg(i: number) {
+  const x1 = X[i] + PIN_W / 2;
+  const y1 = i * ROW + PIN_H;
+  const x2 = X[i + 1] + PIN_W / 2;
+  const y2 = (i + 1) * ROW + 3;
+  const bend = (y2 - y1) * 0.75;
+  return `M${x1} ${y1}C${x1} ${y1 + bend} ${x2} ${y2 - bend} ${x2} ${y2}`;
+}
+
 export default function RoutePins() {
+  const height = (STOPS.length - 1) * ROW + PIN_H;
   return (
-    <ol aria-hidden className="mt-7 md:mt-9">
+    <ol aria-hidden className="relative mt-7 md:mt-9" style={{ height }}>
+      {/* The route, behind the pins. Round caps on a zero-length dash make dots. */}
+      <svg
+        className="pointer-events-none absolute left-0 top-0 overflow-visible"
+        width={Math.max(...X) + PIN_W}
+        height={height}
+        focusable="false"
+      >
+        <path
+          d={STOPS.slice(0, -1).map((_, i) => leg(i)).join("")}
+          fill="none"
+          className="stroke-accent/70"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeDasharray="0 7"
+        />
+      </svg>
+
       {STOPS.map((stop, i) => (
-        <li key={stop.key} className="relative flex items-start gap-5 pb-11 last:pb-0 md:pb-14">
-          {/* The dotted leg from this pin's tip down to the next pin's head. */}
-          {i < STOPS.length - 1 && (
-            <span className="absolute bottom-0 left-[23px] top-[62px] border-l-[3px] border-dotted border-accent/70" />
-          )}
+        <li
+          key={stop.key}
+          className="absolute left-0 flex items-start gap-5"
+          style={{ top: i * ROW, transform: `translateX(${X[i]}px)` }}
+        >
           <Pin place={stop.key} />
-          <span className="flex h-12 items-center font-display text-[1.9rem] font-normal leading-none tracking-[-0.02em] md:text-[2.6rem]">
+          <span className="flex h-12 items-center whitespace-nowrap font-display text-[1.9rem] font-normal leading-none tracking-[-0.02em] md:text-[2.6rem]">
             {stop.name}
           </span>
         </li>

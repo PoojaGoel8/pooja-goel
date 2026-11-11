@@ -77,8 +77,8 @@ figures, the uptime strip and the Singapore clock. Each is decoration over
 content that is also on the page as text, so each is hidden from screen
 readers, and each holds still for anyone who has asked for reduced motion.
 
-The route on the home page — India, Australia, Singapore as map pins down a
-dotted line — is `src/components/RoutePins.tsx`. The flags are drawn there as
+The route on the home page — India, Australia, Singapore as map pins on a
+curving dotted line — is `src/components/RoutePins.tsx`. The flags are drawn there as
 SVG rather than emoji, which Windows shows as bare letters. The pins are
 decoration; the section keeps a visually hidden heading with the same names.
 

@@ -67,7 +67,7 @@ function Marker({
 }
 
 export default function JourneyMap() {
-  const [active, setActive] = useState<Key>("india");
+  const [active, setActive] = useState<Key>("australia");
   const stop = journey.find((s) => s.key === active) as JourneyStop;
   const split = stop.groups.length > 1;
 

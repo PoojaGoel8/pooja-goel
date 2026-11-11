@@ -27,8 +27,6 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/poojagoel08",
   instagram: "https://www.instagram.com/colourzone_melbourne",
   instagramHandle: "@colourzone_melbourne",
-  artInstagram: "https://www.instagram.com/you_persona_art",
-  artInstagramHandle: "@you_persona_art",
   tagline: "Databases that stay up, stay fast, and stay governed.",
   /** Published copy has the phone number redacted out of the PDF. */
   resume: "/assets/documents/pooja-goel-resume.pdf",
@@ -666,7 +664,6 @@ export const studioBands: StudioBand[] = [
     ],
     side: "left",
     links: [
-      { label: site.artInstagramHandle, href: site.artInstagram },
       {
         label: "Read it on UMSU Creative Arts",
         href: "https://umsu.unimelb.edu.au/news/article/7860/Pooja-Goel-Undefined/",

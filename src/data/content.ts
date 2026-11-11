@@ -814,6 +814,9 @@ export type JourneyEntry = {
   meta: string;
   body?: string;
   points?: string[];
+  /** Singapore only: what the market needs, then what she brings to it. */
+  market?: string;
+  fit?: string;
 };
 
 export type JourneyGroup = {
@@ -895,22 +898,26 @@ export const journey: JourneyStop[] = [
           {
             title: "Legacy estates that have to reach the cloud intact",
             meta: "Cloud migration",
-            body: "Modernisation here is gated less by appetite than by the risk of moving systems that cannot stop. That is the move I have already made: six-plus production databases from on-premises to Azure with business continuity held throughout, and eleven more consolidated through two acquisitions with integrity and compliance intact.",
+            market: "Modernisation here is gated less by appetite than by the risk of moving systems that cannot stop.",
+            fit: "I have already made that move: six-plus production databases from on-premises to Azure with business continuity held throughout, and eleven more consolidated through two acquisitions with integrity and compliance intact.",
           },
           {
             title: "AI that is limited by the data underneath it",
             meta: "AI enablement",
-            body: "The national AI programmes have pushed adoption into ordinary enterprises, which makes data quality, lineage and access control the constraint rather than the model. That join is exactly what I built for the hackathon: wiring Databricks into Azure AI Foundry so the AI layer read governed, intact data.",
+            market: "The national AI programmes have pushed adoption into ordinary enterprises, which makes data quality, lineage and access control the constraint rather than the model.",
+            fit: "That data-to-AI join is exactly what I built for the hackathon: wiring Databricks into Azure AI Foundry so the AI layer read governed, intact data.",
           },
           {
             title: "Regulated workloads where the operator stays accountable",
             meta: "Governance",
-            body: "Two regimes point the same way. The PDPA makes an organisation accountable for personal data it holds however many processors sit underneath, and the financial sector's rules treat cloud as outsourcing, so oversight and recoverability stay with the institution whoever runs the hardware. Both come down to knowing where data sits and who touched it. Licensed wagering taught exactly that discipline: tested restores, rehearsed failovers, auditable access, and changes that can be reversed.",
+            market: "Two regimes point the same way. The PDPA makes an organisation accountable for personal data it holds however many processors sit underneath, and the financial sector's rules treat cloud as outsourcing, so oversight and recoverability stay with the institution whoever runs the hardware. Both come down to knowing where data sits and who touched it.",
+            fit: "Licensed wagering taught me exactly that discipline: tested restores, rehearsed failovers, auditable access, and changes that can be reversed.",
           },
           {
             title: "Availability measured as a commercial number",
             meta: "Reliability",
-            body: "Trading hours, settlement windows and peak events do not negotiate. High availability, replication, disaster recovery and honest RTO and RPO targets are the day job here rather than a project with an end date.",
+            market: "Trading hours, settlement windows and peak events do not negotiate, so high availability, replication, disaster recovery and honest RTO and RPO targets are an ongoing discipline rather than a project with an end date.",
+            fit: "That is already my day job: 99.99% availability across 13 production environments, and 100% server uptime through peak wagering periods.",
           },
         ],
       },

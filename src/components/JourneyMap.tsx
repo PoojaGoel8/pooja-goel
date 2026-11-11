@@ -223,6 +223,26 @@ function Entry({ entry }: { entry: JourneyEntry }) {
         <p className="mt-3.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.body}</p>
       )}
 
+      {/* Singapore's entries come in two halves, labelled so the reader can
+          see where the market ends and the claim about her begins. */}
+      {entry.market && (
+        <div className="mt-4">
+          <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-muted">
+            The market
+          </p>
+          <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-graphite">{entry.market}</p>
+        </div>
+      )}
+
+      {entry.fit && (
+        <div className="mt-5 border-l-2 border-accent pl-4">
+          <p className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-accent">
+            What I bring
+          </p>
+          <p className="mt-1.5 text-[0.97rem] leading-[1.72] text-ink">{entry.fit}</p>
+        </div>
+      )}
+
       {entry.points && (
         <ul className="mt-4 space-y-3">
           {entry.points.map((point) => (

@@ -33,59 +33,67 @@ export default function AiHub() {
 
   return (
     <div className="grid gap-14 lg:grid-cols-[minmax(0,27rem)_minmax(0,1fr)] lg:items-center lg:gap-20">
-      <div className="relative mx-auto aspect-square w-full max-w-[27rem]">
-        <svg
-          viewBox="0 0 100 100"
-          className="absolute inset-0 h-full w-full"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <circle cx="50" cy="50" r={RADIUS} className="fill-none stroke-rule" strokeWidth="0.35" />
-          <line
-            x1="50"
-            y1="50"
-            x2={here.x}
-            y2={here.y}
-            className="stroke-accent/50 transition-all duration-500"
-            strokeWidth="0.4"
-          />
-          <circle cx="50" cy="50" r="15" className="fill-accent-soft/60 stroke-rule" strokeWidth="0.35" />
-        </svg>
+      <div className="mx-auto w-full max-w-[27rem]">
+        <div className="relative aspect-square w-full">
+          <svg
+            viewBox="0 0 100 100"
+            className="absolute inset-0 h-full w-full"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <circle cx="50" cy="50" r={RADIUS} className="fill-none stroke-rule" strokeWidth="0.35" />
+            <line
+              x1="50"
+              y1="50"
+              x2={here.x}
+              y2={here.y}
+              className="stroke-accent/50 transition-all duration-500"
+              strokeWidth="0.4"
+            />
+            <circle cx="50" cy="50" r="15" className="fill-accent-soft/60 stroke-rule" strokeWidth="0.35" />
+          </svg>
 
-        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-accent">
-          <Icon name="ai" className="h-7 w-7" />
-        </span>
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-accent">
+            <Icon name="ai" className="h-7 w-7" />
+          </span>
 
-        {aiWork.map((item, i) => {
-          const at = nodeAt(i);
-          const on = i === active;
-          return (
-            <button
-              key={item.title}
-              type="button"
-              aria-pressed={on}
-              aria-label={`${item.short}: ${item.title}`}
-              onClick={() => setActive(i)}
-              style={{ left: `${at.x}%`, top: `${at.y}%` }}
-              className={[
-                "absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 whitespace-nowrap",
-                // The pills sit at a fixed percentage of the dial, so on a narrow
-                // column the widest of them runs off the right edge. Smaller
-                // below sm buys back the few pixels needed.
-                "rounded-full border px-2.5 py-1.5 text-[0.78rem] transition-colors duration-300",
-                "sm:px-3.5 sm:py-2 sm:text-[0.85rem]",
-                on
-                  ? "border-accent bg-accent text-paper"
-                  : "border-rule bg-paper text-graphite hover:border-accent hover:text-accent",
-              ].join(" ")}
-            >
-              <span className={on ? "font-mono text-[0.68rem] text-paper" : "font-mono text-[0.68rem] text-muted"}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              {item.short}
-            </button>
-          );
-        })}
+          {aiWork.map((item, i) => {
+            const at = nodeAt(i);
+            const on = i === active;
+            return (
+              <button
+                key={item.title}
+                type="button"
+                aria-pressed={on}
+                aria-label={`${item.short}: ${item.title}`}
+                onClick={() => setActive(i)}
+                style={{ left: `${at.x}%`, top: `${at.y}%` }}
+                className={[
+                  "absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 whitespace-nowrap",
+                  // The pills sit at a fixed percentage of the dial, so on a narrow
+                  // column the widest of them runs off the right edge. Smaller
+                  // below sm buys back the few pixels needed.
+                  "rounded-full border px-2.5 py-1.5 text-[0.78rem] transition-colors duration-300",
+                  "sm:px-3.5 sm:py-2 sm:text-[0.85rem]",
+                  on
+                    ? "border-accent bg-accent text-paper"
+                    : "border-rule bg-paper text-graphite hover:border-accent hover:text-accent",
+                ].join(" ")}
+              >
+                <span className={on ? "font-mono text-[0.68rem] text-paper" : "font-mono text-[0.68rem] text-muted"}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {item.short}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Nothing about a ring of pills says "press me" on its own, and on a
+            phone the panel it opens sits below the fold. */}
+        <p className="mt-4 text-center text-[0.85rem] italic text-muted">
+          Click or tap a strand to see more
+        </p>
       </div>
 
       <div className="grid">

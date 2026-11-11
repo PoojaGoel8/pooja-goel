@@ -286,7 +286,7 @@ function Elsewhere() {
     {
       to: "/studio#tutoring",
       eyebrow: "Tutoring",
-      title: "Four years explaining complex systems to people who needed them to land",
+      title: "Nearly four years explaining complex systems to people who needed them to land",
       body: "Postgraduate consulting tutorials at the University of Melbourne, alongside the full-time engineering role.",
     },
   ];

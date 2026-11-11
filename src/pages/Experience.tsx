@@ -71,7 +71,7 @@ export default function Experience() {
                 className="w-full rounded-[2px] object-cover"
               />
               <figcaption className="mt-3 text-[0.82rem] text-muted">
-                Master of Information Systems, the University of Melbourne.
+                Master of Information Systems, The University of Melbourne.
               </figcaption>
             </figure>
 

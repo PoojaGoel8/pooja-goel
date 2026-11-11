@@ -61,7 +61,7 @@ export const capabilities = [
   {
     title: "Reliability & availability",
     icon: "pulse" as const,
-    body: "High availability groups, replication, failover rehearsal, backup and restore, disaster recovery against real RTO and RPO targets, capacity planning, patching and upgrades.",
+    body: "Always On availability groups, replication, failover rehearsal, backup and restore, disaster recovery against real RTO and RPO targets, capacity planning, patching and upgrades.",
     adjacency: "Overlaps: Site Reliability Engineering",
   },
   {
@@ -289,7 +289,7 @@ export const caseStudies: CaseStudy[] = [
       "Migration was the easy half to describe and the hard half to do safely. The databases carried live customer and transaction data in a licensed industry, so the move had to preserve availability, integrity and auditability at every step — not restore them afterwards.",
     ],
     approach: [
-      "Migrated the databases to Azure while keeping business continuity intact throughout, improving scalability by roughly 90% against the on-premises ceiling.",
+      "Migrated the databases to Azure while keeping business continuity intact throughout, improving scalability by 90% against the on-premises ceiling.",
       "Implemented and tuned high availability, replication and recovery across 13 production environments, taking measured availability to 99.99%.",
       "Treated recovery as something to prove rather than document: restores tested, failovers rehearsed, RTO and RPO targets agreed with the business and then actually measured against.",
       ...(DEV ? ["// TODO — the cutover itself: how it was sequenced, what the rollback plan was, and what nearly went wrong. This is the part that makes the story credible."] : []),
@@ -297,7 +297,7 @@ export const caseStudies: CaseStudy[] = [
     outcome: [
       { value: "99.99%", label: "Availability achieved" },
       { value: "13", label: "Production environments" },
-      { value: "~90%", label: "Scalability improvement" },
+      { value: "90%", label: "Scalability improvement" },
       { value: "0", label: "Continuity incidents during migration" },
     ],
     stack: ["SQL Server", "Azure SQL", "Always On availability groups", "Replication", "PowerShell"],
@@ -478,9 +478,9 @@ export const roles = [
     place: "India",
     period: "Jul 2020 — Oct 2020",
     points: [
-      "Led the re-engineering of the onboarding program, evaluating and proposing new technology.",
-      "Increased hiring efficiency by more than 90%.",
-      "Increased the HR department's process efficiency by more than 50% through the new process.",
+      "Led the re-engineering of the onboarding programme, evaluating and proposing new technology.",
+      "Raised hiring efficiency by more than 90%.",
+      "Improved the HR department's process efficiency by more than 50% with the new process.",
     ],
   },
   {
@@ -489,7 +489,7 @@ export const roles = [
     place: "India",
     period: "Feb 2020 — Jun 2020",
     points: [
-      "Devised the onboarding program, induction plan, training needs analysis, career framework, first-time manager program and wellness initiatives.",
+      "Devised the onboarding programme, induction plan, training needs analysis, career framework, first-time manager programme and wellness initiatives.",
       "Achieved a 100% day-one satisfaction rate among new joiners.",
     ],
   },
@@ -499,7 +499,7 @@ export const roles = [
     place: "India",
     period: "Apr 2017 — Apr 2018",
     points: [
-      "Wrote short stories and articles for magazines and online platforms, shaping the online pieces for search with SEO.",
+      "Wrote short stories and articles for magazines and online platforms, optimising the online pieces for search (SEO).",
       "Proofread the monthly magazine and took it through to publication.",
     ],
   },
@@ -588,11 +588,11 @@ export const volunteering: Volunteering[] = [
     summary:
       "Representing the Faculty of Engineering and Information Technology to its students.",
     body: [
-      "I worked with the faculty to help students through their time in the department — prospective students deciding whether to come, and current ones working out how to navigate it once they had.",
+      "I worked with the faculty to help students through their time in the faculty — prospective students deciding whether to come, and current ones working out how to navigate it once they had.",
       "Doing it for nearly two years while studying meant answering, from the other side, the same questions I had been asking a year earlier. That turns out to be the most useful vantage point there is for the job.",
     ],
     link: "https://education.unimelb.edu.au/study/current-students/enrich-your-studies/graduate-education-ambassador-program",
-    linkLabel: "The ambassador program",
+    linkLabel: "The ambassador programme",
   },
   {
     role: "STEM Mentor",
@@ -604,7 +604,7 @@ export const volunteering: Volunteering[] = [
       "Encouragement in general does very little at that age. What lands is one specific person doing one specific job, described plainly enough that it stops sounding like someone else's life.",
     ],
     link: "https://students.unimelb.edu.au/careers/get-advice/career-mentoring/stem-mentoring-program",
-    linkLabel: "The STEM mentoring program",
+    linkLabel: "The STEM mentoring programme",
   },
   {
     role: "Ambassador",
@@ -635,7 +635,7 @@ export const recognition = [
 /* ---------------------------------------------------------------- studio */
 
 export const studioIntro = {
-  lede: "Face paint, portraits on commission, Indian dance on festival stages, and four years of teaching. None of it is a break from the engineering — it is the same attention paid to a different surface, and it is where the colour on this site comes from.",
+  lede: "Face paint, portraits on commission, Indian dance on festival stages, and nearly four years of teaching. None of it is a break from the engineering — it is the same attention paid to a different surface, and it is where the colour on this site comes from.",
   /** The photograph beside the page's name at the top. */
   image: {
     src: "/assets/images/facepaint-lion.webp",
@@ -755,15 +755,15 @@ export const studioBands: StudioBand[] = [
     slug: "tutoring",
     icon: "book" as const,
     figure: "tutoring" as const,
-    blurb: "Four years of it, at the University of Melbourne",
+    blurb: "Nearly four years of it, at the University of Melbourne",
     eyebrow: "The University of Melbourne",
     title: "Tutoring",
     body: [
       "For nearly four years I tutored Professional IS Consulting at the University of Melbourne, on weeknights and weekends, while working full time on production databases.",
       "The subject sits where technology meets the people paying for it: scoping work, reading a client properly, turning an ambiguous problem into something a team can actually deliver. Students arrived good at systems and uncertain about everything surrounding them.",
-      "What four years of that teaches you is diagnostic. You stop explaining the thing and start finding the specific place where someone's understanding breaks — because the explanation that works is almost never the one you prepared.",
+      "What those years teach you is diagnostic. You stop explaining the thing and start finding the specific place where someone's understanding breaks — because the explanation that works is almost never the one you prepared.",
       "It is the same instinct the database work runs on. An internal knowledge assistant is only useful if it meets someone where their confusion actually is. A post-mortem is only worth writing if the next person understands it. Documentation, standards, onboarding, incident reviews — all of it is teaching with a different audience.",
-      ...(DEV ? ["// TODO — what the subject actually covered week to week, and roughly how many students across the four years."] : []),
+      ...(DEV ? ["// TODO — what the subject actually covered week to week, and roughly how many students across those years."] : []),
     ],
     images: [],
     side: "left",
@@ -913,7 +913,7 @@ export const journey: JourneyStop[] = [
     label: "India",
     years: "2016 — 2022",
     heading: "Where the engineering started",
-    lede: "Four years of computer science and engineering, part-time writing alongside it, and three internships, from building onboarding and people programs to holding a delivery schedule together.",
+    lede: "A computer science degree, part-time writing alongside it, and three internships: two building onboarding and people programmes, one holding a delivery schedule together.",
     groups: [
       { title: "Education", entries: educationIn("India") },
       { title: "Work", entries: rolesIn("India") },

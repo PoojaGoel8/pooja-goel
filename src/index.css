@@ -17,20 +17,20 @@
     --c-signal: 91 227 142; /* #5BE38E */
   }
 
-  /* The Studio page: the same roles on warm gallery paper. The orange is
-     darker here so it still reads as text on a light ground — every pair
-     clears 4.5:1, the muted grey included. */
+  /* The Studio page: the same roles on warm sand-coloured paper. The orange
+     is darker here so it still reads as text on a light ground — every pair
+     clears 4.5:1, the muted brown included. */
   .theme-light {
     color-scheme: light;
-    --c-paper: 246 241 233; /* #F6F1E9 */
-    --c-shell: 237 230 218; /* #EDE6DA */
-    --c-ink: 27 24 20; /* #1B1814 */
-    --c-graphite: 74 68 60; /* #4A443C */
-    --c-muted: 107 99 88; /* #6B6358 */
-    --c-rule: 221 212 198; /* #DDD4C6 */
-    --c-accent: 178 55 9; /* #B23709 */
-    --c-accent-soft: 247 222 207; /* #F7DECF */
-    --c-signal: 26 115 64; /* #1A7340 */
+    --c-paper: 239 227 208; /* #EFE3D0 */
+    --c-shell: 230 214 190; /* #E6D6BE */
+    --c-ink: 30 24 19; /* #1E1813 */
+    --c-graphite: 74 62 50; /* #4A3E32 */
+    --c-muted: 99 85 74; /* #63554A */
+    --c-rule: 214 196 168; /* #D6C4A8 */
+    --c-accent: 163 50 10; /* #A3320A */
+    --c-accent-soft: 240 205 178; /* #F0CDB2 */
+    --c-signal: 23 103 58; /* #17673A */
   }
 
   html {

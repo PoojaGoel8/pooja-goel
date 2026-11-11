@@ -59,7 +59,7 @@ the orange — and their values are CSS variables in `src/index.css`, so a
 palette change there reaches every component.
 
 The Studio page is the exception: it switches to a light palette, warm
-gallery paper with a darker orange, because it is the one page that is not
+sand-coloured paper with a darker orange, because it is the one page that is not
 about the engineering. A page opts in with `"theme": "light"` in
 `pageMeta.json`. The build stamps the `theme-light` class into that page's
 own HTML file so a direct visit is light from the first paint, and

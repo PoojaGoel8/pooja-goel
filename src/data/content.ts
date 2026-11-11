@@ -586,21 +586,13 @@ export const recognition = [
 
 export const studioIntro = {
   lede: "Face paint, portraits on commission, Indian dance on festival stages, and four years of teaching. None of it is a break from the engineering — it is the same attention paid to a different surface, and it is where the colour on this site comes from.",
-  /** The offset collage at the top of the page. */
-  collage: [
-    {
-      src: "/assets/images/dance-stage.webp",
-      alt: "Pooja and her group performing in Kerala costume at Ente Keralam",
-      w: 1500,
-      h: 1000,
-    },
-    {
-      src: "/assets/images/facepaint-lion.webp",
-      alt: "A lion design with a painted muzzle and tongue",
-      w: 361,
-      h: 640,
-    },
-  ],
+  /** The photograph beside the page's name at the top. */
+  image: {
+    src: "/assets/images/facepaint-lion.webp",
+    alt: "A lion design with a painted muzzle and tongue",
+    w: 361,
+    h: 640,
+  },
 };
 
 export type StudioBand = {

@@ -16,38 +16,6 @@ function AwaitingImages({ label }: { label: string }) {
   );
 }
 
-/**
- * Two photographs at different heights and widths, so the top of the page
- * reads as a studio wall rather than a tidy grid.
- */
-function Collage() {
-  const [stage, paint] = studioIntro.collage;
-
-  return (
-    <div className="grid grid-cols-3 items-end gap-3 md:grid-cols-12 md:gap-4">
-      <Reveal className="col-span-2 md:col-span-8">
-        <img
-          src={asset(stage.src)}
-          alt={stage.alt}
-          width={stage.w}
-          height={stage.h}
-          className="h-full w-full rounded-[2px] object-cover md:aspect-[3/2]"
-        />
-      </Reveal>
-      <Reveal delay={120} className="md:col-span-4">
-        <img
-          src={asset(paint.src)}
-          alt={paint.alt}
-          width={paint.w}
-          height={paint.h}
-          loading="lazy"
-          className="h-full w-full rounded-[2px] object-cover md:aspect-[3/4]"
-        />
-      </Reveal>
-    </div>
-  );
-}
-
 function Band({ band, index }: { band: StudioBand; index: number }) {
   const imagesFirst = band.side === "left";
   // A band with no photographs and none expected runs as a single column —
@@ -213,31 +181,42 @@ export default function Studio() {
 
   return (
     <>
-      <header className="mx-auto max-w-shell px-6 pb-12 pt-10 md:px-10 md:pb-16 md:pt-14">
-        <p aria-hidden className="poster animate-rise text-[clamp(3.6rem,14.5vw,12rem)] text-ink">
+      {/* The page's name with a photograph beside it, and the introduction
+          under the name. On a phone the photograph sits between the two. */}
+      <header className="mx-auto grid max-w-shell gap-x-12 px-6 pb-12 pt-10 md:grid-cols-[minmax(0,1fr)_14rem] md:px-10 md:pb-20 md:pt-14 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-x-20">
+        <p aria-hidden className="poster animate-rise text-[clamp(3.6rem,14.5vw,12rem)] text-ink md:col-start-1 md:row-start-1">
           Studio<span className="text-accent">.</span>
         </p>
-        <p className="eyebrow mt-10 animate-rise border-t border-rule pt-10 md:mt-14 md:pt-14">
-          [ Studio ]
-        </p>
-        <h1 className="mt-5 max-w-[16ch] animate-rise font-display text-[2.2rem] font-normal leading-[1.06] tracking-[-0.025em] md:text-[3.3rem]">
-          The other practice.
-        </h1>
-        <p className="copy mt-8 max-w-prose animate-rise text-[1.15rem] md:text-[1.25rem]">
-          {studioIntro.lede}
-        </p>
+
+        <figure className="mt-8 w-full max-w-[17rem] animate-rise md:col-start-2 md:row-span-2 md:row-start-1 md:mt-0 md:max-w-none md:self-start">
+          <img
+            src={asset(studioIntro.image.src)}
+            alt={studioIntro.image.alt}
+            width={studioIntro.image.w}
+            height={studioIntro.image.h}
+            className="aspect-[3/4] w-full rounded-[3px] object-cover"
+          />
+        </figure>
+
+        <div className="md:col-start-1 md:row-start-2">
+          <p className="eyebrow mt-10 animate-rise border-t border-rule pt-10 md:mt-12 md:pt-12">
+            [ Studio ]
+          </p>
+          <h1 className="mt-5 max-w-[16ch] animate-rise font-display text-[2.2rem] font-normal leading-[1.06] tracking-[-0.025em] md:text-[3.3rem]">
+            The other practice.
+          </h1>
+          <p className="copy mt-8 max-w-prose animate-rise text-[1.15rem] md:text-[1.25rem]">
+            {studioIntro.lede}
+          </p>
+        </div>
       </header>
 
-      <div className="mx-auto max-w-shell px-6 md:px-10">
-        <Collage />
-      </div>
-
-      {/* Five bands is more than fits on a screen, so give the reader a way in. */}
+      {/* Four bands is more than fits on a screen, so give the reader a way in. */}
       <nav
         aria-label="Sections of this page"
-        className="mx-auto max-w-shell px-6 py-14 md:px-10 md:py-20"
+        className="mx-auto max-w-shell px-6 pb-14 md:px-10 md:pb-20"
       >
-        <ul className="grid grid-cols-2 gap-3 border-t border-rule pt-10 lg:grid-cols-5">
+        <ul className="grid grid-cols-2 gap-3 border-t border-rule pt-10 lg:grid-cols-4">
           {studioBands.map((band, i) => (
             // An odd count leaves the last tile alone on a two-column row, so
             // it takes the whole row there instead of half of it.

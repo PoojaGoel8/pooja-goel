@@ -92,7 +92,7 @@ export default function AiHub() {
         {/* Nothing about a ring of pills says "press me" on its own, and on a
             phone the panel it opens sits below the fold. */}
         <p className="mt-4 text-center text-[0.85rem] italic text-muted">
-          Click or tap a strand to see more
+          Tap any option to view more
         </p>
       </div>
 
